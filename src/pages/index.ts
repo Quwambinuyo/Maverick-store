@@ -7,3 +7,6 @@ export { default as Privacy } from "./Privacy";
 export { default as TermsAndCondition } from "./TermsAndConditon";
 export { default as Dashboard } from "./Dashboard";
 export { default as Cart } from "./Cart";
+export { default as Register } from "./Register";
+export { default as Login } from "./Login";
+export { default as Error404 } from "./Error404";

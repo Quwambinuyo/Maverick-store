@@ -6,4 +6,6 @@ export { default as Sidebar } from "./Sidebar";
 export { default as Home } from "./Home";
 export { default as Products } from "./Products";
 export { default as GetApp } from "./GetApp";
+export { default as Pages } from "./Pages";
 export { default as SingleProduct } from "./SingleProduct";
+export { default as Layout } from "./Layout";

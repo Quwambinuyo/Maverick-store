@@ -1,1 +1,17 @@
 @import "tailwindcss";
+@theme {
+  /* --breakpoint-*: initial;
+	--breakpoint-sm: 640px;
+	--breakpoint-md: 864px;
+	--breakpoint-lg: 1056px;
+	--breakpoint-xl: 1240px; */
+  --color-primary-color: #543776;
+  --color-secondary-color: #c3acd0;
+  /* --color-neutral-700: #2e2e2e;
+	--color-neutral-600: #454545;
+	--color-neutral-500: #5c5c5c;
+	--color-neutral-400: #737373;
+	--color-neutral-300: #8f8f8f;
+	--color-error-500: #d42620;
+	--color-success-500: #0f973d; */
+}
