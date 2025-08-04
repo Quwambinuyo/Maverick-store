@@ -29,7 +29,7 @@ const Home = () => {
             return (
               <SwiperSlide key={id}>
                 <div
-                  className="w-full rounded-xl overflow-hidden relative md:object-center flex flex-col justify-end"
+                  className="w-full rounded-md overflow-hidden relative md:object-center flex flex-col justify-end"
                   style={{
                     backgroundImage: `url(${image})`,
                     backgroundSize: "cover",
