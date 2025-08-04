@@ -10,3 +10,9 @@ export interface CustomButtonProps {
   type?: "button" | "submit" | "reset";
   children?: React.ReactNode;
 }
+
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  className?: string;
+  children?: React.ReactNode;
+}

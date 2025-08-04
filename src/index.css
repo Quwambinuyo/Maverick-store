@@ -15,3 +15,16 @@
 	--color-error-500: #d42620;
 	--color-success-500: #0f973d; */
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px; /* very thin */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2); /* faded gray */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}

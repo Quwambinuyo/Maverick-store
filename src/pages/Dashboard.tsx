@@ -1,5 +1,5 @@
 const Dashboard = () => {
-  return <div className="w-screen bg-primary-color">Dashboard</div>;
+  return <div className="">Dashboard</div>;
 };
 
 export default Dashboard;

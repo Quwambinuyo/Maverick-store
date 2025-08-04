@@ -1,6 +1,5 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
-import { BsArrowRightSquareFill } from "react-icons/bs";
-import { BsArrowLeftSquareFill } from "react-icons/bs";
+import { Link, NavLink } from "react-router-dom";
+import { BsArrowRightSquareFill, BsArrowLeftSquareFill } from "react-icons/bs";
 import { SidebarLinks } from "../utils/SidebarLinks";
 import { useSidebarStore } from "../features/store";
 import { useEffect } from "react";
@@ -25,32 +24,38 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <>
-      <aside className="h-screen">
-        <div
-          className={`bg-primary-color ${
-            isOpen ? "w-50" : "w-20"
-          }  pt-5 relative h-full flex flex-col items-center gap-y-3.5 transition-all duration-200 ease-in-out`}
-        >
-          <h2>
-            <Link
-              to="/"
-              className={`  ${
-                isOpen ? "text-3xl" : "text-2xl"
-              } block font font-bold mb-6   text-white`}
-            >
-              {isOpen ? "Maverick" : "Mav"}
-            </Link>
-          </h2>
-          {SidebarLinks.map((link) => {
-            const { icon, name, id, path } = link;
-            return (
+    <aside className="h-screen flex-shrink-0">
+      <div
+        className={`bg-primary-color ${
+          isOpen ? "w-60" : "w-20"
+        } relative h-full flex flex-col border-r border-gray-300 items-center transition-all duration-200 ease-in-out`}
+      >
+        <h2>
+          <Link
+            to="/"
+            className={`${
+              isOpen ? "text-3xl" : "text-2xl"
+            } block font-bold mb-6 pt-11 text-white`}
+          >
+            {isOpen ? "Maverick" : "Mav"}
+          </Link>
+        </h2>
+
+        <div className="custom-scrollbar w-full flex-1 overflow-y-auto px-1">
+          <div className="flex flex-col gap-y-3.5 pb-10">
+            {SidebarLinks.map(({ icon, name, id, path }) => (
               <NavLink
                 key={id}
                 to={path}
-                className={`flex items-center py-4 px-3 text-white w-full hover:bg-secondary-color hover:text-primary-color transition-all duration-200 ${
-                  isOpen ? "justify-start pl-6 gap-4" : "justify-center"
-                }`}
+                className={({ isActive }) =>
+                  `flex items-center py-6 px-3 w-full transition-all duration-200 ${
+                    isOpen ? "justify-start pl-6 gap-4" : "justify-center"
+                  } ${
+                    isActive
+                      ? "bg-white text-primary-color font-semibold"
+                      : "text-white hover:bg-secondary-color hover:text-primary-color"
+                  }`
+                }
               >
                 <span className="text-2xl">{icon}</span>
                 {isOpen && (
@@ -59,22 +64,22 @@ const Sidebar = () => {
                   </span>
                 )}
               </NavLink>
-            );
-          })}
-
-          <CustomBtn
-            onClick={toggleSidebar}
-            className="absolute top-9 -right-4 z-10 cursor-pointer bg-white rounded-full"
-          >
-            {isOpen ? (
-              <BsArrowLeftSquareFill className="text-3xl text-[#543776]" />
-            ) : (
-              <BsArrowRightSquareFill className="text-3xl text-[#543776]" />
-            )}
-          </CustomBtn>
+            ))}
+          </div>
         </div>
-      </aside>
-    </>
+
+        <CustomBtn
+          onClick={toggleSidebar}
+          className="absolute top-14 -right-4 z-10 cursor-pointer bg-white rounded-full"
+        >
+          {isOpen ? (
+            <BsArrowLeftSquareFill className="text-3xl text-[#543776]" />
+          ) : (
+            <BsArrowRightSquareFill className="text-3xl text-[#543776]" />
+          )}
+        </CustomBtn>
+      </div>
+    </aside>
   );
 };
 

@@ -4,6 +4,7 @@ import { FaList } from "react-icons/fa";
 import { MdCategory } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
 import { PiWarningCircleBold } from "react-icons/pi";
+import { RiLogoutBoxRLine } from "react-icons/ri";
 
 export const SidebarLinks = [
   {
@@ -41,5 +42,11 @@ export const SidebarLinks = [
     name: "About us",
     icon: <PiWarningCircleBold />,
     path: "/about",
+  },
+  {
+    id: 7,
+    name: "Logout",
+    icon: <RiLogoutBoxRLine />,
+    path: "/register",
   },
 ];
