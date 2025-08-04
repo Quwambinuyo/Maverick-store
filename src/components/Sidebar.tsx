@@ -24,24 +24,22 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <aside className="h-screen flex-shrink-0">
-      <div
-        className={`bg-primary-color ${
-          isOpen ? "w-60" : "w-20"
-        } relative h-full flex flex-col border-r border-gray-300 items-center transition-all duration-200 ease-in-out`}
-      >
-        <h2>
-          <Link
-            to="/"
-            className={`${
-              isOpen ? "text-3xl" : "text-2xl"
-            } block font-bold mb-6 pt-11 text-white`}
-          >
-            {isOpen ? "Maverick" : "Mav"}
-          </Link>
-        </h2>
+    <aside
+      className={`${
+        isOpen ? "w-60" : "w-20"
+      } h-screen bg-primary-color border-r border-gray-300 flex-shrink-0 fixed top-0 left-0 z-40 transition-all duration-200`}
+    >
+      <div className="relative h-full flex flex-col items-center pt-11">
+        <Link
+          to="/"
+          className={`${
+            isOpen ? "text-3xl" : "text-2xl"
+          } font-bold mb-6 text-white`}
+        >
+          {isOpen ? "Maverick" : "Mav"}
+        </Link>
 
-        <div className="custom-scrollbar w-full flex-1 overflow-y-auto px-1">
+        <div className="custom-scrollbar flex-1 w-full overflow-y-auto px-1">
           <div className="flex flex-col gap-y-3.5 pb-10">
             {SidebarLinks.map(({ icon, name, id, path }) => (
               <NavLink
@@ -70,7 +68,7 @@ const Sidebar = () => {
 
         <CustomBtn
           onClick={toggleSidebar}
-          className="absolute top-14 -right-4 z-10 cursor-pointer bg-white rounded-full"
+          className="absolute top-14 -right-4 z-50 bg-white rounded-full cursor-pointer"
         >
           {isOpen ? (
             <BsArrowLeftSquareFill className="text-3xl text-[#543776]" />

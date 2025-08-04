@@ -17,11 +17,11 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 4px; /* very thin */
+  width: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2); /* faded gray */
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 }
 

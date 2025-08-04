@@ -1,7 +1,15 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { Categories, Home, Layout, Pages } from "../components";
-import { Dashboard, Cart, Contact, About, Checkout, Error404 } from "../pages";
+import {
+  Dashboard,
+  Cart,
+  Contact,
+  About,
+  Checkout,
+  Error404,
+  Register,
+} from "../pages";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +28,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/checkout",
-    element: <Checkout />, // this route stands alone, not inside Home
+    element: <Checkout />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
 ]);
 
