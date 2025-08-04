@@ -1,0 +1,7 @@
+export { default as About } from "./About";
+export { default as Faq } from "./Faq";
+export { default as Offer } from "./Offer";
+export { default as Contact } from "./Contact";
+export { default as Checkout } from "./Checkout";
+export { default as Privacy } from "./Privacy";
+export { default as TermsAndCondition } from "./TermsAndConditon";
