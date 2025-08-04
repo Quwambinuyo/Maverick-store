@@ -4,6 +4,7 @@ import { BsArrowLeftSquareFill } from "react-icons/bs";
 import { SidebarLinks } from "../utils/SidebarLinks";
 import { useSidebarStore } from "../features/store";
 import { useEffect } from "react";
+import CustomBtn from "../utils/CustomBtn";
 
 const Sidebar = () => {
   const { isOpen, toggleSidebar } = useSidebarStore();
@@ -60,7 +61,7 @@ const Sidebar = () => {
           );
         })}
 
-        <button
+        <CustomBtn
           onClick={toggleSidebar}
           className="absolute top-9 -right-4 z-10 cursor-pointer bg-white rounded-full"
         >
@@ -69,7 +70,7 @@ const Sidebar = () => {
           ) : (
             <BsArrowLeftSquareFill className="text-3xl text-[#543776]" />
           )}
-        </button>
+        </CustomBtn>
       </div>
     </aside>
   );
