@@ -3,12 +3,28 @@ import { BsArrowRightSquareFill } from "react-icons/bs";
 import { BsArrowLeftSquareFill } from "react-icons/bs";
 import { SidebarLinks } from "../utils/SidebarLinks";
 import { useSidebarStore } from "../features/store";
+import { useEffect } from "react";
 
 const Sidebar = () => {
   const { isOpen, toggleSidebar } = useSidebarStore();
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        useSidebarStore.getState().setSidebar(false);
+      } else {
+        useSidebarStore.getState().setSidebar(true);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <aside className="h-screen hidden sm:block">
+    <aside className="h-screen">
       <div
         className={`bg-[#543776] ${
           isOpen ? "w-50" : "w-20"
@@ -21,7 +37,7 @@ const Sidebar = () => {
               isOpen ? "text-3xl" : "text-2xl"
             } block font font-bold mb-6   text-white`}
           >
-            {isOpen ? "Bdmr" : "BM"}
+            {isOpen ? "Maverick" : "Mav"}
           </Link>
         </h2>
         {SidebarLinks.map((link) => {
