@@ -10,12 +10,12 @@ const Layout = () => {
     <div className="flex h-screen overflow-hidden">
       <Sidebar />
       <div
-        className={`flex flex-col flex-1 transition-all duration-300 ${
-          isOpen ? "ml-60" : "ml-20"
+        className={`flex flex-col transition-all duration-300 w-full ${
+          isOpen ? "pl-60" : "pl-20"
         }`}
       >
         <Navbar />
-        <main className="flex-1 overflow-y-auto p-4">
+        <main className="flex-1 overflow-y-auto p-4 bg-gray-50">
           <Outlet />
         </main>
       </div>

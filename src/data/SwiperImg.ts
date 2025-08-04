@@ -10,7 +10,7 @@ export const SwiperImg = [
   {
     id: 2,
     image:
-      "https://images.unsplash.com/photo-1655089131279-8029e8a21ac6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGplcnNleXxlbnwwfHwwfHx8MA%3D%3D",
+      "https://images.unsplash.com/photo-1580089595767-98745d7025c5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8amVyc2V5fGVufDB8fDB8fHww",
     description: " effortless everyday style",
     paragraph:
       "Step into comfort and confidence with our everyday essentials. Designed for versatility, our pieces fit seamlessly into your routine — whether you're dressing up or keeping it casual.",
@@ -26,7 +26,7 @@ export const SwiperImg = [
   {
     id: 4,
     image:
-      "https://images.unsplash.com/photo-1580969661165-8c2b5d9721b5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGplcnNleXxlbnwwfHwwfHx8MA%3D%3D",
+      "https://images.unsplash.com/photo-1599984995249-7c71883940cd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fGplcnNleXxlbnwwfHwwfHx8MA%3D%3D",
     description: " redefining streetwear",
     paragraph:
       "We believe fashion is more than clothes — it's self-expression. That’s why every item we make is built to help you look good, feel great, and own your vibe.",
@@ -34,7 +34,7 @@ export const SwiperImg = [
   {
     id: 5,
     image:
-      "https://images.unsplash.com/photo-1551854304-9235bf86ef71?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTh8fGplcnNleXxlbnwwfHwwfHx8MA%3D%3D",
+      "https://images.unsplash.com/photo-1530279281203-4c60af01ee58?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGplcnNleXxlbnwwfHwwfHx8MA%3D%3D",
     description: "built to stand 0ut",
     paragraph:
       "Modern cuts. Premium fabrics. Urban attitude. This isn’t just fashion — it’s a lifestyle. Shop the looks that are turning heads this season.",
