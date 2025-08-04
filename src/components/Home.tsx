@@ -63,17 +63,17 @@ const Home = () => {
         </Swiper>
 
         {/* Quality Product Section */}
-        <div className="bg-white  shadow-sm mt-3 p-3 rounded-md inline-flex flex-wrap items-center gap-4 justify-between  w-full">
-          <div>
-            <div className="flex gap-2">
-              <span className="text-sm sm:text-2xl font-bold text-primary-color block">
+        <div className="bg-white shadow-sm mt-3 p-3 rounded-md w-full flex flex-col sm:flex-row flex-wrap items-center justify-between gap-4">
+          <div className="min-w-0 max-w-full flex-1">
+            <div className="flex flex-wrap sm:flex-nowrap gap-2">
+              <span className="text-sm sm:text-2xl font-bold text-primary-color block break-words whitespace-normal">
                 100% Original
               </span>
-              <span className="text-sm sm:text-2xl font-bold block">
+              <span className="text-sm sm:text-2xl font-bold block break-words whitespace-normal">
                 Quality Product
               </span>
             </div>
-            <p className="text-base sm:text-lg font-light text-gray-500">
+            <p className="text-base sm:text-lg font-light text-gray-500 break-words whitespace-normal">
               See our latest discounted products and get a special
               <span className="text-purple-800 font-bold ml-2">discount</span>
             </p>
