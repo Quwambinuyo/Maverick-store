@@ -5,3 +5,5 @@ export { default as Contact } from "./Contact";
 export { default as Checkout } from "./Checkout";
 export { default as Privacy } from "./Privacy";
 export { default as TermsAndCondition } from "./TermsAndConditon";
+export { default as Dashboard } from "./Dashboard";
+export { default as Cart } from "./Cart";

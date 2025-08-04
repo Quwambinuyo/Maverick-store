@@ -1,5 +1,11 @@
+import BaseRoutes from "./base/BaseRoutes";
+
 const App = () => {
-  return <div>App</div>;
+  return (
+    <>
+      <BaseRoutes />
+    </>
+  );
 };
 
 export default App;
