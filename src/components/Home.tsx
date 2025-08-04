@@ -63,7 +63,7 @@ const Home = () => {
         </Swiper>
 
         {/* Quality Product Section */}
-        <div className="bg-white  shadow-sm mt-3 p-3 rounded-md inline-flex flex-wrap items-center gap-4  max-w-fit w-full">
+        <div className="bg-white  shadow-sm mt-3 p-3 rounded-md inline-flex flex-wrap items-center gap-4 justify-between  w-full">
           <div>
             <div className="flex gap-2">
               <span className="text-sm sm:text-2xl font-bold text-primary-color block">
