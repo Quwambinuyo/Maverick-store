@@ -9,3 +9,5 @@ export { default as GetApp } from "./GetApp";
 export { default as Pages } from "./Pages";
 export { default as SingleProduct } from "./SingleProduct";
 export { default as Layout } from "./Layout";
+export { default as SwiperCarousel } from "./SwiperCarousel";
+export { default as FeaturedCategories } from "./FeaturedCategories";

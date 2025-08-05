@@ -1,0 +1,50 @@
+import { Products } from "../data/ProductData";
+import { NavLink } from "react-router-dom";
+import { IoIosArrowForward } from "react-icons/io";
+
+const FeaturedCategories = () => {
+  return (
+    <section>
+      <div className="text-center mt-3 mb-6">
+        <h2 className="text-[20px] sm:text-2xl font-bold">
+          Featured Categories
+        </h2>
+        <p className="text-sm font-light text-gray-500 sm:text-[20px]">
+          Choose your necessary products from these featured categories.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-screen-xl mx-auto">
+        {Object.entries(Products).map(([categoryName, subGroups]) => (
+          <div
+            key={categoryName}
+            className="border border-gray-200 rounded-lg p-4 shadow-sm bg-white"
+          >
+            <NavLink
+              to="/categories"
+              className="text-xl font-semibold mb-3 text-primary-color hover:text-purple-900 hover:scale-105 transition-all duration-300 ease-in-out"
+            >
+              {categoryName}
+            </NavLink>
+
+            <ul className="space-y-2">
+              {Object.entries(subGroups).map(([subGroupName]) => (
+                <li key={subGroupName}>
+                  <NavLink
+                    to={`/category/${categoryName.toLowerCase()}/${subGroupName.toLowerCase()}`}
+                    className="flex items-center gap-2 text-gray-700 hover:text-primary-color transition-colors"
+                  >
+                    <IoIosArrowForward className="text-xs" />
+                    <span>{subGroupName}</span>
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default FeaturedCategories;

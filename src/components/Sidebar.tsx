@@ -27,9 +27,9 @@ const Sidebar = () => {
     <aside
       className={`${
         isOpen ? "w-60" : "w-20"
-      } h-screen bg-primary-color border-r border-gray-300 flex-shrink-0 fixed top-0 left-0 z-40 transition-all duration-200`}
+      } h-screen bg-primary-color border-r border-gray-300 flex-shrink-0 fixed top-0 left-0  transition-all duration-200`}
     >
-      <div className="relative h-full flex flex-col items-center pt-11">
+      <div className="relative h-full flex flex-col items-center pt-7">
         <Link
           to="/"
           className={`${
@@ -40,13 +40,13 @@ const Sidebar = () => {
         </Link>
 
         <div className="custom-scrollbar flex-1 w-full overflow-y-auto px-1">
-          <div className="flex flex-col gap-y-3.5 pb-10">
+          <div className="flex flex-col gap-y-2 pb-10">
             {SidebarLinks.map(({ icon, name, id, path }) => (
               <NavLink
                 key={id}
                 to={path}
                 className={({ isActive }) =>
-                  `flex items-center py-6 px-3 w-full transition-all duration-200 ${
+                  `flex items-center sm:py-4 py-7  px-3 w-full transition-all duration-200 ${
                     isOpen ? "justify-start pl-6 gap-4" : "justify-center"
                   } ${
                     isActive
@@ -55,7 +55,7 @@ const Sidebar = () => {
                   }`
                 }
               >
-                <span className="text-2xl">{icon}</span>
+                <span className="sm:text-2xl text-[25px]">{icon}</span>
                 {isOpen && (
                   <span className="text-[18px] font-semibold whitespace-nowrap">
                     {name}
