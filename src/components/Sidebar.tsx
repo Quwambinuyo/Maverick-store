@@ -46,7 +46,7 @@ const Sidebar = () => {
 
           {/* Toggle Button on sm+ screens */}
           <button
-            className="hidden sm:flex items-center justify-center absolute -right-4 top-12 bg-white rounded-full w-8 h-8"
+            className="hidden sm:flex items-center justify-center bg-secondary-color absolute -right-4 top-12  rounded-full w-8 h-8"
             onClick={toggleSidebar}
           >
             {isOpen ? (

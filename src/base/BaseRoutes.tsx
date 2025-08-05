@@ -18,21 +18,15 @@ const router = createBrowserRouter([
     errorElement: <Error404 />,
     children: [
       { index: true, element: <Home /> },
-      { path: "/dashboard", element: <Dashboard /> },
-      { path: "/cart", element: <Cart /> },
-      { path: "/categories", element: <Categories /> },
-      { path: "/pages", element: <Pages /> },
-      { path: "/contact", element: <Contact /> },
-      { path: "/about", element: <About /> },
+      { path: "dashboard", element: <Dashboard /> },
+      { path: "cart", element: <Cart /> },
+      { path: "categories", element: <Categories /> },
+      { path: "pages", element: <Pages /> },
+      { path: "contact", element: <Contact /> },
+      { path: "about", element: <About /> },
+      { path: "checkout", element: <Checkout /> },
+      { path: "register", element: <Register /> },
     ],
-  },
-  {
-    path: "/checkout",
-    element: <Checkout />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
   },
 ]);
 

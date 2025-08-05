@@ -5,4 +5,7 @@ export const useSidebarStore = create<SidebarButtonState>((set) => ({
   isOpen: window.innerWidth >= 640,
   toggleSidebar: () => set((state) => ({ isOpen: !state.isOpen })),
   setSidebar: (open) => set({ isOpen: open }),
+
+  loading: false,
+  setLoading: (value) => set({ loading: value }),
 }));

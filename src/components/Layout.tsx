@@ -1,15 +1,28 @@
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useSidebarStore } from "../features/store";
+import Loader from "./Loader";
+import { useEffect } from "react";
 
 const Layout = () => {
-  const { isOpen } = useSidebarStore();
+  const { isOpen, setLoading, loading } = useSidebarStore();
+  const location = useLocation();
+
+  useEffect(() => {
+    setLoading(true);
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen overflow-hidden relative">
+      {loading && <Loader />}
       <Sidebar />
-
       <div
         className={`
           flex flex-col transition-all duration-300 w-full 
