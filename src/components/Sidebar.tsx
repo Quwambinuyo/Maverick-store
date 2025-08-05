@@ -46,13 +46,13 @@ const Sidebar = () => {
 
           {/* Toggle Button on sm+ screens */}
           <button
-            className="hidden sm:flex items-center justify-center absolute -right-4 top-12 bg-white rounded-md  w-8 h-8"
+            className="hidden sm:flex items-center justify-center absolute -right-4 top-12 bg-white rounded-full w-8 h-8"
             onClick={toggleSidebar}
           >
             {isOpen ? (
-              <BsArrowLeftSquareFill className="text-primary-color w-full h-full" />
+              <BsArrowLeftSquareFill className="text-primary-color rounded-lg text-2xl w-full h-full drop-shadow-sm" />
             ) : (
-              <BsArrowRightSquareFill className="text-primary-color w-full h-full" />
+              <BsArrowRightSquareFill className="text-primary-color text-2xl  rounded-lg w-full h-full drop-shadow-sm" />
             )}
           </button>
 
