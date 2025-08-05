@@ -5,7 +5,7 @@ import { IoIosArrowForward } from "react-icons/io";
 const FeaturedCategories = () => {
   return (
     <section>
-      <div className="text-center mt-3 mb-6">
+      <div className="text-center mt-3 mb-9">
         <h2 className="text-[20px] sm:text-2xl font-bold">
           Featured Categories
         </h2>

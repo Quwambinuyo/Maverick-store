@@ -174,4 +174,106 @@ export const Products = {
       },
     ],
   },
+  Caps: {
+    Unisex: [
+      {
+        id: 61,
+        name: "Vintage Cream Cap",
+        image:
+          "https://pbs.twimg.com/media/GxM84zwXcAQXqoU?format=jpg&name=large",
+        colors: ["Cream", "Khaki"],
+        price: 130,
+        discountPercent: 30,
+        discountPrice: 130 - (130 * 30) / 100,
+      },
+      {
+        id: 62,
+        name: "Modern Navy Cap",
+        image:
+          "https://pbs.twimg.com/media/GxM84zwXcAQXqoU?format=jpg&name=large",
+        colors: ["Navy", "White"],
+        price: 85,
+        discountPercent: 10,
+        discountPrice: 85 - (85 * 10) / 100,
+      },
+      {
+        id: 63,
+        name: "Sporty Red Cap",
+        image:
+          "https://pbs.twimg.com/media/Gw5Gs-KXEAEjLoV?format=jpg&name=large",
+        colors: ["Red", "Black"],
+        price: 75,
+        discountPercent: 15,
+        discountPrice: 75 - (75 * 15) / 100,
+      },
+    ],
+  },
+  Shoes: {
+    Unisex: [
+      {
+        id: 61,
+        name: "Vintage Cream Cap",
+        image:
+          "https://pbs.twimg.com/media/GxM84zwXcAQXqoU?format=jpg&name=large",
+        colors: ["Cream", "Khaki"],
+        price: 130,
+        discountPercent: 30,
+        discountPrice: 130 - (130 * 30) / 100,
+      },
+      {
+        id: 62,
+        name: "Modern Navy Cap",
+        image:
+          "https://pbs.twimg.com/media/GxM84zwXcAQXqoU?format=jpg&name=large",
+        colors: ["Navy", "White"],
+        price: 85,
+        discountPercent: 10,
+        discountPrice: 85 - (85 * 10) / 100,
+      },
+      {
+        id: 63,
+        name: "Sporty Red Cap",
+        image:
+          "https://pbs.twimg.com/media/Gw5Gs-KXEAEjLoV?format=jpg&name=large",
+        colors: ["Red", "Black"],
+        price: 75,
+        discountPercent: 15,
+        discountPrice: 75 - (75 * 15) / 100,
+      },
+    ],
+  },
+  Jackets: {
+    Unisex: [
+      {
+        id: 61,
+        name: "Vintage Cream Cap",
+        image:
+          "https://pbs.twimg.com/media/GxM84zwXcAQXqoU?format=jpg&name=large",
+        colors: ["Cream", "Khaki"],
+        price: 130,
+        discountPercent: 30,
+        discountPrice: 130 - (130 * 30) / 100,
+      },
+      {
+        id: 62,
+        name: "Modern Navy Cap",
+        image:
+          "https://pbs.twimg.com/media/GxM84zwXcAQXqoU?format=jpg&name=large",
+        colors: ["Navy", "White"],
+        price: 85,
+        discountPercent: 10,
+        discountPrice: 85 - (85 * 10) / 100,
+      },
+      {
+        id: 63,
+        name: "Sporty Red Cap",
+        image:
+          "https://pbs.twimg.com/media/Gw5Gs-KXEAEjLoV?format=jpg&name=large",
+        colors: ["Red", "Black"],
+        price: 75,
+        discountPercent: 15,
+        discountPrice: 75 - (75 * 15) / 100,
+      },
+    ],
+  },
 };
