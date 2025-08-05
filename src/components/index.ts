@@ -11,3 +11,4 @@ export { default as SingleProduct } from "./SingleProduct";
 export { default as Layout } from "./Layout";
 export { default as SwiperCarousel } from "./SwiperCarousel";
 export { default as FeaturedCategories } from "./FeaturedCategories";
+export { default as PopularProducts } from "./PopularProducts";

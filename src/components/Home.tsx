@@ -1,4 +1,5 @@
 import FeaturedCategories from "./FeaturedCategories";
+import PopularProducts from "./PopularProducts";
 import SwiperCarousel from "./SwiperCarousel";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <SwiperCarousel />
       <FeaturedCategories />
+      <PopularProducts />
     </>
   );
 };

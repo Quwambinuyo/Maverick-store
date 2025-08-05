@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between bg-white px-4 py-3 shadow-lg w-full gap-2">
       {/* Left: Hamburger + Greeting */}
-      <div className="flex items-center gap-4 flex-[1] min-w-0">
+      <div className="flex items-center gap-4 min-w-0">
         <button
           onClick={toggleSidebar}
           className="sm:hidden text-primary-color text-3xl focus:outline-none"
@@ -33,7 +33,7 @@ const Navbar = () => {
       </div>
 
       {/* Middle: Search (slightly wider than greeting) */}
-      <div className="relative flex-[1.2] hidden sm:block min-w-0">
+      <div className="relative  hidden sm:block min-w-0">
         <CustomInput
           className="w-full pl-10 pr-3 py-2 border border-primary-color rounded-md"
           placeholder="Search product..."
@@ -42,8 +42,8 @@ const Navbar = () => {
       </div>
 
       {/* Right: Icons (wrapped in a parent) */}
-      <div className="flex items-center justify-end flex-[0.5]">
-        <div className="flex items-center gap-6 text-2xl text-gray-800">
+      <div className="flex items-center flex-[0.5]">
+        <div className="flex items-center gap-4  sm:gap-9 text-2xl text-gray-800">
           <IoIosNotifications />
           <IoSunnySharp />
         </div>
