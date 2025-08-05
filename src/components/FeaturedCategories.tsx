@@ -5,7 +5,7 @@ import { IoIosArrowForward } from "react-icons/io";
 const FeaturedCategories = () => {
   return (
     <section>
-      <div className="text-center mt-3 mb-9">
+      <div className="text-center mt-3 mb-3">
         <h2 className="text-[20px] sm:text-2xl font-bold">
           Featured Categories
         </h2>
@@ -14,11 +14,11 @@ const FeaturedCategories = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-screen-xl mx-auto">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 max-w-screen-xl mx-auto mb-5">
         {Object.entries(Products).map(([categoryName, subGroups]) => (
           <div
             key={categoryName}
-            className="border border-gray-200 rounded-lg p-4 shadow-sm bg-white"
+            className="border border-gray-200 rounded-lg p-4 flex flex-col gap-4 shadow-sm bg-white"
           >
             <NavLink
               to="/categories"
@@ -32,7 +32,7 @@ const FeaturedCategories = () => {
                 <li key={subGroupName}>
                   <NavLink
                     to={`/category/${categoryName.toLowerCase()}/${subGroupName.toLowerCase()}`}
-                    className="flex items-center gap-2 text-gray-700 hover:text-primary-color transition-colors"
+                    className="flex items-center gap-1 text-gray-700 hover:text-primary-color transition-colors"
                   >
                     <IoIosArrowForward className="text-xs" />
                     <span>{subGroupName}</span>

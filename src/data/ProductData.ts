@@ -174,7 +174,7 @@ export const Products = {
       },
     ],
   },
-  Caps: {
+  Shorts: {
     Unisex: [
       {
         id: 61,
