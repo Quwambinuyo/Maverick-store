@@ -5,7 +5,7 @@ import { IoIosArrowForward } from "react-icons/io";
 const FeaturedCategories = () => {
   return (
     <section>
-      <div className="text-center mt-3 mb-3">
+      <div className="text-center  my-9">
         <h2 className="text-[20px] sm:text-2xl font-bold">
           Featured Categories
         </h2>
@@ -31,7 +31,7 @@ const FeaturedCategories = () => {
               {Object.entries(subGroups).map(([subGroupName]) => (
                 <li key={subGroupName}>
                   <NavLink
-                    to={`/category/${categoryName.toLowerCase()}/${subGroupName.toLowerCase()}`}
+                    to=""
                     className="flex items-center gap-1 text-gray-700 hover:text-primary-color transition-colors"
                   >
                     <IoIosArrowForward className="text-xs" />

@@ -29,19 +29,18 @@ const SwiperCarousel = () => {
             return (
               <SwiperSlide key={id}>
                 <div
-                  className="w-full rounded-md overflow-hidden relative md:object-center flex flex-col justify-end"
+                  className="w-full rounded-md overflow-hidden relative flex flex-col justify-end h-[200px] sm:h-[300px]"
                   style={{
                     backgroundImage: `url(${image})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    height: "200px",
                   }}
                 >
-                  <div className="p-4 absolute bottom-0 left-0 right-0">
-                    <span className="block text-black text-lg font-bold capitalize mb-1">
+                  <div className="p-4 absolute  bottom-0 left-0 right-0">
+                    <span className="block text-white  text-lg font-bold capitalize mb-1">
                       {description}
                     </span>
-                    <p className="text-sm text-black font-semibold md:block hidden">
+                    <p className="text-sm text-stone-200 font-semibold md:block hidden">
                       {paragraph}
                     </p>
                     <p className="text-sm text-black font-semibold md:hidden">
