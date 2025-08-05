@@ -63,6 +63,9 @@ const Sidebar = () => {
                 <NavLink
                   key={id}
                   to={path}
+                  onClick={() => {
+                    if (window.innerWidth < 640) toggleSidebar();
+                  }}
                   className={({ isActive }) =>
                     `flex items-center sm:py-4 py-7 px-3 w-full transition-all duration-200 ${
                       isOpen ? "justify-start pl-6 gap-4" : "justify-center"
