@@ -67,21 +67,25 @@ const Sidebar = () => {
                     if (window.innerWidth < 640) toggleSidebar();
                   }}
                   className={({ isActive }) =>
-                    `flex items-center sm:py-4 py-7 px-3 w-full transition-all duration-200 ${
-                      isOpen ? "justify-start pl-6 gap-4" : "justify-center"
-                    } ${
+                    `block w-full transition-all duration-200 ${
                       isActive
-                        ? "bg-white text-primary-color font-semibold"
+                        ? "bg-[#EFFCF2] text-primary-color font-semibold border-r-4 border-secondary-color"
                         : "text-white hover:bg-secondary-color hover:text-primary-color"
                     }`
                   }
                 >
-                  <span className="sm:text-2xl text-[25px]">{icon}</span>
-                  {isOpen && (
-                    <span className="text-[18px] font-semibold whitespace-nowrap">
-                      {name}
-                    </span>
-                  )}
+                  <div
+                    className={`flex items-center w-full sm:py-4 py-7 ${
+                      isOpen ? "gap-4 justify-start pl-6" : "justify-center"
+                    }`}
+                  >
+                    <span className="text-[17px]">{icon}</span>
+                    {isOpen && (
+                      <span className="text-[18px] font-semibold whitespace-nowrap">
+                        {name}
+                      </span>
+                    )}
+                  </div>
                 </NavLink>
               ))}
             </div>
