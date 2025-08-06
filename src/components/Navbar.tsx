@@ -27,7 +27,7 @@ const Navbar = () => {
         >
           {!isOpen && <RxHamburgerMenu />}
         </button>
-        <span className="text-sm sm:inline md:text-lg text-primary-color font-semibold truncate">
+        <span className="text-sm roboto sm:inline md:text-lg text-primary-color font-semibold truncate">
           Hello, Quwam. {greeting} 👋
         </span>
       </div>

@@ -38,7 +38,7 @@ const Sidebar = () => {
             to="/"
             className={`${
               isOpen ? "text-3xl" : "text-2xl"
-            } font-bold mb-6 text-white`}
+            } font-bold mb-6 text-white henny-penny-regular`}
           >
             {isOpen ? "Maverick" : "Mav"}
           </Link>
@@ -73,7 +73,7 @@ const Sidebar = () => {
                       if (window.innerWidth < 640) toggleSidebar();
                     }}
                     className={({ isActive }) =>
-                      `block w-full transition-all duration-200 ${
+                      `block w-full transition-all duration-200 libre-baskerville-bold ${
                         isLogout
                           ? "text-red-500"
                           : isActive
