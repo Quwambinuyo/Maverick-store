@@ -2,13 +2,13 @@ import { Products } from "../data/ProductData";
 import type { Product } from "../types/types";
 import { BsCartPlus } from "react-icons/bs";
 
-const getAllDiscountedProducts = () => {
+const getAllDiscountedProducts = (): Product[] => {
   const result: Product[] = [];
 
   Object.values(Products).forEach((category) => {
     Object.values(category).forEach((subCategory) => {
       subCategory.forEach((item) => {
-        result.push(item);
+        if (item.discountPercent > 0) result.push(item);
       });
     });
   });
@@ -20,54 +20,54 @@ const DiscountProducts = () => {
   const discountedProducts = getAllDiscountedProducts();
 
   return (
-    <section className="px-4">
-      <div className="mt-9">
-        <div className="text-center w-[340px] md:w-[500px] mx-auto space-y-1.5">
-          <h2 className="text-sm font-bold text-black md:text-2xl">
-            Latest Discounted Products
-          </h2>
-          <p className="text-sm font-semibold text-gray-700">
-            See Our latest discounted products below. Choose your daily needs
-            from here and get a special discount with free shipping.
-          </p>
-        </div>
+    <section>
+      <div className="sm:w-[500px] w-[90%] text-center flex flex-col justify-center mx-auto py-3 space-y-3.5 mb-4">
+        <h2 className="text-sm font-bold sm:text-2xl">
+          Latest Discounted Products
+        </h2>
+        <p className="text-sm sm:text-[15px] font-semibold text-gray-800">
+          See Our latest discounted products below. Choose your daily needs from
+          here and get a special discount with free shipping.
+        </p>
+      </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-8">
-          {discountedProducts.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white rounded-lg shadow-md p-2 relative group"
-            >
-              <span className="absolute top-6 right-4 bg-primary-color text-white text-xs font-bold px-2 py-1 rounded">
-                {product.discountPercent}% OFF
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 px-2">
+        {discountedProducts.map((product) => (
+          <div
+            key={product.id}
+            className="p-2 rounded-md shadow relative bg-white flex flex-col"
+          >
+            {/* Discount Tag */}
+            <div className="absolute top-3 p-2 right-4 w-fit bg-green-100 text-green-600 rounded-lg text-center font-bold py-1 text-xs">
+              {product.discountPercent}% OFF
+            </div>
+
+            {/* Image */}
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-28 sm:h-32 object-cover rounded mb-2"
+            />
+
+            {/* Name */}
+            <h2 className="text-xs sm:text-sm font-semibold line-clamp-1">
+              {product.name}
+            </h2>
+
+            {/* Pricing + Cart Button */}
+            <div className="flex justify-between items-center mt-1">
+              <span className="text-primary-color font-bold text-xs sm:text-sm">
+                ₦{product.discountPrice.toFixed(2)}
               </span>
-
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-40 object-cover rounded-md"
-              />
-
-              <div className="mt-2">
-                <h3 className="text-sm font-semibold truncate">
-                  {product.name}
-                </h3>
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="text-primary-color font-bold">
-                    ${product.discountPrice}
-                  </span>
-                  <span className="text-gray-400 line-through">
-                    ${product.price}
-                  </span>
-                </div>
-              </div>
-
-              <button className="absolute bottom-2 right-2 text-white bg-primary-color p-2 rounded-full hover:bg-secondary-color transition-all">
-                <BsCartPlus size={16} />
+              <span className="text-gray-400 line-through text-xs sm:text-sm">
+                ₦{product.price.toFixed(2)}
+              </span>
+              <button className="bg-primary-color text-white p-1.5 rounded-full hover:bg-secondary-color transition">
+                <BsCartPlus className="text-base" />
               </button>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );
