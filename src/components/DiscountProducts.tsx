@@ -56,12 +56,14 @@ const DiscountProducts = () => {
 
             {/* Pricing + Cart Button */}
             <div className="flex justify-between items-center mt-1">
-              <span className="text-primary-color font-bold text-xs sm:text-sm">
-                ₦{product.discountPrice.toFixed(2)}
-              </span>
-              <span className="text-gray-400 line-through text-xs sm:text-sm">
-                ₦{product.price.toFixed(2)}
-              </span>
+              <div>
+                <span className="text-primary-color font-bold text-xs sm:text-sm mr-2">
+                  ₦{product.discountPrice.toFixed(2)}
+                </span>
+                <span className="text-gray-400 line-through text-xs sm:text-sm">
+                  ₦{product.price.toFixed(2)}
+                </span>
+              </div>
               <button className="bg-primary-color text-white p-1.5 rounded-full hover:bg-secondary-color transition">
                 <BsCartPlus className="text-base" />
               </button>
