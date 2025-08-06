@@ -32,7 +32,7 @@ const Sidebar = () => {
           isOpen ? "block" : "hidden sm:block"
         } z-10`}
       >
-        <div className="relative h-full flex flex-col items-center pt-7">
+        <div className="relative h-full flex flex-col items-center py-7 ">
           {/* Logo */}
           <Link
             to="/"

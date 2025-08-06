@@ -16,7 +16,7 @@ const PopularProducts = () => {
 
   return (
     <section>
-      <div className="sm:w-[500px] w-[90%] text-center flex flex-col justify-center mx-auto py-3 my-6">
+      <div className="sm:w-[500px] w-[90%] text-center flex flex-col justify-center mx-auto py-3 space-y-3.5 mb-4">
         <h2 className="text-sm font-bold sm:text-2xl">
           Popular Products for Daily Shopping
         </h2>
@@ -31,7 +31,7 @@ const PopularProducts = () => {
         {allProducts.map((product) => (
           <div
             key={product.id}
-            className="border p-2 rounded-md shadow relative bg-white flex flex-col"
+            className="p-2 rounded-md shadow relative bg-white flex flex-col"
           >
             {product.amount === 0 && (
               <div className="absolute top-3 p-2 left-4 w-[80px] bg-red-200 text-red-600 rounded-lg text-center font-bold py-1 text-xs">
@@ -50,7 +50,7 @@ const PopularProducts = () => {
             </h2>
 
             <div className="flex justify-between items-center mt-1">
-              <span className="text-black font-bold text-xs sm:text-sm">
+              <span className="text-primary-color font-bold text-xs sm:text-sm">
                 ₦{product.price.toFixed(2)}
               </span>
               <button className="bg-primary-color text-white p-1.5 rounded-full hover:bg-secondary-color transition">
