@@ -16,7 +16,7 @@ const PopularProducts = () => {
 
   return (
     <section>
-      <div className="sm:w-[500px] w-[90%] text-center flex flex-col justify-center mx-auto py-3">
+      <div className="sm:w-[500px] w-[90%] text-center flex flex-col justify-center mx-auto py-3 my-6">
         <h2 className="text-sm font-bold sm:text-2xl">
           Popular Products for Daily Shopping
         </h2>
