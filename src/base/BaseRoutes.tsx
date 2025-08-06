@@ -25,9 +25,9 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
       { path: "about", element: <About /> },
       { path: "checkout", element: <Checkout /> },
-      { path: "register", element: <Register /> },
     ],
   },
+  { path: "register", element: <Register /> },
 ]);
 
 export default function BaseRoutes() {
