@@ -18,20 +18,22 @@ const features = [
 const LandingCard = () => {
   return (
     <section
-      className="relative bg-primary-color flex flex-col justify-start gap-6 py-10"
+      className="relative bg-primary-color flex flex-col justify-start gap-6 py-10 overflow-hidden"
       style={{
         backgroundImage: `url(${multicube})`,
         backgroundRepeat: "repeat",
         backgroundSize: "120px",
       }}
     >
+      {/* Text */}
       <div className="w-full max-w-6xl px-4 mx-auto">
         <p className="text-white md:text-[40px] text-[20px] font-medium">
           Just name it, We’ve figured it Out.
         </p>
       </div>
 
-      <div className="w-full max-w-6xl px-4 mx-auto relative overflow-visible">
+      {/* Swiper */}
+      <div className="w-full max-w-6xl px-4 mx-auto relative overflow-x-hidden">
         <Swiper
           className="!overflow-visible"
           modules={[Navigation, Pagination, Autoplay]}
@@ -48,9 +50,9 @@ const LandingCard = () => {
         >
           {features.map((text, index) => (
             <SwiperSlide key={index}>
-              <div className="bg-white rounded-lg shadow-md relative p-5 h-40 flex items-start gap-2">
+              <div className="bg-white max-w-full rounded-lg shadow-md relative p-5 h-40 flex items-start gap-2">
                 <TiPin className="absolute top-2 left-2 text-primary-color text-[35px] bg-yellow-100 p-1 rounded-full" />
-                <p className="text-sm sm:text-[26px] text-primary-color self-center text-start font-medium leading-6 mt-4">
+                <p className="text-[20px] sm:text-[26px] text-primary-color self-center text-start font-bold leading-6 mt-4">
                   {text}
                 </p>
               </div>
