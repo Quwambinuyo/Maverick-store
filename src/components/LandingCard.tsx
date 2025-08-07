@@ -25,15 +25,15 @@ const LandingCard = () => {
       if (width < 500) {
         setSlidesPerView(1.2);
       } else if (width < 768) {
-        setSlidesPerView(1.5);
+        setSlidesPerView(1.2);
       } else if (width < 1024) {
-        setSlidesPerView(2);
+        setSlidesPerView(1.5);
       } else {
-        setSlidesPerView(2.5);
+        setSlidesPerView(2);
       }
     };
 
-    handleResize(); // Set initial
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
