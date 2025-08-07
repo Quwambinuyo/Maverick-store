@@ -7,7 +7,7 @@ const LandingNav = () => {
 
   return (
     <nav className="relative">
-      <div className="flex justify-between items-center px-6 md:px-20 py-6 shadow-md bg-white z-50 relative">
+      <div className="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-20 py-6 shadow-md bg-white z-50">
         {/* Logo */}
         <div className="flex items-center gap-14">
           <span className="font-bold text-primary-color text-[15px] md:text-2xl henny-penny-regular">
@@ -50,30 +50,34 @@ const LandingNav = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-white z-40 flex flex-col items-center justify-center gap-6 px-6 transition-all duration-300">
-          <a
-            href="#"
-            className="text-lg font-semibold text-primary-color"
-            onClick={toggleLandingNav}
-          >
-            Learn more
-          </a>
+        <div className="fixed top-0 left-0 w-full h-full bg-white z-40 flex flex-col justify-between px-6 py-8 transition-all duration-300">
+          <div className="flex gap-4 pt-16">
+            <NavLink
+              to="/login"
+              onClick={toggleLandingNav}
+              className="text-sm text-primary-color border-2 border-primary-color rounded-lg w-1/2 h-11 flex items-center justify-center"
+            >
+              Login
+            </NavLink>
 
-          <NavLink
-            to="/login"
-            onClick={toggleLandingNav}
-            className="text-sm text-primary-color border-2 border-primary-color rounded-lg w-36 h-11 flex items-center justify-center"
-          >
-            Login
-          </NavLink>
+            <NavLink
+              to="/register"
+              onClick={toggleLandingNav}
+              className="text-sm text-white bg-primary-color border-2 border-primary-color rounded-lg w-1/2 h-11 flex items-center justify-center"
+            >
+              Sign Up For Free
+            </NavLink>
+          </div>
 
-          <NavLink
-            to="/register"
-            onClick={toggleLandingNav}
-            className="text-sm text-white bg-primary-color border-2 border-primary-color rounded-lg w-36 h-11 flex items-center justify-center"
-          >
-            Sign Up For Free
-          </NavLink>
+          <div className="mt-auto pt-10 text-center">
+            <a
+              href="#"
+              className="text-lg font-semibold text-primary-color"
+              onClick={toggleLandingNav}
+            >
+              Learn more
+            </a>
+          </div>
         </div>
       )}
     </nav>

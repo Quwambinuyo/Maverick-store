@@ -5,10 +5,8 @@ import landingImg from "../assets/images/landing.png";
 
 const LandingSwiper = () => {
   return (
-    <section className="w-full flex flex-col md:flex-row items-center justify-between bg-[#E9E5EE] px-14  py-10 gap-10">
-      {/* Left: Swiper Text and Description */}
+    <section className="w-full flex flex-col md:flex-row items-center justify-between bg-[#E9E5EE] px-14 py-10 gap-10 pt-36">
       <div className="w-full md:w-1/2">
-        {/* Swiper Text */}
         <Swiper
           spaceBetween={30}
           slidesPerView={1}
@@ -32,7 +30,6 @@ const LandingSwiper = () => {
           </SwiperSlide>
         </Swiper>
 
-        {/* Description */}
         <p className="text-gray-800 font-medium text-base md:text-lg mt-6 leading-relaxed">
           Maverick Store is your ultimate destination for affordable, stylish
           fashion. We provide a wide range of clothing that suits every budget
@@ -44,7 +41,6 @@ const LandingSwiper = () => {
         </p>
       </div>
 
-      {/* Right: Static Image */}
       <div className="w-full md:w-1/2 flex justify-center">
         <img
           src={landingImg}
