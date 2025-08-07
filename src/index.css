@@ -118,11 +118,11 @@
 }
 
 .swiper-button-next {
-  right: -30px !important;
+  right: -20px !important;
 }
 
 .swiper-button-prev {
-  left: -30px !important;
+  left: -20px !important;
 }
 
 .swiper-pagination-bullet {
@@ -140,4 +140,12 @@
 .swiper-pagination {
   margin-top: 2.5rem !important;
   position: relative !important;
+}
+
+.multicube {
+  background-image: url("./assets/images/multicube.svg");
+  background-color: var(--color-primary-color);
+  background-repeat: no-repeat;
+  background-size: 520px;
+  background-position: right;
 }
