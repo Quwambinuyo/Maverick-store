@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import LandingCard from "./LandingCard";
 import LandingNav from "./LandingNav";
 import LandingSteps from "./LandingSteps";
@@ -12,6 +13,7 @@ const Landing = () => {
         <LandingSteps />
       </section>
       <LandingCard />
+      <Footer />
     </>
   );
 };

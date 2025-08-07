@@ -17,7 +17,6 @@ const features = [
 const LandingCard = () => {
   const [slidesPerView, setSlidesPerView] = useState(1.2);
 
-  // Dynamically set slidesPerView based on window width
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
