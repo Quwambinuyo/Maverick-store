@@ -8,7 +8,7 @@ const Landing = () => {
     <>
       <LandingNav />
       <LandingSwiper />
-      <section className="px-14">
+      <section className="md:px-14 px-5">
         <LandingSteps />
       </section>
       <LandingCard />

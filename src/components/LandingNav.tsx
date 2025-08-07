@@ -1,9 +1,22 @@
 import { NavLink } from "react-router-dom";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { useLandingNavbar } from "../features/store";
+import { useEffect } from "react";
 
 const LandingNav = () => {
   const { isOpen, toggleLandingNav } = useLandingNavbar();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   return (
     <nav className="relative">

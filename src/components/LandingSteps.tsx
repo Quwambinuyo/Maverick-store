@@ -1,6 +1,6 @@
 const LandingSteps = () => {
   return (
-    <div className="py-8 sm:py-10 px-5 sm:px-9 sm:pt-10 md:pt-12 lg:pt-16 md:px-12 lg:px-16 xl:px-20 max-w-[1400px] mx-auto space-y-6 sm:space-y-8 lg:space-y-10 xl:space-y-12">
+    <div className="py-8 sm:py-10  sm:px-9 sm:pt-10 md:pt-12 lg:pt-16 md:px-12 lg:px-16 xl:px-20 max-w-[1400px] mx-auto space-y-6 sm:space-y-8 lg:space-y-10 xl:space-y-12">
       <h2 className="text-primary-color chillaxFont text-[20.5px] sm:text-[26px] md:text-[36px] lg:text-[43px] xl:text-[56px] leading-snug md:leading-[1.5] font-black">
         3 steps to look Classic.
       </h2>
