@@ -9,6 +9,7 @@ import {
   Checkout,
   Error404,
   Register,
+  Login,
 } from "../pages";
 
 const router = createBrowserRouter([
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
     ],
   },
   { path: "register", element: <Register /> },
+  { path: "login", element: <Login /> },
 ]);
 
 export default function BaseRoutes() {
