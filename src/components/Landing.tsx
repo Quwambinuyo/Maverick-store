@@ -1,11 +1,14 @@
-import { NavLink } from "react-router-dom";
 import LandingNav from "./LandingNav";
+import LandingSteps from "./LandingSteps";
+import LandingSwiper from "./LandingSwiper";
 
 const Landing = () => {
   return (
     <>
-      <section>
-        <LandingNav />
+      <LandingNav />
+      <LandingSwiper />
+      <section className="px-14">
+        <LandingSteps />
       </section>
     </>
   );
