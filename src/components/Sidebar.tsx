@@ -35,7 +35,7 @@ const Sidebar = () => {
         <div className="relative h-full flex flex-col items-center py-7 ">
           {/* Logo */}
           <Link
-            to="/"
+            to="/home"
             className={`${
               isOpen ? "text-3xl" : "text-2xl"
             } font-bold mb-6 text-white henny-penny-regular`}

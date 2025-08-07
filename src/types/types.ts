@@ -37,3 +37,8 @@ export type ProductsType = {
     [subcategory: string]: Product[];
   };
 };
+
+export type LandingNavState = {
+  isOpen: boolean;
+  toggleLandingNav: () => void;
+};

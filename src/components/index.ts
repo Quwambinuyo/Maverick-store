@@ -13,3 +13,5 @@ export { default as SwiperCarousel } from "./SwiperCarousel";
 export { default as FeaturedCategories } from "./FeaturedCategories";
 export { default as PopularProducts } from "./PopularProducts";
 export { default as DiscountProducts } from "./DiscountProducts";
+export { default as Landing } from "./Landing";
+export { default as LandingNav } from "./LandingNav";
