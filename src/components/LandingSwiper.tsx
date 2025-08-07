@@ -1,7 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import landingImg from "../assets/images/landing.png";
+// import landingImg from "../assets/images/landing.png";
+import landingImg from "../assets/images/landingImg.svg";
 
 const LandingSwiper = () => {
   return (
