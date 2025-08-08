@@ -1,4 +1,4 @@
-import Notfound from "../assets/images/Notfound.png";
+import Notfound from "../assets/images/notFound.svg";
 
 const Error404 = () => {
   return (

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import loginSvg from "../assets/images/login.svg";
+import regiserSvg from "../assets/images/register.svg";
 import Form from "../utils/Form";
 import CustomBtn from "../utils/CustomBtn";
 
@@ -24,7 +24,7 @@ const Register = () => {
         </a>
 
         <img
-          src={loginSvg}
+          src={regiserSvg}
           alt="Login illustration"
           className="w-full max-w-[600px] h-auto object-contain"
         />
