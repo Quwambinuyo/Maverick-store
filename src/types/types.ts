@@ -1,3 +1,5 @@
+import { type ReactNode } from "react";
+
 export interface SidebarButtonState {
   isOpen: boolean;
   toggleSidebar: () => void;
@@ -42,3 +44,20 @@ export type LandingNavState = {
   isOpen: boolean;
   toggleLandingNav: () => void;
 };
+
+export interface FormInput {
+  name: string;
+  label: string;
+  type?: string;
+  placeholder?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
+}
+
+export interface ReusableFormProps {
+  children: ReactNode;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  className?: string;
+  formId?: string;
+}

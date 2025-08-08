@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 // import landingImg from "../assets/images/landing.png";
-import landingImg from "../assets/images/landingImg.svg";
+import landing from "../assets/images/landing.png";
 
 const LandingSwiper = () => {
   return (
@@ -44,9 +44,9 @@ const LandingSwiper = () => {
 
       <div className="w-full md:w-1/2 flex justify-center">
         <img
-          src={landingImg}
+          src={landing}
           alt="Fashion promo"
-          className="w-full max-w-[500px] object-contain"
+          className="w-full max-w-[500px] object-contain rounded-xl"
         />
       </div>
     </section>
