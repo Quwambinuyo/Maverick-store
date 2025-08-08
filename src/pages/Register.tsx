@@ -81,7 +81,7 @@ const Register = () => {
                 type="password"
                 className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
                 id="password"
-                placeholder="••••••••"
+                placeholder="***********"
                 {...register("password", {
                   required: "Password is required",
                   minLength: {
@@ -129,13 +129,13 @@ const Register = () => {
               <input
                 type="password"
                 id="confirm-password"
-                placeholder="••••••••"
+                placeholder="***********"
                 {...register("confirmPassword", {
                   required: "Please confirm your password",
                   validate: (value) =>
                     value === password || "Password does not match",
                 })}
-                className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
+                className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color text"
               />
               {errors.confirmPassword && (
                 <p className="text-red-500 text-sm font-bold mt-2">
