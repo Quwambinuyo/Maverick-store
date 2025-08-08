@@ -20,7 +20,7 @@ const LandingNav = () => {
 
   return (
     <nav className="relative">
-      <div className="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-20 py-6 shadow-md bg-white z-50">
+      <div className="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-20 py-4  bg-white z-50">
         {/* Logo */}
         <div className="flex items-center gap-14">
           <span className="font-bold text-primary-color text-[15px] md:text-2xl henny-penny-regular">
