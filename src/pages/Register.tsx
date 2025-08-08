@@ -1,16 +1,21 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import regiserSvg from "../assets/images/register.svg";
 import Form from "../utils/Form";
 import CustomBtn from "../utils/CustomBtn";
+import { type FormValues } from "../types/formTypes";
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<FormValues>();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log({ email, password });
+  const onSubmit = (data: FormValues) => {
+    console.log(data);
   };
+  const password = watch("password");
 
   return (
     <section className="w-full min-h-screen flex flex-col md:flex-row bg-white overflow-y-auto">
@@ -34,7 +39,7 @@ const Register = () => {
       <div className="w-full md:w-1/2 px-6 py-10">
         <div className="w-full max-w-lg mx-auto">
           <Form
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             className="w-full bg-[#E9E5EE] p-8 rounded"
           >
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary-color text-left">
@@ -53,12 +58,15 @@ const Register = () => {
               <input
                 type="email"
                 id="email"
-                name="email"
                 placeholder="you@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                {...register("email", { required: "email must include @" })}
                 className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm font-bold mt-2">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
 
             {/* Password */}
@@ -71,13 +79,43 @@ const Register = () => {
               </label>
               <input
                 type="password"
-                id="password"
-                name="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
                 className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
+                id="password"
+                placeholder="••••••••"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password must be at least 8 characters",
+                  },
+                  validate: {
+                    hasUpper: (value) =>
+                      /[A-Z]/.test(value) ||
+                      "Must contain at least one uppercase letter",
+                    hasLower: (value) =>
+                      /[a-z]/.test(value) ||
+                      "Must contain at least one lowercase letter",
+                    hasSymbol: (value) =>
+                      /[^A-Za-z0-9]/.test(value) ||
+                      "Must contain at least one special character",
+                  },
+                })}
               />
+
+              {errors.password && (
+                <div className="text-red-500 text-sm font-bold mt-2 space-y-1">
+                  {errors.password.types?.hasUpper && (
+                    <p>{errors.password.types.hasUpper}</p>
+                  )}
+                  {errors.password.types?.hasLower && (
+                    <p>{errors.password.types.hasLower}</p>
+                  )}
+                  {errors.password.types?.hasSymbol && (
+                    <p>{errors.password.types.hasSymbol}</p>
+                  )}
+                  {errors.password.message && <p>{errors.password.message}</p>}
+                </div>
+              )}
             </div>
 
             {/* Confirm Password */}
@@ -91,12 +129,19 @@ const Register = () => {
               <input
                 type="password"
                 id="confirm-password"
-                name="confirm-password"
                 placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                {...register("confirmPassword", {
+                  required: "Please confirm your password",
+                  validate: (value) =>
+                    value === password || "Password does not match",
+                })}
                 className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
               />
+              {errors.confirmPassword && (
+                <p className="text-red-500 text-sm font-bold mt-2">
+                  {errors.confirmPassword.message}
+                </p>
+              )}
             </div>
 
             {/* Submit */}

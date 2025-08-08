@@ -1,16 +1,27 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import loginSvg from "../assets/images/login.svg";
 import Form from "../utils/Form";
 import CustomBtn from "../utils/CustomBtn";
+import { type LoginValues } from "../types/formTypes";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(false);
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [remember, setRemember] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log({ email, password, remember });
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   console.log({ email, password, remember });
+  // };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginValues>();
+
+  const onSubmit = (data: LoginValues) => {
+    console.log(data);
   };
 
   return (
@@ -34,7 +45,7 @@ const Login = () => {
       {/* Right Side - Login Form */}
       <div className="flex w-full md:w-1/2 items-center justify-center px-6 py-8 pb-16 overflow-auto">
         <Form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="w-full max-w-lg bg-[#E9E5EE] py-9 pr-10"
         >
           {/* Heading */}
@@ -54,12 +65,15 @@ const Login = () => {
             <input
               type="email"
               id="email"
-              name="email"
               placeholder="you@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              {...register("email", { required: "Email is required" })}
               className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm font-bold mt-2">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
           {/* Password */}
@@ -73,12 +87,15 @@ const Login = () => {
             <input
               type="password"
               id="password"
-              name="password"
               placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              {...register("password", { required: "Password is required" })}
               className="px-3 py-2 border  border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
             />
+            {errors.password && (
+              <p className="text-red-500 text-sm font-bold mt-2">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           {/* Remember Me & Forgot Password */}
@@ -86,8 +103,7 @@ const Login = () => {
             <label className="flex items-center gap-2 text-gray-600 cursor-pointer">
               <input
                 type="checkbox"
-                checked={remember}
-                onChange={() => setRemember(!remember)}
+                {...register("remember")}
                 className="form-checkbox accent-primary-color w-5 h-5"
               />
               Remember me
