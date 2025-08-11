@@ -1,6 +1,7 @@
 import { BsCart } from "react-icons/bs";
 import CustomBtn from "../utils/CustomBtn";
 import { useNavigate } from "react-router-dom";
+import Checkout from "./Checkout";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -72,8 +73,9 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <CustomBtn label="Back to Home" className="mt-5" onClick={backToHome} />
+        <Checkout />
       </article>
+      <CustomBtn label="Back to Home" onClick={backToHome} />
     </section>
   );
 };
