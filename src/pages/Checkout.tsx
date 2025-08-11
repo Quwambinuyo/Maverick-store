@@ -143,7 +143,7 @@ const Checkout = () => {
           {errors.logistic && (
             <p className="text-red-500 text-sm">{errors.logistic.message}</p>
           )}
-          <CustomBtn label="Submit" />
+          <CustomBtn label="Proceed to Payment" />
         </div>
       </Form>
 

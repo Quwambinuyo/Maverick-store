@@ -1,4 +1,5 @@
 import { FaTrash } from "react-icons/fa";
+import CustomBtn from "../utils/CustomBtn";
 
 const OrderSummary = () => {
   const product = {
@@ -37,9 +38,9 @@ const OrderSummary = () => {
           className="w-16 border rounded p-1 text-center"
         />
 
-        <button className="text-primary-color hover:text-secondary-color">
+        <CustomBtn className="text-primary-color hover:text-secondary-color">
           <FaTrash />
-        </button>
+        </CustomBtn>
       </div>
     </div>
   );
