@@ -75,7 +75,7 @@ const Dashboard = () => {
         </div>
         <Checkout />
       </article>
-      <CustomBtn label="Back to Home" onClick={backToHome} />
+      <CustomBtn label="Back to Home" className="mt-2" onClick={backToHome} />
     </section>
   );
 };
