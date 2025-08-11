@@ -119,6 +119,7 @@ const Checkout = () => {
           <label className="flex items-center gap-2">
             <input
               type="radio"
+              className="accent-primary-color"
               value="DHL"
               {...register("logistic", {
                 required: "Please choose a logistic",
@@ -129,6 +130,7 @@ const Checkout = () => {
           </label>
           <label className="flex items-center gap-2">
             <input
+              className="accent-primary-color"
               type="radio"
               value="FedEx"
               {...register("logistic", {
