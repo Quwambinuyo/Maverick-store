@@ -1,13 +1,5 @@
 import React from "react";
-
-export interface CustomButtonProps {
-  label?: string;
-  className?: string;
-  onClick?: () => void;
-  disabled?: boolean;
-  type?: "button" | "submit" | "reset";
-  children?: React.ReactNode;
-}
+import { type CustomButtonProps } from "../types/types";
 
 const CustomBtn: React.FC<CustomButtonProps> = ({
   label,

@@ -62,3 +62,12 @@ export interface ReusableFormProps {
   className?: string;
   formId?: string;
 }
+
+export interface CustomButtonProps {
+  label?: string;
+  className?: string;
+  onClick?: () => void;
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset";
+  children?: React.ReactNode;
+}
