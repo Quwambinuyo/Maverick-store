@@ -4,12 +4,14 @@ import Form from "../utils/Form";
 import CustomBtn from "../utils/CustomBtn";
 import { type FormValues } from "../types/formTypes";
 import { NavLink, useNavigate } from "react-router-dom";
-import { signUp } from "../Auth/userAuth";
+import { useAuthStore } from "../features/registerstore";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
-  const navigate = useNavigate(); // ✅ Call hook at the top level
+  const navigate = useNavigate();
+
+  const { registerUser, loading, error, user } = useAuthStore();
 
   const {
     register,
@@ -22,7 +24,7 @@ const Register = () => {
   const password = watch("password");
 
   const onSubmit = async (data: FormValues) => {
-    const { user, error } = await signUp({
+    await registerUser({
       email: data.email,
       password: data.password,
     });
@@ -35,7 +37,7 @@ const Register = () => {
     if (user) {
       toast.success("Account created successfully!", { position: "top-right" });
       reset();
-      navigate("/home"); // ✅ Redirect to home page
+      navigate("/home");
     }
   };
 
@@ -167,9 +169,10 @@ const Register = () => {
             {/* Submit */}
             <CustomBtn
               type="submit"
+              disabled={loading}
               className="w-full bg-primary-color text-white font-semibold py-3 mt-5 rounded-lg"
             >
-              Proceed
+              {loading ? "Creating..." : "Proceed"}
             </CustomBtn>
 
             {/* Link */}

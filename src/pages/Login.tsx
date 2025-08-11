@@ -2,18 +2,16 @@ import { useForm } from "react-hook-form";
 import loginSvg from "../assets/images/login.svg";
 import Form from "../utils/Form";
 import CustomBtn from "../utils/CustomBtn";
+import { NavLink, useNavigate } from "react-router-dom";
 import { type LoginValues } from "../types/formTypes";
-import { NavLink } from "react-router-dom";
+import { useAuthStore } from "../features/loginstore";
+import { useState } from "react";
 
 const Login = () => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [remember, setRemember] = useState(false);
-
-  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   console.log({ email, password, remember });
-  // };
+  const { login, setRememberMe } = useAuthStore();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const {
     register,
@@ -21,13 +19,22 @@ const Login = () => {
     formState: { errors },
   } = useForm<LoginValues>();
 
-  const onSubmit = (data: LoginValues) => {
-    console.log(data);
+  const onSubmit = async (data: LoginValues) => {
+    setLoading(true);
+    setErrorMsg("");
+    const res = await login(data.email, data.password, data.remember || false);
+    setLoading(false);
+
+    if (res.error) {
+      setErrorMsg(res.error);
+    } else {
+      navigate("/dashboard");
+    }
   };
 
   return (
     <section className="w-screen min-h-screen flex flex-col md:flex-row bg-white overflow-auto">
-      {/* Left Side - Logo + Image */}
+      {/* Left Side */}
       <div className="relative w-full md:w-1/2 flex flex-col items-start justify-center gap-6 border-b md:border-b-0 md:border-r border-gray-100 px-15 pt-6 md:pt-0">
         <NavLink
           to="/"
@@ -35,28 +42,30 @@ const Login = () => {
         >
           Maverick Store
         </NavLink>
-
         <img
           src={loginSvg}
           alt="Login illustration"
-          className="w-full max-w-[600px] h-auto object-contain"
+          className="w-full max-w-[600px]"
         />
       </div>
 
-      {/* Right Side - Login Form */}
+      {/* Right Side */}
       <div className="flex w-full md:w-1/2 items-center justify-center px-6 py-8 pb-16 overflow-auto">
         <Form
           onSubmit={handleSubmit(onSubmit)}
           className="w-full max-w-lg bg-[#E9E5EE] py-9 pr-10"
         >
-          {/* Heading */}
           <h2 className="md:text-3xl text-lg font-bold mb-4 text-primary-color text-left">
             Get Right Back In
           </h2>
           <p className="mb-6 text-left text-gray-800 font-semibold">
-            Set up your account now to master your money for financial budgeting
-            structure that works.
+            Set up your account now to master your money for financial
+            budgeting.
           </p>
+
+          {errorMsg && (
+            <p className="text-red-500 text-sm font-bold mb-4">{errorMsg}</p>
+          )}
 
           {/* Email */}
           <div className="flex flex-col mb-4 text-left">
@@ -65,10 +74,8 @@ const Login = () => {
             </label>
             <input
               type="email"
-              id="email"
-              placeholder="you@example.com"
               {...register("email", { required: "Email is required" })}
-              className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
+              className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded"
             />
             {errors.email && (
               <p className="text-red-500 text-sm font-bold mt-2">
@@ -87,10 +94,8 @@ const Login = () => {
             </label>
             <input
               type="password"
-              id="password"
-              placeholder="••••••••"
               {...register("password", { required: "Password is required" })}
-              className="px-3 py-2 border  border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
+              className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded"
             />
             {errors.password && (
               <p className="text-red-500 text-sm font-bold mt-2">
@@ -99,19 +104,20 @@ const Login = () => {
             )}
           </div>
 
-          {/* Remember Me & Forgot Password */}
+          {/* Remember Me */}
           <div className="flex items-center justify-between mb-6 text-sm">
-            <label className="flex items-center gap-2 text-gray-600 cursor-pointer">
+            <label className="flex items-center gap-2">
               <input
                 type="checkbox"
                 {...register("remember")}
+                onChange={(e) => setRememberMe(e.target.checked)}
                 className="form-checkbox accent-primary-color w-5 h-5"
               />
               Remember me
             </label>
             <NavLink
               to="/forgot-password"
-              className="text-primary-color text-[15px] font-bold"
+              className="text-primary-color font-bold"
             >
               Forgot password?
             </NavLink>
@@ -120,17 +126,20 @@ const Login = () => {
           {/* Submit Button */}
           <CustomBtn
             type="submit"
-            className="w-full bg-primary-color text-white py-2 rounded-lg"
+            disabled={loading}
+            className={`w-full bg-primary-color text-white py-2 rounded-lg ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
-            Continue
+            {loading ? "Logging in..." : "Continue"}
           </CustomBtn>
 
-          {/* Bottom Link */}
-          <div className="mt-6 text-center text-sm text-gray-800 md:text-[13px] font-light">
+          {/* Sign Up Link */}
+          <div className="mt-6 text-center text-sm text-gray-800 font-light">
             Don’t have an account?
             <NavLink
               to="/register"
-              className="text-primary-color md:text-[15px] font-bold ml-2"
+              className="text-primary-color font-bold ml-2"
             >
               Create Account
             </NavLink>
