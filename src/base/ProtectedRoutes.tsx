@@ -10,15 +10,15 @@ interface ProtectedRouteProps {
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { user } = useAuthStore();
 
-  useEffect(() => {
-    if (!user) {
-      toast.warn("Please login");
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     toast.warn("Please login");
+  //   }
+  // }, [user]);
 
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
+  // if (!user) {
+  //   return <Navigate to="/login" replace />;
+  // }
 
   return <>{children}</>;
 }
