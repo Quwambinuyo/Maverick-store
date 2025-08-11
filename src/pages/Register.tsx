@@ -7,6 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../features/useAuthStore";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -171,7 +172,7 @@ const Register = () => {
               disabled={loading}
               className="w-full bg-primary-color text-white font-semibold py-3 mt-5 rounded-lg"
             >
-              {loading ? "Creating..." : "Proceed"}
+              {loading ? <LoadingSpinner /> : "Proceed"}
             </CustomBtn>
 
             <div className="mt-6 text-start text-sm text-gray-800 md:text-[17px] font-light">

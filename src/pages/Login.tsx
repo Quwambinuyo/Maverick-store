@@ -6,6 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { type LoginValues } from "../types/formTypes";
 import { useAuthStore } from "../features/useAuthStore";
 import { useState } from "react";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Login = () => {
   const { login, setRememberMe } = useAuthStore();
@@ -131,7 +132,7 @@ const Login = () => {
               loading ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >
-            {loading ? "Logging in..." : "Continue"}
+            {loading ? <LoadingSpinner /> : "Continue"}
           </CustomBtn>
 
           {/* Sign Up Link */}
