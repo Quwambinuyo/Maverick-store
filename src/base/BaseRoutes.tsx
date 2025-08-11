@@ -13,11 +13,21 @@ import {
   ForgotPassword,
 } from "../pages";
 
+import ProtectedRoute from "../base/ProtectedRoutes";
+
 const router = createBrowserRouter([
   { path: "/", element: <Landing /> },
+  { path: "register", element: <Register /> },
+  { path: "login", element: <Login /> },
+  { path: "forgot-password", element: <ForgotPassword /> },
+
   {
     path: "",
-    element: <Layout />,
+    element: (
+      <ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>
+    ),
     errorElement: <Error404 />,
     children: [
       { path: "/home", element: <Home /> },
@@ -30,9 +40,6 @@ const router = createBrowserRouter([
       { path: "/checkout", element: <Checkout /> },
     ],
   },
-  { path: "register", element: <Register /> },
-  { path: "login", element: <Login /> },
-  { path: "forgot-password", element: <ForgotPassword /> },
 ]);
 
 export default function BaseRoutes() {

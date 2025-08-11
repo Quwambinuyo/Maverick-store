@@ -4,7 +4,7 @@ import Form from "../utils/Form";
 import CustomBtn from "../utils/CustomBtn";
 import { NavLink, useNavigate } from "react-router-dom";
 import { type LoginValues } from "../types/formTypes";
-import { useAuthStore } from "../features/loginstore";
+import { useAuthStore } from "../features/useAuthStore";
 import { useState } from "react";
 
 const Login = () => {

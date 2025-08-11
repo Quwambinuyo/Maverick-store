@@ -20,3 +20,17 @@ export interface AuthState {
   ) => Promise<{ error?: string }>;
   logout: () => void;
 }
+
+export interface AuthStore extends AuthState {
+  error: string | null;
+  rememberMe: boolean;
+  loading: boolean;
+  registerUser: (data: SignUpData) => Promise<void>;
+  login: (
+    email: string,
+    password: string,
+    remember: boolean
+  ) => Promise<{ error?: string }>;
+  logout: () => void;
+  setRememberMe: (value: boolean) => void;
+}

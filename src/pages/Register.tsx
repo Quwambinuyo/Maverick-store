@@ -4,7 +4,7 @@ import Form from "../utils/Form";
 import CustomBtn from "../utils/CustomBtn";
 import { type FormValues } from "../types/formTypes";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuthStore } from "../features/registerstore";
+import { useAuthStore } from "../features/useAuthStore";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -166,7 +166,6 @@ const Register = () => {
               )}
             </div>
 
-            {/* Submit */}
             <CustomBtn
               type="submit"
               disabled={loading}
@@ -175,7 +174,6 @@ const Register = () => {
               {loading ? "Creating..." : "Proceed"}
             </CustomBtn>
 
-            {/* Link */}
             <div className="mt-6 text-start text-sm text-gray-800 md:text-[17px] font-light">
               Already have an account?
               <NavLink
