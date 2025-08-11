@@ -1,14 +1,14 @@
-import { Navigate } from "react-router-dom";
-import { useAuthStore } from "../features/useAuthStore";
-import { toast } from "react-toastify";
-import { useEffect, type ReactNode } from "react";
+// import { Navigate } from "react-router-dom";
+// import { useAuthStore } from "../features/useAuthStore";
+// import { toast } from "react-toastify";
+import { type ReactNode } from "react";
 
 interface ProtectedRouteProps {
   children: ReactNode;
 }
 
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const { user } = useAuthStore();
+  // const { user } = useAuthStore();
 
   // useEffect(() => {
   //   if (!user) {
