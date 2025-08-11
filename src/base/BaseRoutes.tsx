@@ -10,6 +10,7 @@ import {
   Error404,
   Register,
   Login,
+  ForgotPassword,
 } from "../pages";
 
 const router = createBrowserRouter([
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
   },
   { path: "register", element: <Register /> },
   { path: "login", element: <Login /> },
+  { path: "forgot-password", element: <ForgotPassword /> },
 ]);
 
 export default function BaseRoutes() {

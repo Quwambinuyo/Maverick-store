@@ -3,31 +3,52 @@ import regiserSvg from "../assets/images/register.svg";
 import Form from "../utils/Form";
 import CustomBtn from "../utils/CustomBtn";
 import { type FormValues } from "../types/formTypes";
+import { NavLink, useNavigate } from "react-router-dom";
+import { signUp } from "../Auth/userAuth";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
+  const navigate = useNavigate(); // ✅ Call hook at the top level
+
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-  };
   const password = watch("password");
+
+  const onSubmit = async (data: FormValues) => {
+    const { user, error } = await signUp({
+      email: data.email,
+      password: data.password,
+    });
+
+    if (error) {
+      toast.error(error, { position: "top-right" });
+      return;
+    }
+
+    if (user) {
+      toast.success("Account created successfully!", { position: "top-right" });
+      reset();
+      navigate("/home"); // ✅ Redirect to home page
+    }
+  };
 
   return (
     <section className="w-full min-h-screen flex flex-col md:flex-row bg-white overflow-y-auto">
       {/* Left Side */}
       <div className="w-full md:w-1/2 flex flex-col items-start justify-center gap-6 border-b md:border-b-0 md:border-r border-gray-100 px-6 pt-6 md:pt-0">
-        <a
-          href="/"
+        <NavLink
+          to="/"
           className="text-primary-color henny-penny-regular font-semibold text-2xl md:text-3xl mb-4 md:mb-10"
         >
           Maverick Store
-        </a>
-
+        </NavLink>
         <img
           src={regiserSvg}
           alt="Register illustration"
@@ -59,7 +80,7 @@ const Register = () => {
                 type="email"
                 id="email"
                 placeholder="you@example.com"
-                {...register("email", { required: "email must include @" })}
+                {...register("email", { required: "Email must include @" })}
                 className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
               />
               {errors.email && (
@@ -79,7 +100,6 @@ const Register = () => {
               </label>
               <input
                 type="password"
-                className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
                 id="password"
                 placeholder="***********"
                 {...register("password", {
@@ -100,8 +120,8 @@ const Register = () => {
                       "Must contain at least one special character",
                   },
                 })}
+                className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
               />
-
               {errors.password && (
                 <div className="text-red-500 text-sm font-bold mt-2 space-y-1">
                   {errors.password.types?.hasUpper && (
@@ -135,7 +155,7 @@ const Register = () => {
                   validate: (value) =>
                     value === password || "Password does not match",
                 })}
-                className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color text"
+                className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
               />
               {errors.confirmPassword && (
                 <p className="text-red-500 text-sm font-bold mt-2">
@@ -155,12 +175,12 @@ const Register = () => {
             {/* Link */}
             <div className="mt-6 text-start text-sm text-gray-800 md:text-[17px] font-light">
               Already have an account?
-              <a
-                href="/login"
+              <NavLink
+                to="/login"
                 className="text-primary-color md:text-[17px] font-bold ml-2"
               >
                 Login
-              </a>
+              </NavLink>
             </div>
           </Form>
         </div>

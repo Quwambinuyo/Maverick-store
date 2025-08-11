@@ -12,6 +12,7 @@ export interface CustomButtonProps {
   label?: string;
   className?: string;
   onClick?: () => void;
+  disabled?: boolean;
   type?: "button" | "submit" | "reset";
   children?: React.ReactNode;
 }

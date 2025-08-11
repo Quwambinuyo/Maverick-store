@@ -3,6 +3,7 @@ import loginSvg from "../assets/images/login.svg";
 import Form from "../utils/Form";
 import CustomBtn from "../utils/CustomBtn";
 import { type LoginValues } from "../types/formTypes";
+import { NavLink } from "react-router-dom";
 
 const Login = () => {
   // const [email, setEmail] = useState("");
@@ -28,12 +29,12 @@ const Login = () => {
     <section className="w-screen min-h-screen flex flex-col md:flex-row bg-white overflow-auto">
       {/* Left Side - Logo + Image */}
       <div className="relative w-full md:w-1/2 flex flex-col items-start justify-center gap-6 border-b md:border-b-0 md:border-r border-gray-100 px-15 pt-6 md:pt-0">
-        <a
-          href="/"
-          className="text-primary-color henny-penny-regular font-semibold text-2xl md:text-3xl mb-15"
+        <NavLink
+          to="/"
+          className="text-primary-color henny-penny-regular font-semibold text-2xl md:text-3xl mb-4 md:mb-10"
         >
           Maverick Store
-        </a>
+        </NavLink>
 
         <img
           src={loginSvg}
@@ -108,12 +109,12 @@ const Login = () => {
               />
               Remember me
             </label>
-            <a
-              href="/forgot-password"
+            <NavLink
+              to="/forgot-password"
               className="text-primary-color text-[15px] font-bold"
             >
               Forgot password?
-            </a>
+            </NavLink>
           </div>
 
           {/* Submit Button */}
@@ -127,12 +128,12 @@ const Login = () => {
           {/* Bottom Link */}
           <div className="mt-6 text-center text-sm text-gray-800 md:text-[13px] font-light">
             Don’t have an account?
-            <a
-              href="/register"
+            <NavLink
+              to="/register"
               className="text-primary-color md:text-[15px] font-bold ml-2"
             >
               Create Account
-            </a>
+            </NavLink>
           </div>
         </Form>
       </div>
