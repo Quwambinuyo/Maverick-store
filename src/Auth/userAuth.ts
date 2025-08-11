@@ -1,4 +1,3 @@
-// src/Auth/userAuth.ts
 import { auth } from "../Auth/firebaseconfig";
 import {
   createUserWithEmailAndPassword,
@@ -6,7 +5,6 @@ import {
 } from "firebase/auth";
 import { type SignUpData, type SignInData } from "../types/authDataTypes";
 
-// Register user
 export const signUp = async ({ email, password }: SignUpData) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(

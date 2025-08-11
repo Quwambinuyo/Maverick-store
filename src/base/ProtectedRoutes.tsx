@@ -3,7 +3,11 @@ import { useAuthStore } from "../features/useAuthStore";
 import { toast } from "react-toastify";
 import { useEffect, type ReactNode } from "react";
 
-export default function ProtectedRoute({ children }: { children: ReactNode }) {
+interface ProtectedRouteProps {
+  children: ReactNode;
+}
+
+export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { user } = useAuthStore();
 
   useEffect(() => {
@@ -16,5 +20,5 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
     return <Navigate to="/login" replace />;
   }
 
-  return children;
+  return <>{children}</>;
 }
