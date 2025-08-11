@@ -115,7 +115,7 @@ const Checkout = () => {
         </div>
 
         <p className="block text-sm font-medium mb-2">Choose Logistic</p>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex sm:items-center gap-4">
           <label className="flex items-center gap-2">
             <input
               type="radio"
