@@ -2,7 +2,7 @@ import CustomBtn from "../utils/CustomBtn";
 
 const About = () => {
   return (
-    <section className="bg-white text-primary-color py-16 px-6 sm:px-12 lg:px-24">
+    <section className="text-primary-color py-16 px-6 sm:px-12 lg:px-24">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl sm:text-5xl  tracking-wide text-primary-color font-bold">
