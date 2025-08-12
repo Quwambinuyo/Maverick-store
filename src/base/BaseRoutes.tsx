@@ -1,6 +1,14 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { Categories, Home, Landing, Layout, Pages } from "../components";
+import {
+  Categories,
+  Home,
+  Landing,
+  Layout,
+  Pages,
+  Products,
+  Profile,
+} from "../components";
 import {
   Dashboard,
   Cart,
@@ -11,6 +19,9 @@ import {
   Register,
   Login,
   ForgotPassword,
+  TermsAndCondition,
+  Privacy,
+  Faq,
 } from "../pages";
 
 import ProtectedRoute from "../base/ProtectedRoutes";
@@ -37,7 +48,12 @@ const router = createBrowserRouter([
       { path: "/pages", element: <Pages /> },
       { path: "/contact", element: <Contact /> },
       { path: "/about", element: <About /> },
+      { path: "/t&c", element: <TermsAndCondition /> },
+      { path: "/privacy", element: <Privacy /> },
       { path: "/checkout", element: <Checkout /> },
+      { path: "/profile", element: <Profile /> },
+      { path: "/FAQ", element: <Faq /> },
+      { path: "/products", element: <Products /> },
     ],
   },
 ]);

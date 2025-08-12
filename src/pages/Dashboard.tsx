@@ -2,6 +2,7 @@ import { BsCart } from "react-icons/bs";
 import CustomBtn from "../utils/CustomBtn";
 import { useNavigate } from "react-router-dom";
 import Checkout from "./Checkout";
+import { FaHome } from "react-icons/fa";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Dashboard = () => {
             </p>
           </div>
           <div>
-            <h1 className="text-lg sm:text-[20px] font-semibold text-gray-700">
+            <h1 className="text-lg sm:text-[17px] font-semibold text-gray-700">
               Test@gmail.com
             </h1>
           </div>
@@ -32,7 +33,7 @@ const Dashboard = () => {
       </div>
 
       <article className="mt-5">
-        <h2 className="mb-3 font-bold text-lg sm:text-[20px] text-gray-800">
+        <h2 className="mb-3 font-bold text-lg sm:text-[17px] text-gray-800">
           Dashboard
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
@@ -40,7 +41,7 @@ const Dashboard = () => {
             <div className="bg-red-200 text-red-500 p-4 rounded-full text-lg sm:text-[20px]">
               <BsCart />
             </div>
-            <div className="text-lg sm:text-[20px] font-semibold">
+            <div className="text-lg sm:text-[17px] font-semibold">
               <h1>Total Order</h1>
               <p>5</p>
             </div>
@@ -49,7 +50,7 @@ const Dashboard = () => {
             <div className="bg-orange-200 text-orange-500 p-4 rounded-full text-lg sm:text-[20px]">
               <BsCart />
             </div>
-            <div className="text-lg sm:text-[20px] font-semibold">
+            <div className="text-lg sm:text-[17px] font-semibold">
               <h1>Pending Order</h1>
               <p>3</p>
             </div>
@@ -58,7 +59,7 @@ const Dashboard = () => {
             <div className="bg-blue-200 text-blue-500 p-4 rounded-full text-lg sm:text-[20px]">
               <BsCart />
             </div>
-            <div className="text-lg sm:text-[20px] font-semibold">
+            <div className="text-lg sm:text-[17px] font-semibold">
               <h1>Processing Order</h1>
               <p>1</p>
             </div>
@@ -67,7 +68,7 @@ const Dashboard = () => {
             <div className="bg-green-200 text-green-500 p-4 rounded-full text-lg sm:text-[20px]">
               <BsCart />
             </div>
-            <div className="text-lg sm:text-[20px] font-semibold">
+            <div className="text-lg sm:text-[17px] font-semibold">
               <h1>Completed Order</h1>
               <p>1</p>
             </div>
@@ -75,7 +76,13 @@ const Dashboard = () => {
         </div>
         <Checkout />
       </article>
-      <CustomBtn label="Back to Home" className="mt-2" onClick={backToHome} />
+      <CustomBtn
+        label="Home"
+        className="mt-2 flex flex-row-reverse items-center gap-2"
+        onClick={backToHome}
+      >
+        <FaHome />
+      </CustomBtn>
     </section>
   );
 };
