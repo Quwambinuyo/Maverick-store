@@ -12,6 +12,7 @@ const Sidebar = () => {
       {/* Overlay on mobile */}
       {isOpen && (
         <div
+          onClick={toggleSidebar}
           className="fixed inset-0 bg-[#393F4266] backdrop-blur-[2px] sm:hidden h-[lvh]"
           style={{ zIndex: 5 }}
         >
