@@ -1,5 +1,11 @@
+import FeaturedCategories from "./FeaturedCategories";
+
 const Categories = () => {
-  return <div>Categories</div>;
+  return (
+    <section>
+      <FeaturedCategories />
+    </section>
+  );
 };
 
 export default Categories;

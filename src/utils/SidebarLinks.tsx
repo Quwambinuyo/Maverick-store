@@ -1,16 +1,16 @@
-import { LuLayoutDashboard } from "react-icons/lu";
+import { RxDashboard } from "react-icons/rx";
 import { BsCart3 } from "react-icons/bs";
-import { FaList } from "react-icons/fa";
-import { MdCategory } from "react-icons/md";
-import { RiContactsFill } from "react-icons/ri";
-import { PiWarningCircleBold } from "react-icons/pi";
-import { RiLogoutBoxRLine } from "react-icons/ri";
+import { PiListBold } from "react-icons/pi";
+import { BiCategory } from "react-icons/bi";
+import { MdOutlineCallEnd } from "react-icons/md";
+import { FaInfo } from "react-icons/fa";
+import { IoMdLogOut } from "react-icons/io";
 
 export const SidebarLinks = [
   {
     id: 1,
     name: "Dashboard",
-    icon: <LuLayoutDashboard />,
+    icon: <RxDashboard />,
     path: "/dashboard",
   },
   {
@@ -22,31 +22,31 @@ export const SidebarLinks = [
   {
     id: 3,
     name: "Pages",
-    icon: <FaList />,
+    icon: <PiListBold />,
     path: "/pages",
   },
   {
     id: 4,
     name: "Categories",
-    icon: <MdCategory />,
+    icon: <BiCategory />,
     path: "/categories",
   },
   {
     id: 5,
     name: "Contact us",
-    icon: <RiContactsFill />,
+    icon: <MdOutlineCallEnd />,
     path: "/contact",
   },
   {
     id: 6,
     name: "About us",
-    icon: <PiWarningCircleBold />,
+    icon: <FaInfo />,
     path: "/about",
   },
   {
     id: 7,
     name: "Logout",
-    icon: <RiLogoutBoxRLine />,
+    icon: <IoMdLogOut />,
     path: "/register",
   },
 ];
