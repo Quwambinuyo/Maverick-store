@@ -91,7 +91,14 @@ const Sidebar = () => {
                           : "sm:py-4 py-7 w-full"
                       }`}
                     >
-                      <span className="text-[20px]">{icon}</span>
+                      <span className="text-[20px] relative">
+                        {icon}
+                        {name.toLocaleLowerCase() === "cart" && (
+                          <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2  rounded-full bg-red-200  text-red-600  ">
+                            10
+                          </span>
+                        )}
+                      </span>
                       {isOpen && (
                         <span
                           className={`text-[18px] font-semibold whitespace-nowrap ${
