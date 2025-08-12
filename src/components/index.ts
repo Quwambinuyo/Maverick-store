@@ -16,3 +16,4 @@ export { default as DiscountProducts } from "./DiscountProducts";
 export { default as Landing } from "./Landing";
 export { default as LandingNav } from "./LandingNav";
 export { default as Profile } from "./Profile";
+export { default as History } from "./History";

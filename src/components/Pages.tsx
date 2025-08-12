@@ -6,7 +6,7 @@ import { SlNote } from "react-icons/sl";
 import { NavLink } from "react-router-dom";
 import { MdOutlineCallEnd } from "react-icons/md";
 import { CiShoppingTag } from "react-icons/ci";
-import { HiMiniUserGroup } from "react-icons/hi2";
+import { FaHistory } from "react-icons/fa";
 
 const Pages = () => {
   return (
@@ -115,14 +115,14 @@ const Pages = () => {
             </div>
           </NavLink>
           <NavLink
-            to="/about"
+            to="/history"
             className="bg-stone-500 text-white p-4 rounded shadow flex gap-4 items-center"
           >
             <div className="bg-stone-200 text-stone-500 p-4 rounded-full text-lg sm:text-[17px]">
-              <HiMiniUserGroup />
+              <FaHistory />
             </div>
             <div className="text-lg sm:text-[17px] font-semibold">
-              <h1>About Us</h1>
+              <h1>Order History</h1>
             </div>
           </NavLink>
         </div>

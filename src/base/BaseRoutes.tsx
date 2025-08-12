@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import {
   Categories,
+  History,
   Home,
   Landing,
   Layout,
@@ -54,6 +55,7 @@ const router = createBrowserRouter([
       { path: "/profile", element: <Profile /> },
       { path: "/FAQ", element: <Faq /> },
       { path: "/products", element: <Products /> },
+      { path: "/history", element: <History /> },
     ],
   },
 ]);
