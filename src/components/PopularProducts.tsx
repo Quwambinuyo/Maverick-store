@@ -1,6 +1,8 @@
 import { Products } from "../data/ProductData";
 import type { Product, ProductsType } from "../types/types";
 import { BsCartPlus } from "react-icons/bs";
+import { FaPlus, FaMinus } from "react-icons/fa";
+import { useCartStore } from "../features/cartstore";
 
 const PopularProducts = () => {
   const allProducts: Product[] = [];
@@ -13,6 +15,8 @@ const PopularProducts = () => {
       allProducts.push(...productsArray);
     }
   }
+
+  const { cart, addToCart, increment, decrement } = useCartStore();
 
   return (
     <section>
@@ -28,37 +32,67 @@ const PopularProducts = () => {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 px-2">
-        {allProducts.map((product) => (
-          <div
-            key={product.id}
-            className="p-2 rounded-md shadow relative bg-white flex flex-col"
-          >
-            {product.amount === 0 && (
-              <div className="absolute top-3 p-2 left-4 w-[80px] bg-red-200 text-red-600 rounded-lg text-center font-bold py-1 text-xs">
-                Stock Out
+        {allProducts.map((product) => {
+          const cartItem = cart.find(
+            (item: { id: number }) => item.id === product.id
+          );
+
+          return (
+            <div
+              key={product.id}
+              className="p-2 rounded-md shadow relative bg-white flex flex-col"
+            >
+              {product.amount === 0 && (
+                <div className="absolute top-3 p-2 left-4 w-[80px] bg-red-200 text-red-600 rounded-lg text-center font-bold py-1 text-xs">
+                  Stock Out
+                </div>
+              )}
+
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-28 sm:h-32 object-cover rounded mb-2"
+              />
+
+              <h2 className="text-xs sm:text-sm font-semibold line-clamp-1">
+                {product.name}
+              </h2>
+
+              <div className="flex justify-between items-center mt-1">
+                <span className="text-primary-color font-bold text-xs sm:text-sm">
+                  ₦{product.price.toFixed(2)}
+                </span>
+
+                {cartItem ? (
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => decrement(product.id)}
+                      className="bg-gray-300 p-1 rounded-full"
+                    >
+                      <FaMinus className="text-xs" />
+                    </button>
+                    <span className="text-xs font-bold">
+                      {cartItem.quantity}
+                    </span>
+                    <button
+                      onClick={() => increment(product.id)}
+                      className="bg-primary-color text-white p-1 rounded-full"
+                    >
+                      <FaPlus className="text-xs" />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => addToCart(product)}
+                    className="bg-primary-color text-white p-1.5 rounded-full hover:bg-secondary-color transition"
+                  >
+                    <BsCartPlus className="text-base" />
+                  </button>
+                )}
               </div>
-            )}
-
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-28 sm:h-32 object-cover rounded mb-2"
-            />
-
-            <h2 className="text-xs sm:text-sm font-semibold line-clamp-1">
-              {product.name}
-            </h2>
-
-            <div className="flex justify-between items-center mt-1">
-              <span className="text-primary-color font-bold text-xs sm:text-sm">
-                ₦{product.price.toFixed(2)}
-              </span>
-              <button className="bg-primary-color text-white p-1.5 rounded-full hover:bg-secondary-color transition">
-                <BsCartPlus className="text-base" />
-              </button>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

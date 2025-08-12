@@ -3,16 +3,19 @@ import { SidebarLinks } from "../utils/SidebarLinks";
 import { useSidebarStore } from "../features/store";
 import { FaTimes } from "react-icons/fa";
 import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";
+import { useCartStore } from "../features/cartstore";
 
 const Sidebar = () => {
   const { isOpen, toggleSidebar } = useSidebarStore();
+  const { cart } = useCartStore();
+  const cartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <>
       {/* Overlay on mobile */}
       {isOpen && (
         <div
-          onClick={toggleSidebar}
+          // onClick={toggleSidebar}
           className="fixed inset-0 bg-[#393F4266] backdrop-blur-[2px] sm:hidden h-[lvh]"
           style={{ zIndex: 5 }}
         >
@@ -96,7 +99,7 @@ const Sidebar = () => {
                         {icon}
                         {name.toLocaleLowerCase() === "cart" && (
                           <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2  rounded-full bg-red-200  text-red-600  ">
-                            10
+                            {cartQuantity}
                           </span>
                         )}
                       </span>

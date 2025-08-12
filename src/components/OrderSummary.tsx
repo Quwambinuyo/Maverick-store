@@ -1,46 +1,45 @@
-import { FaTrash } from "react-icons/fa";
-import CustomBtn from "../utils/CustomBtn";
+import { useCartStore } from "../features/cartstore";
 
 const OrderSummary = () => {
-  const product = {
-    id: 1,
-    name: "Classic Navy Suit",
-    image: "https://pbs.twimg.com/media/GxM84zwXcAQXqoU?format=jpg&name=large",
-    price: 96,
-    quantity: 1,
-  };
+  const { cart } = useCartStore();
+
+  // Total number of items
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  // Total price
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
   return (
-    <div className="p-4 bg-white rounded shadow-sm space-y-4">
-      <h2 className="text-lg font-semibold border-b border-primary-color pb-2">
-        Order Summary
+    <div className=" p-4 space-y-4">
+      <h2 className="text-lg font-bold border-b border-gray-300 pb-2">
+        Order Summary ({totalItems} {totalItems === 1 ? "item" : "items"})
       </h2>
 
-      <div className="flex items-center gap-4">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-16 h-16 object-cover rounded"
-        />
+      <div className="space-y-3">
+        {cart.map((item) => (
+          <div
+            key={item.id}
+            className="flex justify-between items-center border-gray-300 border-b pb-2"
+          >
+            <div>
+              <p className="font-semibold text-sm">{item.name}</p>
+              <p className="text-gray-500 text-xs">
+                ₦{item.price.toFixed(2)} × {item.quantity}
+              </p>
+            </div>
+            <p className="font-bold text-sm">
+              ₦{(item.price * item.quantity).toFixed(2)}
+            </p>
+          </div>
+        ))}
+      </div>
 
-        {/* Details */}
-        <div className="flex-1">
-          <p className="text-sm font-medium">{product.name}</p>
-          <p className="text-gray-500 text-sm">₦{product.price.toFixed(2)}</p>
-        </div>
-
-        {/* Quantity */}
-        <input
-          type="number"
-          min={1}
-          value={product.quantity}
-          onChange={() => {}}
-          className="w-16 border rounded p-1 text-center"
-        />
-
-        <CustomBtn className="text-primary-color hover:text-secondary-color">
-          <FaTrash />
-        </CustomBtn>
+      <div className="flex justify-between items-center font-bold text-lg border-gray-300 border-t pt-2">
+        <span>Total</span>
+        <span>₦{totalPrice.toFixed(2)}</span>
       </div>
     </div>
   );

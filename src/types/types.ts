@@ -27,7 +27,6 @@ export interface Product {
   id: number;
   name: string;
   image: string;
-  colors: string[];
   price: number;
   discountPercent: number;
   discountPrice: number;
