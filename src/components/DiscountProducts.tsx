@@ -1,6 +1,8 @@
 import { Products } from "../data/ProductData";
 import type { Product } from "../types/types";
 import { BsCartPlus } from "react-icons/bs";
+import { BsCheckCircleFill } from "react-icons/bs";
+import { useCartStore } from "../features/cartstore";
 
 const getAllDiscountedProducts = (): Product[] => {
   const result: Product[] = [];
@@ -18,6 +20,21 @@ const getAllDiscountedProducts = (): Product[] => {
 
 const DiscountProducts = () => {
   const discountedProducts = getAllDiscountedProducts();
+
+  const { cart, addToCart, removeFromCart } = useCartStore();
+
+  const isInCart = (id: number) => cart.some((item) => item.id === id);
+
+  const handleCartClick = (product: Product) => {
+    if (isInCart(product.id)) {
+      removeFromCart(product.id);
+    } else {
+      addToCart({
+        ...product,
+        price: product.discountPrice,
+      });
+    }
+  };
 
   return (
     <section>
@@ -64,8 +81,19 @@ const DiscountProducts = () => {
                   ₦{product.price.toFixed(2)}
                 </span>
               </div>
-              <button className="bg-primary-color text-white p-1.5 rounded-full hover:bg-secondary-color transition">
-                <BsCartPlus className="text-base" />
+              <button
+                onClick={() => handleCartClick(product)}
+                className={`p-1.5 rounded-full transition ${
+                  isInCart(product.id)
+                    ? "bg-green-500 text-white hover:bg-green-600"
+                    : "bg-primary-color text-white hover:bg-secondary-color"
+                }`}
+              >
+                {isInCart(product.id) ? (
+                  <BsCheckCircleFill className="text-base" />
+                ) : (
+                  <BsCartPlus className="text-base" />
+                )}
               </button>
             </div>
           </div>
