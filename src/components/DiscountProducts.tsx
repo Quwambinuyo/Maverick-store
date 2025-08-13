@@ -28,7 +28,7 @@ const DiscountProducts = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 px-2">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 px-2">
         {allProducts.map((product) => {
           const cartItem = cart.find((item) => item.id === product.id);
           const price = Number(product.price ?? 0);
@@ -40,7 +40,7 @@ const DiscountProducts = () => {
           return (
             <div
               key={product.id}
-              className="p-3 rounded-md shadow relative bg-white flex flex-col h-[300px] "
+              className="p-3 rounded-md shadow relative bg-white flex flex-col md:h-[300px] "
             >
               {/* Percent-off badge */}
               {percentOff > 0 && (

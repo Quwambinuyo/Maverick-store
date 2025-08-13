@@ -39,6 +39,9 @@ const Sidebar = () => {
         <div className="relative h-full flex flex-col items-center py-7 ">
           {/* Logo */}
           <Link
+            onClick={() => {
+              if (window.innerWidth < 640) toggleSidebar();
+            }}
             to="/home"
             className={`${
               isOpen ? "text-3xl" : "text-2xl"

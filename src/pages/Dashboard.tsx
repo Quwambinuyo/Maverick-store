@@ -11,7 +11,7 @@ const Dashboard = () => {
   };
   return (
     <section className="">
-      <div className="bg-secondary-color flex justify-between rounded-lg items-center px-5 py-5">
+      <div className="bg-secondary-color mx-2 flex justify-between rounded-lg items-center px-5 py-5">
         <div>
           <div className="flex items-center gap-2">
             <p className="text-lg sm:text-2xl font-bold text-gray-900">
@@ -33,10 +33,10 @@ const Dashboard = () => {
       </div>
 
       <article className="mt-5">
-        <h2 className="mb-3 font-bold text-lg sm:text-[17px] text-gray-800">
+        <h2 className="mb-3 font-bold text-lg sm:text-[17px] px-2 text-gray-800">
           Dashboard
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mx-2">
           <div className="bg-white p-4 rounded shadow flex gap-4 items-center">
             <div className="bg-red-200 text-red-500 p-4 rounded-full text-lg sm:text-[20px]">
               <BsCart />
@@ -78,7 +78,7 @@ const Dashboard = () => {
       </article>
       <CustomBtn
         label="Home"
-        className="mt-2 flex flex-row-reverse items-center gap-2"
+        className="mt-2 mx-2 flex flex-row-reverse items-center gap-2"
         onClick={backToHome}
       >
         <FaHome />

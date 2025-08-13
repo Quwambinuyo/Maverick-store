@@ -5,46 +5,53 @@ import { BiCategory } from "react-icons/bi";
 import { MdOutlineCallEnd } from "react-icons/md";
 import { FaInfo } from "react-icons/fa";
 import { IoMdLogOut } from "react-icons/io";
+import { IoMdHome } from "react-icons/io";
 
 export const SidebarLinks = [
   {
     id: 1,
+    name: "Home",
+    icon: <IoMdHome />,
+    path: "/home",
+  },
+  {
+    id: 2,
     name: "Dashboard",
     icon: <RxDashboard />,
     path: "/dashboard",
   },
   {
-    id: 2,
+    id: 3,
     name: "Cart",
     icon: <BsCart3 />,
     path: "/cart",
   },
   {
-    id: 3,
+    id: 4,
     name: "Pages",
     icon: <PiListBold />,
     path: "/pages",
   },
   {
-    id: 4,
+    id: 5,
     name: "Categories",
     icon: <BiCategory />,
     path: "/categories",
   },
   {
-    id: 5,
+    id: 6,
     name: "Contact us",
     icon: <MdOutlineCallEnd />,
     path: "/contact",
   },
   {
-    id: 6,
+    id: 7,
     name: "About us",
     icon: <FaInfo />,
     path: "/about",
   },
   {
-    id: 7,
+    id: 8,
     name: "Logout",
     icon: <IoMdLogOut />,
     path: "/register",
