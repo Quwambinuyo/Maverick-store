@@ -1,10 +1,20 @@
 import { create } from "zustand";
 import { signUp } from "../Auth/userAuth";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  type User,
+} from "firebase/auth";
 import { auth } from "../Auth/firebaseconfig";
 import { type SignUpData, type AuthStore } from "../types/authDataTypes";
 
-export const useAuthStore = create<AuthStore>((set) => {
+export const useAuthStore = create<
+  AuthStore & {
+    loggedIn: boolean;
+    checkingStatus: boolean;
+    initAuth: () => void;
+  }
+>((set) => {
   const storedUser = localStorage.getItem("user");
 
   return {
@@ -12,6 +22,10 @@ export const useAuthStore = create<AuthStore>((set) => {
     error: null,
     loading: false,
     rememberMe: localStorage.getItem("rememberMe") === "true",
+
+    // NEW: Firebase auth status
+    loggedIn: !!storedUser,
+    checkingStatus: true,
 
     setRememberMe: (value) => {
       set({ rememberMe: value });
@@ -31,9 +45,8 @@ export const useAuthStore = create<AuthStore>((set) => {
         return;
       }
 
-      // Save user in localStorage
       localStorage.setItem("user", JSON.stringify(user));
-      set({ user, loading: false, error: null });
+      set({ user, loading: false, error: null, loggedIn: true });
     },
 
     login: async (email, password, remember) => {
@@ -47,13 +60,12 @@ export const useAuthStore = create<AuthStore>((set) => {
         );
         const user = userCredential.user;
 
-        // Save user in localStorage if remember is true
         if (remember) {
           localStorage.setItem("user", JSON.stringify(user));
           localStorage.setItem("rememberMe", "true");
         }
 
-        set({ user, rememberMe: remember, loading: false });
+        set({ user, rememberMe: remember, loading: false, loggedIn: true });
         return {};
       } catch (error: any) {
         let message = "Something went wrong";
@@ -64,7 +76,7 @@ export const useAuthStore = create<AuthStore>((set) => {
         else if (error.code === "auth/wrong-password")
           message = "Incorrect password";
 
-        set({ loading: false, error: message });
+        set({ loading: false, error: message, loggedIn: false });
         return { error: message };
       }
     },
@@ -73,7 +85,20 @@ export const useAuthStore = create<AuthStore>((set) => {
       auth.signOut();
       localStorage.removeItem("user");
       localStorage.removeItem("rememberMe");
-      set({ user: null, rememberMe: false });
+      set({ user: null, rememberMe: false, loggedIn: false });
+    },
+
+    // NEW: Initialize Firebase auth listener
+    initAuth: () => {
+      onAuthStateChanged(auth, (user: User | null) => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user));
+          set({ user, loggedIn: true, checkingStatus: false });
+        } else {
+          localStorage.removeItem("user");
+          set({ user: null, loggedIn: false, checkingStatus: false });
+        }
+      });
     },
   };
 });

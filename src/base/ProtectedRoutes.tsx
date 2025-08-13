@@ -1,24 +1,18 @@
-// import { Navigate } from "react-router-dom";
-// import { useAuthStore } from "../features/useAuthStore";
-// import { toast } from "react-toastify";
 import { type ReactNode } from "react";
+import { Navigate } from "react-router-dom";
+import Loader from "../components/Loader";
+import { useAuthStore } from "../features/useAuthStore";
 
 interface ProtectedRouteProps {
   children: ReactNode;
 }
 
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  // const { user } = useAuthStore();
+  const { loggedIn, checkingStatus } = useAuthStore();
 
-  // useEffect(() => {
-  //   if (!user) {
-  //     toast.warn("Please login");
-  //   }
-  // }, [user]);
+  if (checkingStatus) {
+    return <Loader />;
+  }
 
-  // if (!user) {
-  //   return <Navigate to="/login" replace />;
-  // }
-
-  return <>{children}</>;
+  return loggedIn ? children : <Navigate to="/sign-in" />;
 }

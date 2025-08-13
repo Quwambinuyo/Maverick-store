@@ -1,4 +1,6 @@
 import { auth } from "../Auth/firebaseconfig";
+import { useEffect, useState, type ReactNode } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -50,3 +52,25 @@ export const signIn = async ({ email, password }: SignInData) => {
     return { error: message };
   }
 };
+
+export interface ProtectedRouteProps {
+  children: ReactNode;
+}
+
+// export const useAuthStatus = () => {
+//   const [loggedIn, setLoggedIn] = useState(false);
+//   const [checkingStatus, setCheckingStatus] = useState(true);
+
+//   useEffect(() => {
+//     const auth = getAuth();
+
+//     const unsubscribe = onAuthStateChanged(auth, (user) => {
+//       setLoggedIn(!!user);
+//       setCheckingStatus(false);
+//     });
+
+//     return () => unsubscribe();
+//   }, []);
+
+//   return { loggedIn, checkingStatus };
+// };
