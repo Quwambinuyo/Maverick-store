@@ -42,11 +42,11 @@ const DiscountProducts = () => {
           return (
             <div
               key={product.id}
-              className="p-3 rounded-md shadow relative bg-white flex flex-col h-[300px] hover:shadow-lg transition"
+              className="p-3 rounded-md shadow relative bg-white flex flex-col h-[300px] "
             >
               {/* Percent-off badge */}
               {percentOff > 0 && (
-                <div className="absolute top-7 left-5 bg-yellow-500 text-white text-xs px-2 py-1 rounded font-semibold">
+                <div className="absolute top-7 left-5 bg-red-200 text-red-500 text-xs px-2 py-1 rounded font-semibold">
                   {percentOff}% OFF
                 </div>
               )}
@@ -76,11 +76,11 @@ const DiscountProducts = () => {
                   )}
                 </div>
 
-                <CustomBtn
+                <button
                   onClick={() =>
                     isInCart ? removeFromCart(product.id) : addToCart(product)
                   }
-                  className={`p-2 rounded-lg font-medium transition-colors duration-300 flex items-center gap-1 ${
+                  className={`p-2 rounded-full font-medium transition-colors duration-300 flex items-center gap-1 ${
                     isInCart
                       ? "bg-green-500 text-white"
                       : "bg-primary-color text-white hover:bg-secondary-color"
@@ -88,14 +88,14 @@ const DiscountProducts = () => {
                 >
                   {isInCart ? (
                     <>
-                      <BsCheckCircle size={18} /> Added
+                      <BsCheckCircle size={18} />
                     </>
                   ) : (
                     <>
                       <BsCartPlus size={18} />
                     </>
                   )}
-                </CustomBtn>
+                </button>
               </div>
             </div>
           );
