@@ -1,6 +1,6 @@
 import { auth } from "../Auth/firebaseconfig";
-import { useEffect, useState, type ReactNode } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { type ReactNode } from "react";
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
