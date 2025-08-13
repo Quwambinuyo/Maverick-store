@@ -7,7 +7,7 @@ export interface CartItem extends Product {
 export interface CartState {
   cart: CartItem[];
   addToCart: (product: Product) => void;
-  increment: (id: number) => void;
-  decrement: (id: number) => void;
-  removeFromCart: (id: number) => void;
+  increment: (id: string) => void;
+  decrement: (id: string) => void;
+  removeFromCart: (id: string) => void;
 }

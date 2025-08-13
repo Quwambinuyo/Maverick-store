@@ -24,7 +24,7 @@ export interface InputProps
 }
 
 export interface Product {
-  id: number;
+  id: string;
   name: string;
   image: string;
   price: number;

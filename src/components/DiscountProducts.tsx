@@ -1,103 +1,104 @@
-import { Products } from "../data/ProductData";
-import type { Product } from "../types/types";
-import { BsCartPlus } from "react-icons/bs";
-import { BsCheckCircleFill } from "react-icons/bs";
+import React from "react";
+import { DiscountedProduct } from "../data/ProductData";
+import type { Product, ProductsType } from "../types/types";
+import { BsCartPlus, BsCheckCircle } from "react-icons/bs";
 import { useCartStore } from "../features/cartstore";
 
-const getAllDiscountedProducts = (): Product[] => {
-  const result: Product[] = [];
-
-  Object.values(Products).forEach((category) => {
-    Object.values(category).forEach((subCategory) => {
-      subCategory.forEach((item) => {
-        if (item.discountPercent > 0) result.push(item);
-      });
-    });
-  });
-
-  return result;
-};
-
 const DiscountProducts = () => {
-  const discountedProducts = getAllDiscountedProducts();
+  const allProducts: Product[] = [];
+  const typedProducts = DiscountedProduct as ProductsType;
+
+  // Flatten discounted products
+  for (const categoryKey in typedProducts) {
+    const category = typedProducts[categoryKey];
+    for (const subKey in category) {
+      const productsArray = category[subKey];
+      allProducts.push(...productsArray);
+    }
+  }
 
   const { cart, addToCart, removeFromCart } = useCartStore();
-
-  const isInCart = (id: number) => cart.some((item) => item.id === id);
-
-  const handleCartClick = (product: Product) => {
-    if (isInCart(product.id)) {
-      removeFromCart(product.id);
-    } else {
-      addToCart({
-        ...product,
-        price: product.discountPrice,
-      });
-    }
-  };
 
   return (
     <section>
       <div className="sm:w-[500px] w-[90%] text-center flex flex-col justify-center mx-auto py-3 space-y-3.5 mb-4">
-        <h2 className="text-sm font-bold sm:text-2xl">
-          Latest Discounted Products
-        </h2>
+        <h2 className="text-sm font-bold sm:text-2xl">Discounted Products</h2>
         <p className="text-sm sm:text-[15px] font-semibold text-gray-800">
-          See Our latest discounted products below. Choose your daily needs from
-          here and get a special discount with free shipping.
+          Grab these deals before they expire! Enjoy discounted prices on
+          selected products.
         </p>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 px-2">
-        {discountedProducts.map((product) => (
-          <div
-            key={product.id}
-            className="p-2 rounded-md shadow relative bg-white flex flex-col"
-          >
-            {/* Discount Tag */}
-            <div className="absolute top-3 p-2 right-4 w-fit bg-green-100 text-green-600 rounded-lg text-center font-bold py-1 text-xs">
-              {product.discountPercent}% OFF
-            </div>
+        {allProducts.map((product) => {
+          const cartItem = cart.find((item) => item.id === product.id);
+          const price = Number(product.price ?? 0);
+          const discountPrice = Number(product.discountPrice ?? price);
+          const percentOff =
+            price > 0 ? Math.round(((price - discountPrice) / price) * 100) : 0;
+          const isInCart = !!cartItem;
 
-            {/* Image */}
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-28 sm:h-32 object-cover rounded mb-2"
-            />
+          return (
+            <div
+              key={product.id}
+              className="p-3 rounded-md shadow relative bg-white flex flex-col h-[300px] hover:shadow-lg transition"
+            >
+              {/* Percent-off badge */}
+              {percentOff > 0 && (
+                <div className="absolute top-7 left-5 bg-yellow-500 text-white text-xs px-2 py-1 rounded font-semibold">
+                  {percentOff}% OFF
+                </div>
+              )}
 
-            {/* Name */}
-            <h2 className="text-xs sm:text-sm font-semibold line-clamp-1">
-              {product.name}
-            </h2>
+              {/* Product Image */}
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-40 sm:h-48 object-cover rounded mb-3"
+              />
 
-            {/* Pricing + Cart Button */}
-            <div className="flex justify-between items-center mt-1">
-              <div>
-                <span className="text-primary-color font-bold text-xs sm:text-sm mr-2">
-                  ₦{product.discountPrice.toFixed(2)}
-                </span>
-                <span className="text-gray-400 line-through text-xs sm:text-sm">
-                  ₦{product.price.toFixed(2)}
-                </span>
+              {/* Product Name */}
+              <h2 className="text-xs sm:text-sm font-semibold line-clamp-1 mb-2">
+                {product.name}
+              </h2>
+
+              {/* Price and Add to Cart Button in one row */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-primary-color font-bold text-sm sm:text-base">
+                    ${discountPrice.toFixed(2)}
+                  </span>
+                  {percentOff > 0 && (
+                    <span className="text-gray-500 line-through text-xs sm:text-sm">
+                      ${price.toFixed(2)}
+                    </span>
+                  )}
+                </div>
+
+                <button
+                  onClick={() =>
+                    isInCart ? removeFromCart(product.id) : addToCart(product)
+                  }
+                  className={`p-2 rounded-lg font-medium transition-colors duration-300 flex items-center gap-1 ${
+                    isInCart
+                      ? "bg-green-500 text-white"
+                      : "bg-primary-color text-white hover:bg-secondary-color"
+                  }`}
+                >
+                  {isInCart ? (
+                    <>
+                      <BsCheckCircle size={18} /> Added
+                    </>
+                  ) : (
+                    <>
+                      <BsCartPlus size={18} />
+                    </>
+                  )}
+                </button>
               </div>
-              <button
-                onClick={() => handleCartClick(product)}
-                className={`p-1.5 rounded-full transition ${
-                  isInCart(product.id)
-                    ? "bg-green-500 text-white hover:bg-green-600"
-                    : "bg-primary-color text-white hover:bg-secondary-color"
-                }`}
-              >
-                {isInCart(product.id) ? (
-                  <BsCheckCircleFill className="text-base" />
-                ) : (
-                  <BsCartPlus className="text-base" />
-                )}
-              </button>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

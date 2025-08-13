@@ -34,13 +34,13 @@ const PopularProducts = () => {
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 px-2">
         {allProducts.map((product) => {
           const cartItem = cart.find(
-            (item: { id: number }) => item.id === product.id
+            (item: { id: string }) => item.id === product.id
           );
 
           return (
             <div
               key={product.id}
-              className="p-2 rounded-md shadow relative bg-white flex flex-col"
+              className="p-2 rounded-md shadow relative bg-white flex flex-col h-[250px]" // increased height
             >
               {product.amount === 0 && (
                 <div className="absolute top-3 p-2 left-4 w-[80px] bg-red-200 text-red-600 rounded-lg text-center font-bold py-1 text-xs">
@@ -51,14 +51,14 @@ const PopularProducts = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-28 sm:h-32 object-cover rounded mb-2"
+                className="w-full h-36 sm:h-40 object-cover rounded mb-2" // bigger image height
               />
 
               <h2 className="text-xs sm:text-sm font-semibold line-clamp-1">
                 {product.name}
               </h2>
 
-              <div className="flex justify-between items-center mt-1">
+              <div className="flex justify-between items-center mt-2">
                 <span className="text-primary-color font-bold text-xs sm:text-sm">
                   ₦{product.price.toFixed(2)}
                 </span>
