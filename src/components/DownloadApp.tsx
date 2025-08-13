@@ -3,7 +3,7 @@ import CustomBtn from "../utils/CustomBtn";
 const DownloadApp = () => {
   return (
     <section>
-      <div className="p-9 bg-primary-color mt-8 rounded-xl">
+      <div className="p-9 bg-primary-color mt-8 md:rounded-xl">
         <div className="flex justify-between bg-white p-8 rounded-xl items-center">
           <div className="md:w-[550px] space-y-4">
             <h2 className="text-sm md:text-[20px] font-bold capitalize text-gray-800">
