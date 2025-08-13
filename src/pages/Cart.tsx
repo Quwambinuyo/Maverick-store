@@ -25,9 +25,10 @@ const Cart = () => {
       {/* Grid container */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {cart.map((item) => {
-          const isDiscounted = item.discountPercent && item.discountPercent > 0;
+          const discount = item.discountPercent ?? 0;
+          const isDiscounted = discount > 0;
           const originalPrice = isDiscounted
-            ? item.price / (1 - item.discountPercent / 100)
+            ? item.price / (1 - discount / 100)
             : item.price;
 
           return (
@@ -43,7 +44,7 @@ const Cart = () => {
                     : "bg-gray-200 text-gray-700"
                 }`}
               >
-                {isDiscounted ? `${item.discountPercent}% OFF` : "Regular"}
+                {isDiscounted ? `${discount}% OFF` : "Regular"}
               </span>
 
               {/* Image + name + price */}
@@ -80,25 +81,31 @@ const Cart = () => {
                 </div>
               </div>
 
-              {/* Quantity controls */}
+              {/* Quantity controls — hidden if discounted */}
               <div className="flex items-center justify-between mt-3">
-                <div className="flex items-center space-x-2">
-                  <CustomBtn
-                    onClick={() => decrement(item.id)}
-                    className="flex items-center justify-center rounded bg-gray-200"
-                  >
-                    <FaMinus className="text-xs" />
-                  </CustomBtn>
+                {isDiscounted ? (
+                  <span className="text-sm text-gray-500">
+                    Fixed quantity due to discount
+                  </span>
+                ) : (
+                  <div className="flex items-center space-x-2">
+                    <CustomBtn
+                      onClick={() => decrement(item.id)}
+                      className="flex items-center justify-center rounded bg-gray-200"
+                    >
+                      <FaMinus className="text-xs" />
+                    </CustomBtn>
 
-                  <span className="font-bold">{item.quantity}</span>
+                    <span className="font-bold">{item.quantity}</span>
 
-                  <CustomBtn
-                    onClick={() => increment(item.id)}
-                    className="flex items-center justify-center bg-primary-color text-white rounded"
-                  >
-                    <FaPlus className="text-xs" />
-                  </CustomBtn>
-                </div>
+                    <CustomBtn
+                      onClick={() => increment(item.id)}
+                      className="flex items-center justify-center bg-primary-color text-white rounded"
+                    >
+                      <FaPlus className="text-xs" />
+                    </CustomBtn>
+                  </div>
+                )}
 
                 {/* Remove button */}
                 <button
