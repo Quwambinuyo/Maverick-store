@@ -9,7 +9,7 @@ import "../index.css";
 
 const SwiperCarousel = () => {
   return (
-    <div className="w-full m-auto mx-3 md:mx-0">
+    <div className="w-full m-auto mx-1 md:mx-0">
       <div className="mt-2">
         <Swiper
           spaceBetween={50}
