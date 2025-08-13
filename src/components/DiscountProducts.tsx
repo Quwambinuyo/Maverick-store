@@ -1,9 +1,7 @@
-import React from "react";
 import { DiscountedProduct } from "../data/ProductData";
 import type { Product, ProductsType } from "../types/types";
 import { BsCartPlus, BsCheckCircle } from "react-icons/bs";
 import { useCartStore } from "../features/cartstore";
-import CustomBtn from "../utils/CustomBtn";
 
 const DiscountProducts = () => {
   const allProducts: Product[] = [];

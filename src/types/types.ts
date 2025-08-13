@@ -28,10 +28,11 @@ export interface Product {
   name: string;
   image: string;
   price: number;
-  discountPercent: number;
-  discountPrice: number;
+  discountPercent?: number;
+  discountPrice?: number;
   quantity: number;
   amount: number;
+  colors?: string[];
 }
 
 export type ProductsType = {
