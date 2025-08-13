@@ -33,16 +33,16 @@ const PopularProducts = () => {
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 px-2">
         {allProducts.map((product) => {
-          const cartItem = cart.find(
-            (item: { id: string }) => item.id === product.id
-          );
+          const cartItem = cart.find((item) => item.id === product.id);
+          const isOutOfStock =
+            product.amount === 0 || (cartItem && cartItem.quantity === 0);
 
           return (
             <div
               key={product.id}
-              className="p-2 rounded-md shadow relative bg-white flex flex-col h-[250px]" // increased height
+              className="p-2 rounded-md shadow relative bg-white flex flex-col h-[270px]"
             >
-              {product.amount === 0 && (
+              {isOutOfStock && (
                 <div className="absolute top-3 p-2 left-4 w-[80px] bg-red-200 text-red-600 rounded-lg text-center font-bold py-1 text-xs">
                   Stock Out
                 </div>
@@ -51,7 +51,7 @@ const PopularProducts = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-36 sm:h-40 object-cover rounded mb-2" // bigger image height
+                className="w-full h-44 sm:h-48 object-cover rounded mb-2" // Increased height
               />
 
               <h2 className="text-xs sm:text-sm font-semibold line-clamp-1">
@@ -59,11 +59,11 @@ const PopularProducts = () => {
               </h2>
 
               <div className="flex justify-between items-center mt-2">
-                <span className="text-primary-color font-bold text-xs sm:text-sm">
+                <span className="text-primary-color font-bold text-sm sm:text-base">
                   ₦{product.price.toFixed(2)}
                 </span>
 
-                {cartItem ? (
+                {cartItem && cartItem.quantity > 0 ? (
                   <div className="flex items-center space-x-2">
                     <button
                       onClick={() => decrement(product.id)}

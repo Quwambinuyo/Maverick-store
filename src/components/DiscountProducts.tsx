@@ -3,6 +3,7 @@ import { DiscountedProduct } from "../data/ProductData";
 import type { Product, ProductsType } from "../types/types";
 import { BsCartPlus, BsCheckCircle } from "react-icons/bs";
 import { useCartStore } from "../features/cartstore";
+import CustomBtn from "../utils/CustomBtn";
 
 const DiscountProducts = () => {
   const allProducts: Product[] = [];
@@ -66,16 +67,16 @@ const DiscountProducts = () => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="text-primary-color font-bold text-sm sm:text-base">
-                    ${discountPrice.toFixed(2)}
+                    ₦{discountPrice.toFixed(2)}
                   </span>
                   {percentOff > 0 && (
                     <span className="text-gray-500 line-through text-xs sm:text-sm">
-                      ${price.toFixed(2)}
+                      ₦{price.toFixed(2)}
                     </span>
                   )}
                 </div>
 
-                <button
+                <CustomBtn
                   onClick={() =>
                     isInCart ? removeFromCart(product.id) : addToCart(product)
                   }
@@ -94,7 +95,7 @@ const DiscountProducts = () => {
                       <BsCartPlus size={18} />
                     </>
                   )}
-                </button>
+                </CustomBtn>
               </div>
             </div>
           );
