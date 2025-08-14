@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { type CartState } from "../types/cartTypes";
+import { toast } from "react-toastify";
 
 export const useCartStore = create<CartState>()(
   persist(
@@ -9,6 +10,7 @@ export const useCartStore = create<CartState>()(
 
       addToCart: (product) => {
         const existing = get().cart.find((item) => item.id === product.id);
+        toast.success("Item added to cart");
         if (existing) {
           set({
             cart: get().cart.map((item) =>
@@ -29,6 +31,7 @@ export const useCartStore = create<CartState>()(
       },
 
       increment: (id) => {
+        toast.success("item increased");
         set({
           cart: get().cart.map((item) =>
             item.id === id ? { ...item, quantity: item.quantity + 1 } : item
@@ -37,6 +40,7 @@ export const useCartStore = create<CartState>()(
       },
 
       decrement: (id) => {
+        toast.success("item increased");
         set({
           cart: get()
             .cart.map((item) =>
@@ -47,6 +51,7 @@ export const useCartStore = create<CartState>()(
       },
 
       removeFromCart: (id) => {
+        toast.success("Item removed from cart");
         set({
           cart: get().cart.filter((item) => item.id !== id),
         });
