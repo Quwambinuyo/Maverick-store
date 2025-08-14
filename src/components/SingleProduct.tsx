@@ -4,34 +4,37 @@ import type { Product, ProductsType } from "../types/types";
 import { formatPrice } from "../utils/utilityfunc";
 import { useCartStore } from "../features/cartstore";
 import { FaPlus, FaMinus } from "react-icons/fa";
+import { useMemo } from "react";
 
 const SingleProduct = () => {
   const { id } = useParams<{ id: string }>();
   const { cart, addToCart, increment, decrement } = useCartStore();
 
-  // Combine Products + DiscountedProduct into one array
-  const allProducts: Product[] = [];
+  // Build combined product list with category info
+  const allProducts: (Product & { categoryName: string })[] = useMemo(() => {
+    const combined: (Product & { categoryName: string })[] = [];
 
-  const typedProducts = Products as ProductsType;
-  const typedDiscounted = DiscountedProduct as ProductsType;
+    const addProductsWithCategory = (data: ProductsType, source: string) => {
+      for (const categoryKey in data) {
+        const category = data[categoryKey];
+        for (const subKey in category) {
+          combined.push(
+            ...category[subKey].map((p) => ({
+              ...p,
+              categoryName: `${categoryKey} > ${subKey} (${source})`,
+            }))
+          );
+        }
+      }
+    };
 
-  // Add regular products
-  for (const categoryKey in typedProducts) {
-    const category = typedProducts[categoryKey];
-    for (const subKey in category) {
-      allProducts.push(...category[subKey]);
-    }
-  }
+    addProductsWithCategory(Products as ProductsType, "Regular");
+    addProductsWithCategory(DiscountedProduct as ProductsType, "Discounted");
 
-  // Add discounted products
-  for (const categoryKey in typedDiscounted) {
-    const category = typedDiscounted[categoryKey];
-    for (const subKey in category) {
-      allProducts.push(...category[subKey]);
-    }
-  }
+    return combined;
+  }, []);
 
-  // Find product by id
+  // Find product
   const product = allProducts.find((p) => String(p.id) === id);
 
   if (!product) {
@@ -40,7 +43,6 @@ const SingleProduct = () => {
     );
   }
 
-  // Check if product is already in cart
   const cartItem = cart.find((item) => item.id === product.id);
 
   return (
@@ -56,13 +58,25 @@ const SingleProduct = () => {
         {/* Product Details */}
         <div>
           <h1 className="text-2xl font-bold mb-2">{product.name}</h1>
-          <p className="text-lg font-semibold text-green-600 mb-4">
+
+          {/* Category */}
+          <p className="text-sm text-gray-500 mb-2">
+            Category: {product.categoryName}
+          </p>
+
+          {/* Price */}
+          <p className="text-lg font-semibold text-green-600 mb-2">
             {formatPrice(product.discountPrice || product.price)}
           </p>
           {product.discountPrice && (
             <p className="text-sm text-gray-500 line-through">
               {formatPrice(product.price)}
             </p>
+          )}
+
+          {/* Description (optional) */}
+          {product.description && (
+            <p className="text-gray-700 mt-3">{product.description}</p>
           )}
 
           {/* Add to Cart / Quantity Controls */}
