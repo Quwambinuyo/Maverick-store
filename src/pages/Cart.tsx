@@ -98,7 +98,7 @@ const Cart = () => {
                   <div className="flex items-center space-x-2">
                     <CustomBtn
                       onClick={() => decrement(item.id)}
-                      className="flex items-center justify-center rounded bg-gray-200"
+                      className="flex items-center justify-center rounded-full bg-gray-200"
                     >
                       <FaMinus className="text-xs" />
                     </CustomBtn>
@@ -107,7 +107,7 @@ const Cart = () => {
 
                     <CustomBtn
                       onClick={() => increment(item.id)}
-                      className="flex items-center justify-center bg-primary-color text-white rounded"
+                      className="flex items-center justify-center  bg-primary-color text-white rounded-full"
                     >
                       <FaPlus className="text-xs" />
                     </CustomBtn>

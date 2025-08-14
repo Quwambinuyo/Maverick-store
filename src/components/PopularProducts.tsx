@@ -74,7 +74,7 @@ const PopularProducts = () => {
                         e.stopPropagation();
                         decrement(product.id);
                       }}
-                      className="bg-primary-color text-white p-1 rounded-full"
+                      className="bg-primary-color text-white p-2 rounded-full"
                     >
                       <FaMinus className="text-xs" />
                     </button>
@@ -87,7 +87,7 @@ const PopularProducts = () => {
                         e.stopPropagation();
                         increment(product.id);
                       }}
-                      className="bg-primary-color text-white p-1 rounded-full"
+                      className="bg-primary-color text-white p-2 rounded-full"
                     >
                       <FaPlus className="text-xs" />
                     </button>
