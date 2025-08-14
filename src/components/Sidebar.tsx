@@ -26,13 +26,12 @@ const Sidebar = () => {
         </div>
       )}
 
-      {/* Sidebar with bounce animation */}
       <motion.aside
         animate={{ width: isOpen ? 240 : 80 }}
         transition={{
           type: "spring",
-          stiffness: 200,
-          damping: 15,
+          stiffness: 300,
+          damping: 12,
         }}
         className={`h-screen bg-primary-color border-r border-gray-300 flex-shrink-0 fixed top-0 left-0 ${
           isOpen ? "block" : "hidden sm:block"
@@ -94,7 +93,7 @@ const Sidebar = () => {
                         isOpen ? "gap-4 justify-start pl-6" : "justify-center"
                       } ${
                         isLogout
-                          ? "bg-white mt-9 rounded-full px-5 py-4 w-fit mx-auto"
+                          ? "bg-white mt-9 mb-6 rounded-full px-5 py-4 w-fit mx-auto" // added mb-6 here
                           : "sm:py-4 py-7 w-full"
                       }`}
                     >
