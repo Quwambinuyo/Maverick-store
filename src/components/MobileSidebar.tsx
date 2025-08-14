@@ -19,10 +19,7 @@ const MobileSidebar = () => {
           className="fixed inset-0 bg-[#393F4266] backdrop-blur-[2px] sm:hidden h-[lvh]"
           style={{ zIndex: 5 }}
         >
-          <button
-            onClick={toggleSidebar}
-            className="absolute cursor-pointer top-2 right-3 rounded-full h-[42px] w-[42px] bg-primary-color flex items-center justify-center"
-          >
+          <button className="absolute cursor-pointer top-2 right-3 rounded-full h-[42px] w-[42px] bg-primary-color flex items-center justify-center">
             <FaTimes color="#ffffff" size={20} />
           </button>
         </div>
