@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import { Products, DiscountedProduct } from "../data/ProductData";
 import type { Product, ProductsType } from "../types/types";
