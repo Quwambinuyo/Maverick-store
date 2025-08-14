@@ -2,12 +2,12 @@ import { DiscountedProduct } from "../data/ProductData";
 import type { Product, ProductsType } from "../types/types";
 import { BsCartPlus, BsCheckCircle } from "react-icons/bs";
 import { useCartStore } from "../features/cartstore";
+import { formatPrice } from "../utils/utilityfunc";
 
 const DiscountProducts = () => {
   const allProducts: Product[] = [];
   const typedProducts = DiscountedProduct as ProductsType;
 
-  // Flatten discounted products
   for (const categoryKey in typedProducts) {
     const category = typedProducts[categoryKey];
     for (const subKey in category) {
@@ -20,7 +20,7 @@ const DiscountProducts = () => {
 
   return (
     <section>
-      <div className="sm:w-[500px] w-[90%] text-center flex flex-col justify-center mx-auto py-3 space-y-3.5 mb-4">
+      <div className="sm:w-[500px] w-[90%]  text-center flex flex-col justify-center mx-auto py-3 space-y-3.5 mb-4">
         <h2 className="text-sm font-bold sm:text-2xl">Discounted Products</h2>
         <p className="text-sm sm:text-[15px] font-semibold text-gray-800">
           Grab these deals before they expire! Enjoy discounted prices on
@@ -28,11 +28,12 @@ const DiscountProducts = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 px-2">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 px-2 pb-20">
         {allProducts.map((product) => {
           const cartItem = cart.find((item) => item.id === product.id);
           const price = Number(product.price ?? 0);
-          const discountPrice = Number(product.discountPrice ?? price);
+          const discountPercent = Number(product.discountPercent ?? 0);
+          const discountPrice = price - (price * discountPercent) / 100;
           const percentOff =
             price > 0 ? Math.round(((price - discountPrice) / price) * 100) : 0;
           const isInCart = !!cartItem;
@@ -40,7 +41,7 @@ const DiscountProducts = () => {
           return (
             <div
               key={product.id}
-              className="p-3 rounded-md shadow relative bg-white flex flex-col md:h-[300px] "
+              className="p-3 rounded-md shadow relative bg-white flex flex-col md:h-[300px]"
             >
               {/* Percent-off badge */}
               {percentOff > 0 && (
@@ -61,15 +62,15 @@ const DiscountProducts = () => {
                 {product.name}
               </h2>
 
-              {/* Price and Add to Cart Button in one row */}
+              {/* Price & Cart Button */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="text-primary-color font-bold text-sm sm:text-base">
-                    ₦{discountPrice.toFixed(2)}
+                    {formatPrice(discountPrice)}
                   </span>
                   {percentOff > 0 && (
                     <span className="text-gray-500 line-through text-xs sm:text-sm">
-                      ₦{price.toFixed(2)}
+                      {formatPrice(price)}
                     </span>
                   )}
                 </div>
@@ -85,13 +86,9 @@ const DiscountProducts = () => {
                   }`}
                 >
                   {isInCart ? (
-                    <>
-                      <BsCheckCircle size={18} />
-                    </>
+                    <BsCheckCircle size={18} />
                   ) : (
-                    <>
-                      <BsCartPlus size={18} />
-                    </>
+                    <BsCartPlus size={18} />
                   )}
                 </button>
               </div>

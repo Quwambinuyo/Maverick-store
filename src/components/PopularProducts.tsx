@@ -2,6 +2,7 @@ import { Products } from "../data/ProductData";
 import type { Product, ProductsType } from "../types/types";
 import { BsCartPlus } from "react-icons/bs";
 import { FaPlus, FaMinus } from "react-icons/fa";
+import { formatPrice } from "../utils/utilityfunc";
 import { useCartStore } from "../features/cartstore";
 
 const PopularProducts = () => {
@@ -51,7 +52,7 @@ const PopularProducts = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-44 sm:h-48 object-cover rounded mb-2" // Increased height
+                className="w-full h-44 sm:h-48 object-cover rounded mb-2"
               />
 
               <h2 className="text-xs sm:text-sm font-semibold line-clamp-1">
@@ -60,7 +61,7 @@ const PopularProducts = () => {
 
               <div className="flex justify-between items-center mt-2">
                 <span className="text-primary-color font-bold text-sm sm:text-base">
-                  ₦{product.price.toFixed(2)}
+                  {formatPrice(product.price)}
                 </span>
 
                 {cartItem && cartItem.quantity > 0 ? (

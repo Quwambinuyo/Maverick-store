@@ -1,6 +1,7 @@
 import { useCartStore } from "../features/cartstore";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import CustomBtn from "../utils/CustomBtn";
+import { formatPrice } from "../utils/utilityfunc";
 
 const Cart = () => {
   const { cart, increment, decrement, removeFromCart } = useCartStore();
@@ -37,7 +38,7 @@ const Cart = () => {
               className="flex flex-col justify-between bg-white shadow rounded-lg p-3 relative"
             >
               {/* Price Badge */}
-              <span
+              {/* <span
                 className={`absolute top-2 right-2 text-xs font-bold px-2 py-1 rounded ${
                   isDiscounted
                     ? "bg-green-100 text-green-600"
@@ -45,7 +46,7 @@ const Cart = () => {
                 }`}
               >
                 {isDiscounted ? `${discount}% OFF` : "Regular"}
-              </span>
+              </span> */}
 
               {/* Image + name + price */}
               <div className="flex items-center space-x-3">
@@ -63,10 +64,10 @@ const Cart = () => {
                   {isDiscounted ? (
                     <div className="text-xs sm:text-sm">
                       <span className="text-primary-color font-bold mr-2">
-                        ₦{item.price.toFixed(2)}
+                        {formatPrice(item.price)}
                       </span>
                       <span className="text-gray-400 line-through">
-                        ₦{originalPrice.toFixed(2)}
+                        {formatPrice(originalPrice)}
                       </span>
                     </div>
                   ) : (
@@ -76,7 +77,7 @@ const Cart = () => {
                   )}
 
                   <p className="font-bold text-sm text-primary-color">
-                    Total: ₦{(item.price * item.quantity).toFixed(2)}
+                    Total: {formatPrice(item.price * item.quantity)}
                   </p>
                 </div>
               </div>
@@ -84,8 +85,8 @@ const Cart = () => {
               {/* Quantity controls — hidden if discounted */}
               <div className="flex items-center justify-between mt-3">
                 {isDiscounted ? (
-                  <span className="text-sm text-gray-500">
-                    Fixed quantity due to discount
+                  <span className="text-sm text-green-500">
+                    Limited quantity due to discount
                   </span>
                 ) : (
                   <div className="flex items-center space-x-2">
@@ -122,7 +123,7 @@ const Cart = () => {
 
       {/* Cart total */}
       <div className="text-right mt-4 font-bold text-lg">
-        Total: ₦{totalAmount.toFixed(2)}
+        Total: {formatPrice(totalAmount)}
       </div>
     </section>
   );
