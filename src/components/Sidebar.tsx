@@ -4,6 +4,7 @@ import { useSidebarStore } from "../features/store";
 import { FaTimes } from "react-icons/fa";
 import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";
 import { useCartStore } from "../features/cartstore";
+import { motion } from "framer-motion";
 
 const Sidebar = () => {
   const { isOpen, toggleSidebar } = useSidebarStore();
@@ -25,47 +26,49 @@ const Sidebar = () => {
         </div>
       )}
 
-      {/* Sidebar */}
-      <aside
-        className={`${
-          isOpen ? "w-60" : "w-20"
-        } h-screen bg-primary-color border-r border-gray-300 flex-shrink-0 fixed top-0 left-0 transition-all duration-300 ${
+      {/* Sidebar with bounce animation */}
+      <motion.aside
+        animate={{ width: isOpen ? 240 : 80 }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 15,
+        }}
+        className={`h-screen bg-primary-color border-r border-gray-300 flex-shrink-0 fixed top-0 left-0 ${
           isOpen ? "block" : "hidden sm:block"
         } z-10`}
       >
-        <div className="relative h-full flex flex-col items-center py-7 ">
-          {/* Logo */}
-          <Link
-            onClick={() => {
-              if (window.innerWidth < 640) toggleSidebar();
-            }}
-            to="/home"
-            className={`${
-              isOpen ? "text-3xl" : "text-2xl"
-            } font-bold mb-6 text-white henny-penny-regular`}
-          >
-            {isOpen ? "Maverick" : "Mav"}
-          </Link>
-
-          {/* Toggle Button */}
-          <button
-            className="hidden sm:flex items-center justify-center bg-secondary-color absolute -right-4 top-12 rounded-full w-8 h-8"
-            onClick={toggleSidebar}
-          >
+        <div className="relative h-full flex flex-col">
+          {/* Header */}
+          <div className="flex items-center justify-between px-4 py-5 flex-shrink-0">
             {isOpen ? (
-              <BsArrowLeftSquareFill className="text-primary-color rounded-lg text-2xl w-full h-full drop-shadow-sm" />
+              <Link
+                onClick={() => {
+                  if (window.innerWidth < 640) toggleSidebar();
+                }}
+                to="/home"
+                className="text-2xl font-bold text-white henny-penny-regular whitespace-nowrap"
+              >
+                Maverick Store
+              </Link>
             ) : (
-              <BsArrowRightSquareFill className="text-primary-color text-2xl rounded-lg w-full h-full drop-shadow-sm" />
+              <span className="flex-1" />
             )}
-          </button>
-
-          {/* Links */}
-          <div className="custom-scrollbar flex-1 w-full overflow-y-auto px-1 mt-4">
-            <div
-              className={`flex flex-col ${
-                isOpen ? "gap-y-4" : "gap-y-6"
-              } pb-10`}
+            <button
+              className=" items-center justify-center bg-transparent rounded-full w-8 h-8 flex-shrink-0 hidden sm:flex"
+              onClick={toggleSidebar}
             >
+              {isOpen ? (
+                <BsArrowLeftSquareFill className="text-secondary-color text-4xl drop-shadow-sm" />
+              ) : (
+                <BsArrowRightSquareFill className="text-secondary-color text-4xl drop-shadow-sm" />
+              )}
+            </button>
+          </div>
+
+          {/* Scrollable Links Area */}
+          <div className="flex-1 overflow-y-auto px-1 mt-4 custom-scrollbar">
+            <div className={`flex flex-col ${isOpen ? "gap-y-4" : "gap-y-6"}`}>
               {SidebarLinks.map(({ icon, name, id, path }) => {
                 const isLogout = name.toLowerCase() === "logout";
 
@@ -87,7 +90,7 @@ const Sidebar = () => {
                     }
                   >
                     <div
-                      className={`flex items-center ${
+                      className={`relative flex items-center ${
                         isOpen ? "gap-4 justify-start pl-6" : "justify-center"
                       } ${
                         isLogout
@@ -95,14 +98,20 @@ const Sidebar = () => {
                           : "sm:py-4 py-7 w-full"
                       }`}
                     >
-                      <span className="text-[20px] relative">
+                      <motion.span
+                        whileHover={{ scale: 1.2, rotate: 5 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        className="text-[20px] relative"
+                      >
                         {icon}
-                        {name.toLocaleLowerCase() === "cart" && (
-                          <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2  rounded-full bg-red-200  text-red-600  ">
+                        {name.toLowerCase() === "cart" && (
+                          <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2 rounded-full bg-red-200 text-red-600">
                             {cartQuantity}
                           </span>
                         )}
-                      </span>
+                      </motion.span>
+
                       {isOpen && (
                         <span
                           className={`text-[18px] font-semibold whitespace-nowrap ${
@@ -119,7 +128,7 @@ const Sidebar = () => {
             </div>
           </div>
         </div>
-      </aside>
+      </motion.aside>
     </>
   );
 };
