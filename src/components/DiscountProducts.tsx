@@ -64,7 +64,8 @@ const DiscountProducts = () => {
 
               {/* Price & Cart Button */}
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                {/* Price section */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
                   <span className="text-primary-color font-bold text-sm sm:text-base">
                     {formatPrice(discountPrice)}
                   </span>
@@ -75,6 +76,7 @@ const DiscountProducts = () => {
                   )}
                 </div>
 
+                {/* Add to Cart button */}
                 <button
                   onClick={() =>
                     isInCart ? removeFromCart(product.id) : addToCart(product)
