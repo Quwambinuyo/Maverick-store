@@ -74,7 +74,7 @@ const PopularProducts = () => {
                         e.stopPropagation();
                         decrement(product.id);
                       }}
-                      className="bg-gray-300 p-1 rounded-full"
+                      className="bg-primary-color text-white p-1 rounded-full"
                     >
                       <FaMinus className="text-xs" />
                     </button>
