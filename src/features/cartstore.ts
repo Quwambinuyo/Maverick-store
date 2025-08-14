@@ -31,7 +31,6 @@ export const useCartStore = create<CartState>()(
       },
 
       increment: (id) => {
-        toast.success("item increased");
         set({
           cart: get().cart.map((item) =>
             item.id === id ? { ...item, quantity: item.quantity + 1 } : item
@@ -40,7 +39,6 @@ export const useCartStore = create<CartState>()(
       },
 
       decrement: (id) => {
-        toast.success("item increased");
         set({
           cart: get()
             .cart.map((item) =>
