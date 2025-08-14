@@ -2,6 +2,7 @@ import { useCartStore } from "../features/cartstore";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import CustomBtn from "../utils/CustomBtn";
 import { formatPrice } from "../utils/utilityfunc";
+import emptycart from "../assets/images/emptycart.svg";
 
 const Cart = () => {
   const { cart, increment, decrement, removeFromCart } = useCartStore();
@@ -13,8 +14,13 @@ const Cart = () => {
 
   if (cart.length === 0) {
     return (
-      <div className="text-center py-10 font-semibold">
-        Your cart is empty 🛒
+      <div className="h-screen flex justify-center items-center text-center font-semibold">
+        <div className="flex flex-col items-center">
+          <img src={emptycart} alt="" className="w-1/3 h-1/3" />
+          <p className="text-lg md:text-[20px] text-primary-color mt-6 capitalize">
+            cart is empty
+          </p>
+        </div>
       </div>
     );
   }
