@@ -22,7 +22,7 @@ const Sidebar = () => {
       animate={{ width: isOpen ? 240 : 80 }}
       transition={{
         type: "spring",
-        stiffness: 600,
+        stiffness: 350,
         damping: 12,
       }}
       className={`h-screen bg-primary-color border-r border-gray-300 flex-shrink-0 fixed top-0 left-0 ${
@@ -40,7 +40,7 @@ const Sidebar = () => {
               Maverick Store
             </Link>
           ) : (
-            <span className="flex-1" />
+            ""
           )}
           <button
             className="items-center justify-center bg-transparent rounded-full w-8 h-8 flex-shrink-0 hidden sm:flex"
@@ -73,7 +73,11 @@ const Sidebar = () => {
                     }`
                   }
                 >
-                  <div
+                  <motion.div
+                    whileHover={{
+                      scale: 1.1,
+                      transition: { duration: 0.3 },
+                    }}
                     className={`relative flex items-center ${
                       isOpen ? "gap-4 justify-start pl-6" : "justify-center"
                     } ${
@@ -82,20 +86,14 @@ const Sidebar = () => {
                         : "sm:py-4 py-7 w-full"
                     }`}
                   >
-                    <motion.span
-                      whileHover={{
-                        rotate: [0, -10, 10, -10, 10, 0],
-                        transition: { duration: 0.5 },
-                      }}
-                      className="text-[20px] relative"
-                    >
+                    <span className="text-[20px] relative">
                       {icon}
                       {name.toLowerCase() === "cart" && (
                         <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2 rounded-full bg-red-200 text-red-600">
                           {cartQuantity}
                         </span>
                       )}
-                    </motion.span>
+                    </span>
 
                     {isOpen && (
                       <span
@@ -106,7 +104,7 @@ const Sidebar = () => {
                         {name}
                       </span>
                     )}
-                  </div>
+                  </motion.div>
                 </NavLink>
               );
             })}

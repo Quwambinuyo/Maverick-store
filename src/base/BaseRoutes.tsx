@@ -11,6 +11,7 @@ import {
   Pages,
   Products,
   Profile,
+  SingleProduct,
 } from "../components";
 import {
   Dashboard,
@@ -59,6 +60,7 @@ const router = createBrowserRouter([
       { path: "/FAQ", element: <Faq /> },
       { path: "/products", element: <Products /> },
       { path: "/history", element: <History /> },
+      { path: "/singleproduct/:id", element: <SingleProduct /> },
     ],
   },
 ]);

@@ -3,6 +3,7 @@ import type { Product, ProductsType } from "../types/types";
 import { BsCartPlus, BsCheckCircle } from "react-icons/bs";
 import { useCartStore } from "../features/cartstore";
 import { formatPrice } from "../utils/utilityfunc";
+import { Link } from "react-router-dom";
 
 const DiscountProducts = () => {
   const allProducts: Product[] = [];
@@ -20,7 +21,7 @@ const DiscountProducts = () => {
 
   return (
     <section>
-      <div className="sm:w-[500px] w-[90%]  text-center flex flex-col justify-center mx-auto py-3 space-y-3.5 mb-4">
+      <div className="sm:w-[500px] w-[90%] text-center flex flex-col justify-center mx-auto py-3 space-y-3.5 mb-4">
         <h2 className="text-sm font-bold sm:text-2xl">Discounted Products</h2>
         <p className="text-sm sm:text-[15px] font-semibold text-gray-800">
           Grab these deals before they expire! Enjoy discounted prices on
@@ -39,7 +40,8 @@ const DiscountProducts = () => {
           const isInCart = !!cartItem;
 
           return (
-            <div
+            <Link
+              to={`/singleProduct/${product.id}`}
               key={product.id}
               className="p-3 rounded-md shadow relative bg-white flex flex-col md:h-[300px]"
             >
@@ -76,11 +78,13 @@ const DiscountProducts = () => {
                   )}
                 </div>
 
-                {/* Add to Cart button */}
+                {/* Add / Remove Cart button */}
                 <button
-                  onClick={() =>
-                    isInCart ? removeFromCart(product.id) : addToCart(product)
-                  }
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    isInCart ? removeFromCart(product.id) : addToCart(product);
+                  }}
                   className={`p-2 rounded-full font-medium transition-colors duration-300 flex items-center gap-1 ${
                     isInCart
                       ? "bg-green-500 text-white"
@@ -94,7 +98,7 @@ const DiscountProducts = () => {
                   )}
                 </button>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

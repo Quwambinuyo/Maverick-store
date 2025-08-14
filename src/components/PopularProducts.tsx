@@ -4,6 +4,7 @@ import { BsCartPlus } from "react-icons/bs";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { formatPrice } from "../utils/utilityfunc";
 import { useCartStore } from "../features/cartstore";
+import { Link } from "react-router-dom";
 
 const PopularProducts = () => {
   const allProducts: Product[] = [];
@@ -39,7 +40,8 @@ const PopularProducts = () => {
             product.amount === 0 || (cartItem && cartItem.quantity === 0);
 
           return (
-            <div
+            <Link
+              to={`/singleProduct/${product.id}`}
               key={product.id}
               className="p-2 rounded-md shadow relative bg-white flex flex-col h-[270px]"
             >
@@ -67,7 +69,11 @@ const PopularProducts = () => {
                 {cartItem && cartItem.quantity > 0 ? (
                   <div className="flex items-center space-x-2">
                     <button
-                      onClick={() => decrement(product.id)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        decrement(product.id);
+                      }}
                       className="bg-gray-300 p-1 rounded-full"
                     >
                       <FaMinus className="text-xs" />
@@ -76,7 +82,11 @@ const PopularProducts = () => {
                       {cartItem.quantity}
                     </span>
                     <button
-                      onClick={() => increment(product.id)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        increment(product.id);
+                      }}
                       className="bg-primary-color text-white p-1 rounded-full"
                     >
                       <FaPlus className="text-xs" />
@@ -84,14 +94,18 @@ const PopularProducts = () => {
                   </div>
                 ) : (
                   <button
-                    onClick={() => addToCart(product)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      addToCart(product);
+                    }}
                     className="bg-primary-color text-white p-1.5 rounded-full hover:bg-secondary-color transition"
                   >
                     <BsCartPlus className="text-base" />
                   </button>
                 )}
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

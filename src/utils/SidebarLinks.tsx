@@ -1,9 +1,9 @@
 import { RxDashboard } from "react-icons/rx";
 import { BsCart3 } from "react-icons/bs";
-import { PiListBold } from "react-icons/pi";
-import { BiCategory } from "react-icons/bi";
-import { MdOutlineCallEnd } from "react-icons/md";
-import { FaInfo } from "react-icons/fa";
+import { BiFoodMenu } from "react-icons/bi";
+import { SiSendgrid } from "react-icons/si";
+import { MdPermPhoneMsg } from "react-icons/md";
+import { TiInfoLargeOutline } from "react-icons/ti";
 import { IoMdLogOut } from "react-icons/io";
 import { IoMdHome } from "react-icons/io";
 
@@ -29,25 +29,25 @@ export const SidebarLinks = [
   {
     id: 4,
     name: "Pages",
-    icon: <PiListBold />,
+    icon: <BiFoodMenu />,
     path: "/pages",
   },
   {
     id: 5,
     name: "Categories",
-    icon: <BiCategory />,
+    icon: <SiSendgrid />,
     path: "/categories",
   },
   {
     id: 6,
     name: "Contact us",
-    icon: <MdOutlineCallEnd />,
+    icon: <MdPermPhoneMsg />,
     path: "/contact",
   },
   {
     id: 7,
     name: "About us",
-    icon: <FaInfo />,
+    icon: <TiInfoLargeOutline />,
     path: "/about",
   },
   {
