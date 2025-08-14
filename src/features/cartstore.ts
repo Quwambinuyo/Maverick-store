@@ -39,13 +39,23 @@ export const useCartStore = create<CartState>()(
       },
 
       decrement: (id) => {
-        set({
-          cart: get()
-            .cart.map((item) =>
-              item.id === id ? { ...item, quantity: item.quantity - 1 } : item
-            )
-            .filter((item) => item.quantity > 0),
-        });
+        const cart = get().cart;
+        const item = cart.find((i) => i.id === id);
+
+        if (!item) return;
+
+        if (item.quantity === 1) {
+          toast.success("Item removed from cart");
+          set({
+            cart: cart.filter((i) => i.id !== id),
+          });
+        } else {
+          set({
+            cart: cart.map((i) =>
+              i.id === id ? { ...i, quantity: i.quantity - 1 } : i
+            ),
+          });
+        }
       },
 
       removeFromCart: (id) => {

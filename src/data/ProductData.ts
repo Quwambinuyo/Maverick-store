@@ -1,10 +1,8 @@
-import { v4 as uuidv4 } from "uuid";
-
 export const Products = {
   Cloths: {
     Polos: [
       {
-        id: uuidv4(),
+        id: "V1StGXR8_Z5jdHi6B-myT",
         name: "Hanes Men",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -16,7 +14,7 @@ export const Products = {
         amount: 96,
       },
       {
-        id: uuidv4(),
+        id: "A1StGXR8_Z5jdHi6B-myT",
         name: "England Patriot",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -30,7 +28,7 @@ export const Products = {
     ],
     Tshirt: [
       {
-        id: uuidv4(),
+        id: "B1StGXR8_Z5jdHi6B-myT",
         name: "3-Stripes Polo",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -42,7 +40,7 @@ export const Products = {
         amount: 96,
       },
       {
-        id: uuidv4(),
+        id: "C1StGXR8_Z5jdHi6B-myT",
         name: "Santos Retro",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -59,7 +57,7 @@ export const Products = {
   Pants: {
     Men: [
       {
-        id: uuidv4(),
+        id: "D1StGXR8_Z5jdHi6B-myT",
         name: "Baggy jean",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -72,7 +70,7 @@ export const Products = {
         amount: 96,
       },
       {
-        id: uuidv4(),
+        id: "E1StGXR8_Z5jdHi6B-myT",
         name: "Cargo Pant",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -86,7 +84,7 @@ export const Products = {
     ],
     Women: [
       {
-        id: uuidv4(),
+        id: "F1StGXR8_Z5jdHi6B-myT",
         name: "Heathyoga",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -99,7 +97,7 @@ export const Products = {
         amount: 96,
       },
       {
-        id: uuidv4(),
+        id: "G1StGXR8_Z5jdHi6B-myT",
         name: "Hungson",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -116,7 +114,7 @@ export const Products = {
   Jersey: {
     Football: [
       {
-        id: uuidv4(),
+        id: "G1StGXR8_Z5jdHi6B-myT",
         name: "Liverpool Retro",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -128,7 +126,7 @@ export const Products = {
         amount: 96,
       },
       {
-        id: uuidv4(),
+        id: "I1StGXR8_Z5jdHi6B-myT",
         name: "Real Madrid Retro",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -142,7 +140,7 @@ export const Products = {
     ],
     Basketball: [
       {
-        id: uuidv4(),
+        id: "J1StGXR8_Z5jdHi6B-myT",
         name: "The Fresh Prince of Bel Air",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -154,7 +152,7 @@ export const Products = {
         amount: 96,
       },
       {
-        id: uuidv4(),
+        id: "K1StGXR8_Z5jdHi6B-myT",
         name: "Tour Merch",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -171,7 +169,7 @@ export const Products = {
   Caps: {
     Unisex: [
       {
-        id: uuidv4(),
+        id: "L1StGXR8_Z5jdHi6B-myT",
         name: "NPJY Baseball Cap",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -183,7 +181,7 @@ export const Products = {
         amount: 91,
       },
       {
-        id: uuidv4(),
+        id: "M1StGXR8_Z5jdHi6B-myT",
         name: "Newsboy Cap",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -195,7 +193,7 @@ export const Products = {
         amount: 0,
       },
       {
-        id: uuidv4(),
+        id: "N1StGXR8_Z5jdHi6B-myT",
         name: "Adjustable Baseball Cap",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -212,7 +210,7 @@ export const Products = {
   Shorts: {
     Unisex: [
       {
-        id: uuidv4(),
+        id: "O1StGXR8_Z5jdHi6B-myT",
         name: "AIMPACT Mens",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -224,7 +222,7 @@ export const Products = {
         amount: 91,
       },
       {
-        id: uuidv4(),
+        id: "P1StGXR8_Z5jdHi6B-myT",
         name: "MIER",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -236,7 +234,7 @@ export const Products = {
         amount: 76.5,
       },
       {
-        id: uuidv4(),
+        id: "Q1StGXR8_Z5jdHi6B-myT",
         name: "Mammgic",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -253,7 +251,7 @@ export const Products = {
   Shoes: {
     Unisex: [
       {
-        id: uuidv4(),
+        id: "R1StGXR8_Z5jdHi6B-myT",
         name: "Falcon 5 Sneaker",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -265,7 +263,7 @@ export const Products = {
         amount: 91,
       },
       {
-        id: uuidv4(),
+        id: "S1StGXR8_Z5jdHi6B-myT",
         name: "Men Swift Run Legacy",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -277,7 +275,7 @@ export const Products = {
         amount: 76.5,
       },
       {
-        id: uuidv4(),
+        id: "T1StGXR8_Z5jdHi6B-myT",
         name: "Under Armour",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -294,7 +292,7 @@ export const Products = {
   Jackets: {
     Unisex: [
       {
-        id: uuidv4(),
+        id: "U1StGXR8_Z5jdHi6B-myT",
         name: "ZAPT 1000D",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -306,7 +304,7 @@ export const Products = {
         amount: 91,
       },
       {
-        id: uuidv4(),
+        id: "W1StGXR8_Z5jdHi6B-myT",
         name: "Beleafs Men",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -318,7 +316,7 @@ export const Products = {
         amount: 76.5,
       },
       {
-        id: uuidv4(),
+        id: "X1StGXR8_Z5jdHi6B-myT",
         name: "Legendary Whitetails",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -337,7 +335,7 @@ export const DiscountedProduct = {
   Cloths: {
     Polos: [
       {
-        id: uuidv4(),
+        id: "Y1StGXR8_Z5jdHi6B-myT",
         name: "Own The Run",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -351,7 +349,7 @@ export const DiscountedProduct = {
         amount: 96,
       },
       {
-        id: uuidv4(),
+        id: "Z1StGXR8_Z5jdHi6B-myT",
         name: "Knitted Golfer",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -367,7 +365,7 @@ export const DiscountedProduct = {
     ],
     Tshirt: [
       {
-        id: uuidv4(),
+        id: "11StGXR8_Z5jdHi6B-myT",
         name: "ADICOLOR 3-STRIPES ",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -381,7 +379,7 @@ export const DiscountedProduct = {
         amount: 96,
       },
       {
-        id: uuidv4(),
+        id: "21StGXR8_Z5jdHi6B-myT",
         name: "Knitted Garden Polo",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -400,7 +398,7 @@ export const DiscountedProduct = {
   Pants: {
     Men: [
       {
-        id: uuidv4(),
+        id: "31StGXR8_Z5jdHi6B-myT",
         name: "Knitted MOTO pant",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -414,7 +412,7 @@ export const DiscountedProduct = {
         amount: 96,
       },
       {
-        id: uuidv4(),
+        id: "41StGXR8_Z5jdHi6B-myT",
         name: "Embodied Carpenter Jean",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -430,7 +428,7 @@ export const DiscountedProduct = {
     ],
     Women: [
       {
-        id: uuidv4(),
+        id: "51StGXR8_Z5jdHi6B-myT",
         name: "BMW men's black polo",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -444,7 +442,7 @@ export const DiscountedProduct = {
         amount: 96,
       },
       {
-        id: uuidv4(),
+        id: "61StGXR8_Z5jdHi6B-myT",
         name: "Motorsport black polo",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -463,7 +461,7 @@ export const DiscountedProduct = {
   Jersey: {
     Football: [
       {
-        id: uuidv4(),
+        id: "71StGXR8_Z5jdHi6B-myT",
         name: "Manchester United",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -477,7 +475,7 @@ export const DiscountedProduct = {
         amount: 96,
       },
       {
-        id: uuidv4(),
+        id: "81StGXR8_Z5jdHi6B-myT",
         name: "Chelsea",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -491,7 +489,7 @@ export const DiscountedProduct = {
         amount: 135,
       },
       {
-        id: uuidv4(),
+        id: "91StGXR8_Z5jdHi6B-myT",
         name: "Bayern",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -505,7 +503,7 @@ export const DiscountedProduct = {
         amount: 135,
       },
       {
-        id: uuidv4(),
+        id: "10StGXR8_Z5jdHi6B-myT",
         name: "Santos",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -521,7 +519,7 @@ export const DiscountedProduct = {
     ],
     Basketball: [
       {
-        id: uuidv4(),
+        id: "11StGXR8_Z5jdHi6B-myT",
         name: "Japan",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -535,7 +533,7 @@ export const DiscountedProduct = {
         amount: 96,
       },
       {
-        id: uuidv4(),
+        id: "12StGXR8_Z5jdHi6B-myT",
         name: "Chicago Bulls",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -549,7 +547,7 @@ export const DiscountedProduct = {
         amount: 135,
       },
       {
-        id: uuidv4(),
+        id: "13StGXR8_Z5jdHi6B-myT",
         name: "Kelvin Garnett",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -568,7 +566,7 @@ export const DiscountedProduct = {
   Caps: {
     Unisex: [
       {
-        id: uuidv4(),
+        id: "14StGXR8_Z5jdHi6B-myT",
         name: "Awolowo/Ebuka Cap",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -582,7 +580,7 @@ export const DiscountedProduct = {
         amount: 91,
       },
       {
-        id: uuidv4(),
+        id: "15StGXR8_Z5jdHi6B-myT",
         name: "Nike ri-FIT club",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -596,7 +594,7 @@ export const DiscountedProduct = {
         amount: 0,
       },
       {
-        id: uuidv4(),
+        id: "16StGXR8_Z5jdHi6B-myT",
         name: "Gatsby Cap",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -614,7 +612,7 @@ export const DiscountedProduct = {
   Shorts: {
     Unisex: [
       {
-        id: uuidv4(),
+        id: "17StGXR8_Z5jdHi6B-myT",
         name: "PSG x Jordan 24/25 short sleeve training set",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -628,7 +626,7 @@ export const DiscountedProduct = {
         amount: 91,
       },
       {
-        id: uuidv4(),
+        id: "18StGXR8_Z5jdHi6B-myT",
         name: "Essential Adidas Outfit",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -642,7 +640,7 @@ export const DiscountedProduct = {
         amount: 76.5,
       },
       {
-        id: uuidv4(),
+        id: "19StGXR8_Z5jdHi6B-myT",
         name: "Adidad Camouflage",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -661,7 +659,7 @@ export const DiscountedProduct = {
   Shoes: {
     Unisex: [
       {
-        id: uuidv4(),
+        id: "20StGXR8_Z5jdHi6B-myT",
         name: "Converse Chuck",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -675,7 +673,7 @@ export const DiscountedProduct = {
         amount: 91,
       },
       {
-        id: uuidv4(),
+        id: "21StGXR8_Z5jdHi6B-myT",
         name: "Kenneth Cole",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -689,7 +687,7 @@ export const DiscountedProduct = {
         amount: 76.5,
       },
       {
-        id: uuidv4(),
+        id: "22StGXR8_Z5jdHi6B-myT",
         name: "Kenneth Cole Brown",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -703,7 +701,7 @@ export const DiscountedProduct = {
         amount: 63.75,
       },
       {
-        id: uuidv4(),
+        id: "23StGXR8_Z5jdHi6B-myT",
         name: "Ben Sherman",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -722,7 +720,7 @@ export const DiscountedProduct = {
   Jackets: {
     Unisex: [
       {
-        id: uuidv4(),
+        id: "24StGXR8_Z5jdHi6B-myT",
         name: "HB Green Men's Lightweight",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -736,7 +734,7 @@ export const DiscountedProduct = {
         amount: 91,
       },
       {
-        id: uuidv4(),
+        id: "25StGXR8_Z5jdHi6B-myT",
         name: "GG White track jacket",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -750,7 +748,7 @@ export const DiscountedProduct = {
         amount: 76.5,
       },
       {
-        id: uuidv4(),
+        id: "26StGXR8_Z5jdHi6B-myT",
         name: "Burberry soft shell black",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
