@@ -24,26 +24,26 @@ const SwiperCarousel = () => {
           className="mySwiper"
         >
           {SwiperImg.map((item) => {
-            const { image, id, description, paragraph } = item;
+            const { id, description, paragraph, image } = item;
 
             return (
               <SwiperSlide key={id}>
                 <div
-                  className="w-full rounded-md overflow-hidden relative flex flex-col justify-end h-[200px] sm:h-[300px]"
-                  style={{
-                    backgroundImage: `url(${image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
+                  className="w-full rounded-md overflow-hidden relative flex flex-col justify-end h-[200px] sm:h-[300px] bg-cover bg-center"
+                  style={{ backgroundImage: `url(${image})` }}
                 >
-                  <div className="p-4 absolute  bottom-0 left-0 right-0">
-                    <span className="block text-white  text-lg font-bold capitalize mb-1">
+                  {/* Overlay */}
+                  <div className="absolute inset-0  bg-opacity-40"></div>
+
+                  {/* Text Content */}
+                  <div className="p-4 absolute bottom-0 left-0 right-0 z-10">
+                    <span className="block text-neutral-200  text-lg md:text-3xl font-bold capitalize mb-1">
                       {description}
                     </span>
                     <p className="text-sm text-stone-200 font-semibold md:block hidden">
                       {paragraph}
                     </p>
-                    <p className="text-sm text-black font-semibold md:hidden">
+                    <p className="text-sm text-neutral-300 font-semibold md:hidden">
                       {paragraph.length > 10
                         ? `${paragraph.slice(0, 10)}...`
                         : paragraph}

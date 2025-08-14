@@ -7,13 +7,13 @@
 	--breakpoint-xl: 1240px; */
   --color-primary-color: #543776;
   --color-secondary-color: #c3acd0;
-  /* --color-neutral-700: #2e2e2e;
-	--color-neutral-600: #454545;
-	--color-neutral-500: #5c5c5c;
-	--color-neutral-400: #737373;
-	--color-neutral-300: #8f8f8f;
-	--color-error-500: #d42620;
-	--color-success-500: #0f973d; */
+  --color-neutral-700: #2e2e2e;
+  --color-neutral-600: #454545;
+  --color-neutral-500: #5c5c5c;
+  --color-neutral-400: #737373;
+  --color-neutral-300: #8f8f8f;
+  --color-error-500: #d42620;
+  --color-success-500: #0f973d;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -155,7 +155,7 @@
 }
 
 .mySwiper .swiper-pagination-bullet-active {
-  background-color: var(--color-primary-color) !important;
+  background-color: #fff !important;
   opacity: 1 !important;
   transform: scale(1.2);
 }
