@@ -3,6 +3,7 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import CustomBtn from "../utils/CustomBtn";
 import { formatPrice } from "../utils/utilityfunc";
 import emptycart from "../assets/images/emptycart.svg";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { cart, increment, decrement, removeFromCart } = useCartStore();
@@ -43,17 +44,6 @@ const Cart = () => {
               key={item.id}
               className="flex flex-col justify-between bg-white shadow rounded-lg p-3 relative"
             >
-              {/* Price Badge */}
-              {/* <span
-                className={`absolute top-2 right-2 text-xs font-bold px-2 py-1 rounded ${
-                  isDiscounted
-                    ? "bg-green-100 text-green-600"
-                    : "bg-gray-200 text-gray-700"
-                }`}
-              >
-                {isDiscounted ? `${discount}% OFF` : "Regular"}
-              </span> */}
-
               {/* Image + name + price */}
               <div className="flex items-center space-x-3">
                 <img
@@ -66,7 +56,6 @@ const Cart = () => {
                     {item.name}
                   </h3>
 
-                  {/* Show discounted & original prices */}
                   {isDiscounted ? (
                     <div className="text-xs sm:text-sm">
                       <span className="text-primary-color font-bold mr-2">
@@ -88,7 +77,7 @@ const Cart = () => {
                 </div>
               </div>
 
-              {/* Quantity controls — hidden if discounted */}
+              {/* Quantity controls */}
               <div className="flex items-center justify-between mt-3">
                 {isDiscounted ? (
                   <span className="text-sm text-green-500">
@@ -107,7 +96,7 @@ const Cart = () => {
 
                     <CustomBtn
                       onClick={() => increment(item.id)}
-                      className="flex items-center justify-center  bg-primary-color text-white rounded-full"
+                      className="flex items-center justify-center bg-primary-color text-white rounded-full"
                     >
                       <FaPlus className="text-xs" />
                     </CustomBtn>
@@ -127,9 +116,18 @@ const Cart = () => {
         })}
       </div>
 
-      {/* Cart total */}
-      <div className="text-right mt-4 font-bold text-lg">
-        Total: {formatPrice(totalAmount)}
+      {/* Cart total + checkout */}
+      <div className="text-right mt-4">
+        <p className="font-bold text-lg mb-3">
+          Total: {formatPrice(totalAmount)}
+        </p>
+
+        <Link
+          to="/checkout"
+          className="bg-primary-color hover:bg-primary-dark text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-colors"
+        >
+          Proceed to Checkout
+        </Link>
       </div>
     </section>
   );

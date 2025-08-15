@@ -33,12 +33,14 @@ const Checkout = () => {
 
   const selectedLogistic = watch("logistic");
 
+  // const publicKey = "sk_test_6f8abc2a62d98a88e1e3829942f66b8391a1cd66";
+
   const onSubmit: SubmitHandler<CheckoutFormData> = (data) => {
     console.log(data);
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-14">
       {/* Left: Form */}
       <Form onSubmit={handleSubmit(onSubmit)} className="">
         <div>
@@ -143,7 +145,7 @@ const Checkout = () => {
           {errors.logistic && (
             <p className="text-red-500 text-sm">{errors.logistic.message}</p>
           )}
-          <CustomBtn label="Proceed to Payment" />
+          <CustomBtn label="Proceed to Payment" type="submit" />
         </div>
       </Form>
 

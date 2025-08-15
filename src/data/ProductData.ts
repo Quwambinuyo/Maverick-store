@@ -97,7 +97,7 @@ export const Products = {
         amount: 96,
       },
       {
-        id: "G1StGXR8_Z5jdHi6B-myT",
+        id: "G1StGXR98_Z5jdHi66B-myT",
         name: "Hungson",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -114,7 +114,7 @@ export const Products = {
   Jersey: {
     Football: [
       {
-        id: "G1StGXR8_Z5jdHi6B-myT",
+        id: "G1StGXR8_Z5jdHi6B7-myT",
         name: "Liverpool Retro",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -519,7 +519,7 @@ export const DiscountedProduct = {
     ],
     Basketball: [
       {
-        id: "11StGXR8_Z5jdHi6B-myT",
+        id: "01StGXR8_Z5jdHi6B-myT",
         name: "Japan",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
@@ -673,7 +673,7 @@ export const DiscountedProduct = {
         amount: 91,
       },
       {
-        id: "21StGXR8_Z5jdHi6B-myT",
+        id: "21StuGXR8_Z5jdHi6B-myT",
         name: "Kenneth Cole",
         description:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quod fugiat eligendi ab deserunt maiores dolores, doloribus vero officia eius.",
