@@ -1,9 +1,9 @@
 import Form from "../utils/Form";
 import OrderSummary from "../components/OrderSummary";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { PaystackButton } from "react-paystack";
 import { useCartStore } from "../features/cartstore";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import PaystackPayment from "../utils/PaystackPayment";
 
 type CheckoutFormData = {
   name: string;
@@ -18,7 +18,7 @@ type CheckoutFormData = {
 const Checkout = () => {
   const { cart, clearFromCart } = useCartStore();
 
-  const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+  // const publicKey = import.meta.env.VITE_PUBLIC_KEY;
 
   // console.log(publicKey);
 
@@ -32,7 +32,6 @@ const Checkout = () => {
     handleSubmit,
     formState: { errors },
     watch,
-    getValues,
   } = useForm<CheckoutFormData>({
     defaultValues: {
       name: "",
@@ -46,26 +45,33 @@ const Checkout = () => {
   });
 
   const selectedLogistic = watch("logistic");
+  const email = watch("email");
+  const address = watch("email");
+  const country = watch("country");
+  const logistic = watch("logistic");
+  const zipCode = watch("zipCode");
+  const phone = watch("phone");
+  const name = watch("name");
 
-  const componentProps: any = {
-    email: getValues("email"),
-    zipCode: getValues("zipCode"),
-    phone: getValues("phone"),
-    logistic: getValues("logistic"),
-    name: getValues("name"),
-    address: getValues("address"),
-    amount: totalPrice * 100,
-    metadata: {
-      name: "",
-      phone: "",
-    },
-    publicKey,
-    text: "Pay Now",
-    onSuccess: () => {
-      toast.success("Thanks for doing business with us! Come back soon!!");
-      clearFromCart();
-    },
-  };
+  // const componentProps: any = {
+  //   email: watch("email"),
+  //   zipCode: watch("zipCode"),
+  //   phone: watch("phone"),
+  //   logistic: watch("logistic"),
+  //   name: watch("name"),
+  //   address: watch("address"),
+  //   amount: totalPrice * 100,
+  //   metadata: {
+  //     name: "",
+  //     phone: "",
+  //   },
+  //   publicKey,
+  //   text: "Pay Now",
+  //   onSuccess: () => {
+  //     toast.success("Thanks for doing business with us! Come back soon!!");
+  //     clearFromCart();
+  //   },
+  // };
   // console.log(componentProps, 3, "sdkhskdj");
 
   const onSubmit: SubmitHandler<CheckoutFormData> = (data) => {
@@ -179,9 +185,17 @@ const Checkout = () => {
             <p className="text-red-500 text-sm">{errors.logistic.message}</p>
           )}
           {/* <CustomBtn label="Proceed to Payment" type="submit" /> */}
-          <PaystackButton
-            className="paystack-button p-2  bg-primary-color text-white rounded-lg"
-            {...componentProps}
+
+          <PaystackPayment
+            totalPrice={totalPrice}
+            clearFromCart={clearFromCart}
+            name={name}
+            email={email}
+            zipCode={zipCode}
+            logistic={logistic}
+            address={address}
+            country={country}
+            phone={phone}
           />
         </div>
       </Form>

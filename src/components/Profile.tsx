@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { db, auth } from "../Auth/firebaseconfig";
 import { doc, setDoc } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 
 type ProfileFormData = {
