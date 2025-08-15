@@ -57,12 +57,14 @@ const Profile = () => {
         updatedAt: new Date(),
       });
 
-      alert("Profile updated successfully!");
+      toast.error("Profile updated successfully!");
+      console.log(db);
+
       reset();
     } catch (error) {
       console.error("Error updating profile:", error);
-      alert("Failed to update profile.");
     }
+    toast.error("Failed to update profile.");
   };
 
   return (

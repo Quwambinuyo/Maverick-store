@@ -3,10 +3,8 @@ import { useCartStore } from "../features/cartstore";
 const OrderSummary = () => {
   const { cart } = useCartStore();
 
-  // Total number of items
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  // Total price
   const totalPrice = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0

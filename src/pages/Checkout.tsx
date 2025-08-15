@@ -1,7 +1,9 @@
 import Form from "../utils/Form";
 import OrderSummary from "../components/OrderSummary";
-import CustomBtn from "../utils/CustomBtn";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { PaystackButton } from "react-paystack";
+import { useCartStore } from "../features/cartstore";
+import { toast } from "react-toastify";
 
 type CheckoutFormData = {
   name: string;
@@ -14,11 +16,23 @@ type CheckoutFormData = {
 };
 
 const Checkout = () => {
+  const { cart, clearFromCart } = useCartStore();
+
+  const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+
+  // console.log(publicKey);
+
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
+    getValues,
   } = useForm<CheckoutFormData>({
     defaultValues: {
       name: "",
@@ -33,7 +47,26 @@ const Checkout = () => {
 
   const selectedLogistic = watch("logistic");
 
-  // const publicKey = "sk_test_6f8abc2a62d98a88e1e3829942f66b8391a1cd66";
+  const componentProps: any = {
+    email: getValues("email"),
+    zipCode: getValues("zipCode"),
+    phone: getValues("phone"),
+    logistic: getValues("logistic"),
+    name: getValues("name"),
+    address: getValues("address"),
+    amount: totalPrice * 100,
+    metadata: {
+      name: "",
+      phone: "",
+    },
+    publicKey,
+    text: "Pay Now",
+    onSuccess: () => {
+      toast.success("Thanks for doing business with us! Come back soon!!");
+      clearFromCart();
+    },
+  };
+  // console.log(componentProps, 3, "sdkhskdj");
 
   const onSubmit: SubmitHandler<CheckoutFormData> = (data) => {
     console.log(data);
@@ -42,7 +75,7 @@ const Checkout = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-14">
       {/* Left: Form */}
-      <Form onSubmit={handleSubmit(onSubmit)} className="">
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label className="block text-sm font-medium">Full Name</label>
           <input
@@ -145,7 +178,11 @@ const Checkout = () => {
           {errors.logistic && (
             <p className="text-red-500 text-sm">{errors.logistic.message}</p>
           )}
-          <CustomBtn label="Proceed to Payment" type="submit" />
+          {/* <CustomBtn label="Proceed to Payment" type="submit" /> */}
+          <PaystackButton
+            className="paystack-button p-2  bg-primary-color text-white rounded-lg"
+            {...componentProps}
+          />
         </div>
       </Form>
 

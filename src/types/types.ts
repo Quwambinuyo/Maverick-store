@@ -59,7 +59,7 @@ export interface FormInput {
 
 export interface ReusableFormProps {
   children: ReactNode;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
   className?: string;
   formId?: string;
 }

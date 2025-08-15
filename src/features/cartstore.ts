@@ -64,6 +64,10 @@ export const useCartStore = create<CartState>()(
           cart: get().cart.filter((item) => item.id !== id),
         });
       },
+
+      clearFromCart: () => {
+        set({ cart: [] });
+      },
     }),
     {
       name: "cart-storage",
