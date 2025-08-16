@@ -115,8 +115,8 @@ const Profile = () => {
                 className="w-full h-full object-cover"
               />
             ) : (
-              <div className="w-full h-full bg-primary-color flex items-center justify-center text-white md:text-lg">
-                No Image
+              <div className="w-full h-full bg-primary-color flex items-center justify-center text-white text-2xl md:text-[70px]">
+                {userData?.displayName?.charAt(0)}
               </div>
             )}
           </div>

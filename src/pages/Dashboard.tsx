@@ -14,8 +14,6 @@ const Dashboard = () => {
   };
   const { userData } = getSavedUserData(user?.uid as string);
 
-  console.log(user);
-
   return (
     <section className="">
       <div className=" mx-2 flex justify-between rounded-lg items-center px-5 py-5">

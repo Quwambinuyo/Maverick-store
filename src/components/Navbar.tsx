@@ -1,15 +1,18 @@
 import { useSidebarStore } from "../features/store";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoIosNotifications } from "react-icons/io";
-import { IoSunnySharp } from "react-icons/io5";
+// import { IoSunnySharp } from "react-icons/io5";
 import { AiOutlineSearch } from "react-icons/ai";
 import CustomInput from "../utils/CustomInput";
 import moment from "moment";
 import { useAuthStore } from "../features/useAuthStore";
+import { getSavedUserData } from "../utils/utils";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const { isOpen, toggleSidebar } = useSidebarStore();
   const { user } = useAuthStore();
+  const { userData } = getSavedUserData(user?.uid as string);
 
   const currentHour = moment().hour();
   const greeting =
@@ -45,9 +48,23 @@ const Navbar = () => {
 
       {/* Right: Icons (wrapped in a parent) */}
       <div className="flex items-center justify-end flex-[0.5]">
-        <div className="flex items-center gap-4  sm:gap-9 text-2xl text-gray-800">
+        <div className="flex items-center gap-4  sm:gap-7 text-2xl text-gray-800">
           <IoIosNotifications />
-          <IoSunnySharp />
+          {userData?.photoURL ? (
+            <NavLink to="/profile">
+              <img
+                src={userData?.photoURL.base64}
+                className="w-[25px] h-[25px] rounded-full object-cover"
+                alt="User avatar"
+              />
+            </NavLink>
+          ) : (
+            <NavLink to="/profile">
+              <h1 className="text-white  bg-primary-color rounded-full text-center w-[25px] h-[25px] text-sm items-center sm:text-[20px]">
+                {user?.displayName?.charAt(0)}
+              </h1>
+            </NavLink>
+          )}
         </div>
       </div>
     </nav>
