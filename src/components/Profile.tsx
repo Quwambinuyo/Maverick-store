@@ -59,7 +59,6 @@ const Profile = () => {
     try {
       await updateProfile(auth.currentUser as User, {
         displayName: watch("name"),
-        // photoURL: profileImagePreview,
       });
 
       const userRef = doc(db, "users", uid);
