@@ -1,5 +1,9 @@
 import { create } from "zustand";
-import { type LandingNavState, type SidebarButtonState } from "../types/types";
+import {
+  type LandingNavState,
+  type ProfileLoaderState,
+  type SidebarButtonState,
+} from "../types/types";
 
 export const useSidebarStore = create<SidebarButtonState>((set) => ({
   isOpen: window.innerWidth >= 640,
@@ -9,6 +13,12 @@ export const useSidebarStore = create<SidebarButtonState>((set) => ({
   loading: false,
   setLoading: (value) => set({ loading: value }),
 }));
+
+// export const useProfileLoaderStore = create<ProfileLoaderState>((set) => ({
+//   toggleUpdate: () => set((state) => ({ isUpdated: !state.isUpdated })),
+//   loading: false,
+//   setLoading: (value) => set({ loading: value }),
+// }));
 
 export const useLandingNavbar = create<LandingNavState>((set) => ({
   isOpen: false,

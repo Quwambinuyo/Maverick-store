@@ -3,32 +3,51 @@ import CustomBtn from "../utils/CustomBtn";
 import { useNavigate } from "react-router-dom";
 import Checkout from "./Checkout";
 import { FaHome } from "react-icons/fa";
+import { useAuthStore } from "../features/useAuthStore";
+import { getSavedUserData } from "../utils/utils";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { user } = useAuthStore();
   const backToHome = () => {
     navigate("/home");
   };
+  const { userData } = getSavedUserData(user?.uid as string);
+
+  console.log(user);
+
   return (
     <section className="">
-      <div className="bg-secondary-color mx-2 flex justify-between rounded-lg items-center px-5 py-5">
+      <div className=" mx-2 flex justify-between rounded-lg items-center px-5 py-5">
         <div>
           <div className="flex items-center gap-2">
             <p className="text-lg sm:text-2xl font-bold text-gray-900">
               Welcome,
             </p>
             <p className="text-lg sm:text-[25px] font-bold text-primary-color">
-              Quwam
+              {user?.displayName}
             </p>
           </div>
           <div>
             <h1 className="text-lg sm:text-[17px] font-semibold text-gray-700">
-              Test@gmail.com
+              {user?.email}
             </h1>
           </div>
         </div>
-        <div className="bg-primary-color flex rounded-full justify-center items-center h-20 w-20">
-          <h1 className="text-white text-lg sm:text-3xl">Q</h1>
+
+        {/* Profile container (circle always) */}
+        <div className="bg-primary-color flex justify-center items-center h-[100px] w-[100px] rounded-full overflow-hidden">
+          {userData?.photoURL ? (
+            <img
+              src={userData?.photoURL.base64}
+              className="w-full h-full object-cover"
+              alt="User avatar"
+            />
+          ) : (
+            <h1 className="text-white text-4xl sm:text-3xl">
+              {user?.displayName?.charAt(0)}
+            </h1>
+          )}
         </div>
       </div>
 

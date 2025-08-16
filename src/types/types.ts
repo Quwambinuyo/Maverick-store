@@ -8,6 +8,14 @@ export interface SidebarButtonState {
   loading: boolean;
   setLoading: (value: boolean) => void;
 }
+
+export interface ProfileLoaderState {
+  isUpdated?: boolean;
+  toggleUpdate: (update: boolean) => void;
+  loading: boolean;
+  setLoading: (value: boolean) => void;
+}
+
 export interface CustomButtonProps {
   label?: string;
   className?: string;

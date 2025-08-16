@@ -5,9 +5,11 @@ import { IoSunnySharp } from "react-icons/io5";
 import { AiOutlineSearch } from "react-icons/ai";
 import CustomInput from "../utils/CustomInput";
 import moment from "moment";
+import { useAuthStore } from "../features/useAuthStore";
 
 const Navbar = () => {
   const { isOpen, toggleSidebar } = useSidebarStore();
+  const { user } = useAuthStore();
 
   const currentHour = moment().hour();
   const greeting =
@@ -27,13 +29,13 @@ const Navbar = () => {
         >
           {!isOpen && <RxHamburgerMenu />}
         </button>
-        <span className="text-sm roboto sm:inline md:text-lg text-primary-color font-semibold truncate">
-          Hello, Quwam. {greeting} 👋
+        <span className="text-sm roboto sm:inline capitalize md:text-lg text-primary-color font-semibold truncate">
+          Hello, {user?.displayName?.split(" ")[0]}. {greeting} 👋
         </span>
       </div>
 
       {/* Middle: Search (slightly wider than greeting) */}
-      <div className="relative  hidden sm:block min-w-0">
+      <div className="relative hidden sm:block min-w-0">
         <CustomInput
           className="w-full pl-10 pr-3 py-2 border border-primary-color rounded-md"
           placeholder="Search product..."
@@ -42,7 +44,7 @@ const Navbar = () => {
       </div>
 
       {/* Right: Icons (wrapped in a parent) */}
-      <div className="flex items-center flex-[0.5]">
+      <div className="flex items-center justify-end flex-[0.5]">
         <div className="flex items-center gap-4  sm:gap-9 text-2xl text-gray-800">
           <IoIosNotifications />
           <IoSunnySharp />

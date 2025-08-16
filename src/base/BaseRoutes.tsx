@@ -1,5 +1,6 @@
 // src/base/BaseRoutes.tsx
 import { useEffect } from "react";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import {
@@ -30,6 +31,7 @@ import {
 
 import ProtectedRoute from "../base/ProtectedRoutes";
 import { useAuthStore } from "../features/useAuthStore";
+// import { useAuthStore } from "../features/useAuthStore";
 
 const router = createBrowserRouter([
   { path: "/", element: <Landing /> },
@@ -66,7 +68,8 @@ const router = createBrowserRouter([
 ]);
 
 export default function BaseRoutes() {
-  const initAuth = useAuthStore((state) => state.initAuth);
+  // const initAuth = useAuthStore((state) => state.);
+  const { initAuth } = useAuthStore();
 
   useEffect(() => {
     initAuth();

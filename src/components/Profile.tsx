@@ -1,10 +1,12 @@
 import Form from "../utils/Form";
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
-import { db, auth } from "../Auth/firebaseconfig";
-import { doc, setDoc } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+import { useState } from "react";
+import { db } from "../Auth/firebaseconfig";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { getAuth, updateProfile, type User } from "firebase/auth";
 import { toast } from "react-toastify";
+import { getSavedUserData, saveUserData } from "../utils/utils";
+import Loader from "./Loader";
 
 type ProfileFormData = {
   name: string;
@@ -15,56 +17,85 @@ type ProfileFormData = {
 };
 
 const Profile = () => {
+  const [loading, setLoading] = useState(false);
+
+  const auth = getAuth();
+
+  const { displayName, email, uid } = auth.currentUser as User;
+
+  const { userData, context } = getSavedUserData(uid);
+
   const {
     register,
     handleSubmit,
-    reset,
+    watch,
     formState: { errors },
   } = useForm<ProfileFormData>();
-  const [profileImagePreview, setProfileImagePreview] = useState<string | null>(
-    null
+  const [profileImagePreview, setProfileImagePreview] = useState(
+    userData?.photoURL?.base64 || ""
   );
-  const [userId, setUserId] = useState<string | null>(null);
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUserId(user.uid);
-      }
-    });
-  }, []);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setProfileImagePreview(URL.createObjectURL(file));
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const base64 = e.target?.result;
+        setProfileImagePreview(base64 as string);
+      };
+
+      reader.onerror = (error) => {
+        console.log(error);
+      };
+
+      reader.readAsDataURL(file);
     }
   };
 
   const onSubmit = async (data: ProfileFormData) => {
-    if (!userId) {
-      toast.error("user must be logged in");
-      return;
-    }
+    console.log(data.name);
 
+    setLoading(true);
     try {
-      await setDoc(doc(db, "users", userId), {
-        name: data.name,
-        email: data.email,
-        address: data.address,
-        phone: data.phone,
-        profileImage: profileImagePreview || null,
-        updatedAt: new Date(),
+      await updateProfile(auth.currentUser as User, {
+        displayName: watch("name"),
+        // photoURL: profileImagePreview,
       });
 
-      toast.error("Profile updated successfully!");
-      console.log(db);
+      const userRef = doc(db, "users", uid);
+      console.log(userRef);
 
-      reset();
+      await updateDoc(userRef, {
+        photoURL: { base64: profileImagePreview },
+        name: watch("name"),
+        number: watch("phone"),
+        address: watch("address"),
+      });
+
+      await auth.currentUser?.reload();
+      const user = auth.currentUser;
+
+      const updatedUserDoc = await getDoc(userRef);
+      const updData = updatedUserDoc.exists() ? updatedUserDoc.data() : {};
+
+      const updUser = {
+        ...userData,
+        displayName: user?.displayName as string,
+        email: user?.email as string,
+        emailVerified: user?.emailVerified as boolean,
+        uid: user?.uid as string,
+        ...updData,
+      };
+
+      saveUserData(uid, context, updUser);
+
+      toast.success("Profile update successful");
     } catch (error) {
-      console.error("Error updating profile:", error);
+      console.log(error);
+      toast.error("Failed to update profile");
+    } finally {
+      setLoading(false);
     }
-    toast.error("Failed to update profile.");
   };
 
   return (
@@ -105,9 +136,11 @@ const Profile = () => {
           <label className="block mb-1 font-medium text-gray-600">Name</label>
           <input
             type="text"
+            // disabled
+            defaultValue={displayName as string}
             placeholder="Enter your name"
             {...register("name", { required: "name is required" })}
-            className="w-full border border-gray-400 rounded p-2"
+            className="w-full border border-gray-400 rounded p-2 capitalize "
           />
 
           {errors.name && (
@@ -120,9 +153,12 @@ const Profile = () => {
           <label className="block mb-1 font-medium text-gray-600">Email</label>
           <input
             type="email"
+            disabled
+            readOnly
+            value={email as string}
             placeholder="Enter your email"
             {...register("email", { required: "email is required" })}
-            className="w-full border border-gray-400 rounded p-2"
+            className="w-full border border-gray-400 bg-gray-200 text-gray-900 text-lg font-light rounded p-2"
           />
           {errors.email && (
             <p className="text-sm text-red-500 ">{errors.email.message}</p>
@@ -135,6 +171,7 @@ const Profile = () => {
             Address
           </label>
           <textarea
+            defaultValue={userData?.address}
             placeholder="Enter your address"
             {...register("address", { required: "Address is required" })}
             className="w-full border-gray-400 border rounded p-2"
@@ -152,6 +189,7 @@ const Profile = () => {
           </label>
           <input
             type="tel"
+            defaultValue={userData?.number}
             placeholder="Enter your phone number"
             {...register("phone", { required: "phone is required" })}
             className="w-full border border-gray-400 rounded p-2"
@@ -167,7 +205,7 @@ const Profile = () => {
             type="submit"
             className="bg-primary-color text-white px-6 py-2 rounded"
           >
-            Save Profile
+            {loading ? <Loader /> : "Save Profile"}
           </button>
         </div>
       </Form>

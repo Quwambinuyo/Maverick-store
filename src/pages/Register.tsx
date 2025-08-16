@@ -26,6 +26,7 @@ const Register = () => {
 
   const onSubmit = async (data: FormValues) => {
     await registerUser({
+      name: data.name,
       email: data.email,
       password: data.password,
     });
@@ -45,7 +46,7 @@ const Register = () => {
   return (
     <section className="w-full min-h-screen flex flex-col md:flex-row bg-white overflow-y-auto">
       {/* Left Side */}
-      <div className="w-full md:w-1/2 flex flex-col items-start justify-center gap-6 border-b md:border-b-0 md:border-r border-gray-100 px-6 pt-6 md:pt-0">
+      <div className="w-full md:w-1/2 flex flex-col  items-start justify-center gap-6 border-b md:border-b-0 md:border-r border-gray-100 px-6 pt-6 md:pt-0">
         <NavLink
           to="/"
           className="text-primary-color henny-penny-regular font-semibold text-2xl md:text-3xl mb-4 md:mb-10"
@@ -73,6 +74,25 @@ const Register = () => {
               Set up your account now to master your money speak volumes of your
               look.
             </p>
+
+            {/* Name */}
+            <div className="flex flex-col mb-4 text-left">
+              <label htmlFor="email" className="mb-1 font-medium text-gray-700">
+                Name
+              </label>
+              <input
+                type="name"
+                id="name"
+                placeholder="Quwam Bode"
+                {...register("name", { required: "Name id Required" })}
+                className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
+              />
+              {errors.name && (
+                <p className="text-red-500 text-sm font-bold mt-2">
+                  {errors.name.message}
+                </p>
+              )}
+            </div>
 
             {/* Email */}
             <div className="flex flex-col mb-4 text-left">

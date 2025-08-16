@@ -6,15 +6,14 @@ import {
   type User,
 } from "firebase/auth";
 import { auth } from "../Auth/firebaseconfig";
-import { type SignUpData, type AuthStore } from "../types/authDataTypes";
+import type {
+  SignUpData,
+  AuthStore,
+  AuthUserProps,
+} from "../types/authDataTypes";
+import { saveUserData } from "../utils/utils";
 
-export const useAuthStore = create<
-  AuthStore & {
-    loggedIn: boolean;
-    checkingStatus: boolean;
-    initAuth: () => void;
-  }
->((set) => {
+export const useAuthStore = create<AuthStore>((set) => {
   const storedUser = localStorage.getItem("user");
 
   return {
@@ -22,6 +21,8 @@ export const useAuthStore = create<
     error: null,
     loading: false,
     rememberMe: localStorage.getItem("rememberMe") === "true",
+    setUser: (user) => set({ user }),
+    // setRememberMe: (value) => set({ rememberMe: value }),
 
     // NEW: Firebase auth status
     loggedIn: !!storedUser,
@@ -45,8 +46,17 @@ export const useAuthStore = create<
         return;
       }
 
-      localStorage.setItem("user", JSON.stringify(user));
-      set({ user, loading: false, error: null, loggedIn: true });
+      const updUser: AuthUserProps = {
+        displayName: user?.displayName as string,
+        email: user?.email as string,
+        emailVerified: user?.emailVerified as boolean,
+        uid: user?.uid as string,
+        photoURL: user?.photoURL as any,
+      };
+
+      sessionStorage.setItem(`user-${user?.uid}`, JSON.stringify(updUser));
+      set({ user: updUser, loading: false, error: null, loggedIn: true });
+      // set({ user, loading: false, error: null, loggedIn: true });
     },
 
     login: async (email, password, remember) => {
@@ -60,12 +70,29 @@ export const useAuthStore = create<
         );
         const user = userCredential.user;
 
+        const updUser: AuthUserProps = {
+          displayName: user?.displayName as string,
+          email: user?.email as string,
+          emailVerified: user?.emailVerified as boolean,
+          uid: user?.uid as string,
+          photoURL: user?.photoURL as any,
+        };
+
         if (remember) {
-          localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem(`user-${user.uid}`, JSON.stringify(updUser));
           localStorage.setItem("rememberMe", "true");
+        } else {
+          sessionStorage.setItem(`user-${user.uid}`, JSON.stringify(updUser));
+          // localStorage.setItem("rememberMe", "true");
         }
 
-        set({ user, rememberMe: remember, loading: false, loggedIn: true });
+        set({
+          user: updUser,
+          rememberMe: remember,
+          loading: false,
+          loggedIn: true,
+        });
+        // set({ user, rememberMe: remember, loading: false, loggedIn: true });
         return {};
       } catch (error: any) {
         let message = "Something went wrong";
@@ -86,6 +113,13 @@ export const useAuthStore = create<
       localStorage.removeItem("user");
       localStorage.removeItem("rememberMe");
       set({ user: null, rememberMe: false, loggedIn: false });
+    },
+
+    updateUserProfile: (uid: string, context: string, updUser: any) => {
+      saveUserData(uid, context, updUser);
+      set({
+        user: updUser,
+      });
     },
 
     // NEW: Initialize Firebase auth listener

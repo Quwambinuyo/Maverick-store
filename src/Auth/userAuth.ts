@@ -1,19 +1,30 @@
-import { auth } from "../Auth/firebaseconfig";
+import { auth, db } from "../Auth/firebaseconfig";
 import { type ReactNode } from "react";
 
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
+  type User,
 } from "firebase/auth";
 import { type SignUpData, type SignInData } from "../types/authDataTypes";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 
-export const signUp = async ({ email, password }: SignUpData) => {
+export const signUp = async ({ email, password, name }: SignUpData) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
+    const user = userCredential.user;
+
+    updateProfile(auth.currentUser as User, { displayName: name });
+
+    const formDataCopy = { email, name, timeStamp: serverTimestamp() };
+
+    await setDoc(doc(db, "users", user.uid), formDataCopy);
+
     return { user: userCredential.user };
   } catch (error: any) {
     let message = "Something went wrong";
