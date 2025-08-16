@@ -1,9 +1,5 @@
 import { create } from "zustand";
-import {
-  type LandingNavState,
-  type ProfileLoaderState,
-  type SidebarButtonState,
-} from "../types/types";
+import type { LandingNavState, SidebarButtonState } from "../types/types";
 
 export const useSidebarStore = create<SidebarButtonState>((set) => ({
   isOpen: window.innerWidth >= 640,
