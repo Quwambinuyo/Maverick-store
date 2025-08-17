@@ -54,7 +54,7 @@ const Navbar = () => {
             <NavLink to="/profile">
               <img
                 src={userData?.photoURL.base64}
-                className="w-[25px] h-[25px] rounded-full object-cover"
+                className="sm:w-[25px] sm:h-[25px] w-[15px] h-[15px] rounded-full object-cover"
                 alt="User avatar"
               />
             </NavLink>

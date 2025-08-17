@@ -126,7 +126,7 @@ const Profile = () => {
             onChange={(e) => {
               handleImageChange(e);
             }}
-            className="text-sm border p-4 rounded-md border-gray-500 cursor-pointer text-primary-color"
+            className="text-sm border p-4 max-w-[200px] w-full rounded-md border-gray-500 cursor-pointer text-primary-color"
           />
           {errors.profileImage && (
             <p className="text-sm text-red-500">
