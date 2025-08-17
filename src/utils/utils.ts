@@ -16,3 +16,9 @@ export const saveUserData = (id: string, context: string, data: any) => {
     return sessionStorage.setItem(`user-${id}`, JSON.stringify(data));
   }
 };
+
+export const removeSavedUserData = (id: string) => {
+  localStorage.removeItem(`user-${id}`);
+
+  sessionStorage.removeItem(`user-${id}`);
+};

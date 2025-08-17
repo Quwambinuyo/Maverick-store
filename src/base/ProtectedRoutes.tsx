@@ -14,5 +14,5 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
     return <Loader />;
   }
 
-  return loggedIn ? children : <Navigate to="/sign-in" />;
+  return loggedIn ? children : <Navigate to="/login" />;
 }

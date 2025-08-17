@@ -22,7 +22,7 @@ const Dashboard = () => {
             <p className="text-lg sm:text-2xl font-bold text-gray-900">
               Welcome,
             </p>
-            <p className="text-lg sm:text-[25px] font-bold text-primary-color">
+            <p className="text-[15px]  sm:text-[25px] font-bold text-primary-color">
               {user?.displayName}
             </p>
           </div>
@@ -34,7 +34,7 @@ const Dashboard = () => {
         </div>
 
         {/* Profile container (circle always) */}
-        <div className="bg-primary-color flex justify-center items-center h-[100px] w-[100px] rounded-full overflow-hidden">
+        <div className="bg-primary-color h-[50px] w-[50px] flex justify-center items-center sm:h-[100px] sm:w-[100px] rounded-full overflow-hidden">
           {userData?.photoURL ? (
             <img
               src={userData?.photoURL.base64}
@@ -42,7 +42,7 @@ const Dashboard = () => {
               alt="User avatar"
             />
           ) : (
-            <h1 className="text-white text-4xl sm:text-3xl">
+            <h1 className="text-white text-4xl sm:text-3xl lg:text-[70px]">
               {user?.displayName?.charAt(0)}
             </h1>
           )}

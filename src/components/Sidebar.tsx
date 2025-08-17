@@ -5,11 +5,14 @@ import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";
 import { useCartStore } from "../features/cartstore";
 import { motion } from "framer-motion";
 import MobileSidebar from "./MobileSidebar";
+import { IoMdLogOut } from "react-icons/io";
+import { useAuthStore } from "../features/useAuthStore";
 
 const Sidebar = () => {
   const { isOpen, toggleSidebar } = useSidebarStore();
   const { cart } = useCartStore();
   const cartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const { logout } = useAuthStore();
 
   const isMobile = window.innerWidth < 640;
 
@@ -19,10 +22,10 @@ const Sidebar = () => {
 
   return (
     <motion.aside
-      animate={{ width: isOpen ? 240 : 80 }}
+      animate={{ width: isOpen ? 250 : 80 }}
       transition={{
         type: "spring",
-        stiffness: 350,
+        stiffness: 250,
         damping: 12,
       }}
       className={`h-screen bg-primary-color border-r border-gray-300 flex-shrink-0 fixed top-0 left-0 ${
@@ -58,16 +61,13 @@ const Sidebar = () => {
         <div className="flex-1 overflow-y-auto px-1 mt-4 custom-scrollbar">
           <div className={`flex flex-col ${isOpen ? "gap-y-4" : "gap-y-6"}`}>
             {SidebarLinks.map(({ icon, name, id, path }) => {
-              const isLogout = name.toLowerCase() === "logout";
               return (
                 <NavLink
                   key={id}
                   to={path}
                   className={({ isActive }) =>
                     `block w-full transition-all duration-200 libre-baskerville-bold ${
-                      isLogout
-                        ? "text-red-500"
-                        : isActive
+                      isActive
                         ? "bg-[#EFFCF2] text-primary-color font-semibold border-r-4 border-secondary-color"
                         : "text-white hover:bg-secondary-color hover:text-primary-color"
                     }`
@@ -75,16 +75,14 @@ const Sidebar = () => {
                 >
                   <motion.div
                     whileHover={{
-                      scale: 1.1,
+                      scale: 0.9,
                       transition: { duration: 0.3 },
                     }}
                     className={`relative flex items-center ${
-                      isOpen ? "gap-4 justify-start pl-6" : "justify-center"
-                    } ${
-                      isLogout
-                        ? "bg-white mt-9 mb-6 rounded-full px-5 py-4 w-fit mx-auto"
-                        : "sm:py-4 py-7 w-full"
-                    }`}
+                      isOpen
+                        ? "gap-4 justify-start pl-6 sm:py-4 py-7 w-full"
+                        : "justify-center sm:py-4 py-7 w-ful"
+                    } `}
                   >
                     <span className="text-[20px] relative">
                       {icon}
@@ -97,9 +95,7 @@ const Sidebar = () => {
 
                     {isOpen && (
                       <span
-                        className={`text-[18px] font-semibold whitespace-nowrap ${
-                          isLogout ? "text-red-500" : ""
-                        }`}
+                        className={`text-[18px] font-semibold whitespace-nowrap `}
                       >
                         {name}
                       </span>
@@ -108,6 +104,24 @@ const Sidebar = () => {
                 </NavLink>
               );
             })}
+
+            {isOpen ? (
+              <div
+                onClick={logout}
+                className="flex justify-center items-center bg-white max-w-[250px] mx-auto px-9 py-2 mb-5 rounded-full gap-2"
+              >
+                <IoMdLogOut className="text-red-500 text-3xl" />
+
+                <button className="font-medium cursor-pointer ">Logout</button>
+              </div>
+            ) : (
+              <button
+                onClick={logout}
+                className="bg-white flex justify-center rounded-full py-2 mb-2 cursor-pointer"
+              >
+                <IoMdLogOut className="text-red-500 text-3xl" />
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { BiFoodMenu } from "react-icons/bi";
 import { SiSendgrid } from "react-icons/si";
 import { MdPermPhoneMsg } from "react-icons/md";
 import { TiInfoLargeOutline } from "react-icons/ti";
-import { IoMdLogOut } from "react-icons/io";
+// import { IoMdLogOut } from "react-icons/io";
 import { IoMdHome } from "react-icons/io";
 
 export const SidebarLinks = [
@@ -50,10 +50,10 @@ export const SidebarLinks = [
     icon: <TiInfoLargeOutline />,
     path: "/about",
   },
-  {
-    id: 8,
-    name: "Logout",
-    icon: <IoMdLogOut />,
-    path: "/register",
-  },
+  // {
+  //   id: 8,
+  //   name: "Logout",
+  //   icon: <IoMdLogOut />,
+  //   path: "/login",
+  // },
 ];

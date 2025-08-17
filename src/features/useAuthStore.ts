@@ -11,13 +11,23 @@ import type {
   AuthStore,
   AuthUserProps,
 } from "../types/authDataTypes";
-import { saveUserData } from "../utils/utils";
+import {
+  getSavedUserData,
+  removeSavedUserData,
+  saveUserData,
+} from "../utils/utils";
+import { toast } from "react-toastify";
 
 export const useAuthStore = create<AuthStore>((set) => {
-  const storedUser = localStorage.getItem("user");
+  const user = localStorage.getItem("user") as string;
+
+  const userData = localStorage.getItem("user") ? JSON.parse(user) : null;
+  const uid = userData?.uid;
+
+  const storedUser = getSavedUserData(`user-${uid}`);
 
   return {
-    user: storedUser ? JSON.parse(storedUser) : null,
+    user: storedUser ? JSON.parse(storedUser.userData) : null,
     error: null,
     loading: false,
     rememberMe: localStorage.getItem("rememberMe") === "true",
@@ -110,9 +120,21 @@ export const useAuthStore = create<AuthStore>((set) => {
 
     logout: () => {
       auth.signOut();
-      localStorage.removeItem("user");
-      localStorage.removeItem("rememberMe");
-      set({ user: null, rememberMe: false, loggedIn: false });
+
+      toast.success("You are now logged out of your account");
+
+      removeSavedUserData(uid as string);
+
+      setTimeout(() => {
+        console.log(2);
+
+        window.location.href = "/login";
+      }, 500);
+
+      // location.href = "/login";
+      // localStorage.removeItem("user");
+      // localStorage.removeItem("rememberMe");
+      // set({ user: null, rememberMe: false, loggedIn: false });
     },
 
     updateUserProfile: (uid: string, context: string, updUser: any) => {

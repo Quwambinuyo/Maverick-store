@@ -60,7 +60,7 @@ const Navbar = () => {
             </NavLink>
           ) : (
             <NavLink to="/profile">
-              <h1 className="text-white  bg-primary-color rounded-full text-center w-[25px] h-[25px] text-sm items-center sm:text-[20px]">
+              <h1 className="text-white  flex justify-center bg-primary-color rounded-full text-center w-[25px] h-[25px] text-sm items-center sm:text-[20px]">
                 {user?.displayName?.charAt(0)}
               </h1>
             </NavLink>

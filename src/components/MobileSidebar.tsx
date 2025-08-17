@@ -4,11 +4,14 @@ import { useSidebarStore } from "../features/store";
 import { FaTimes } from "react-icons/fa";
 import { useCartStore } from "../features/cartstore";
 import { motion } from "framer-motion";
+import { IoMdLogOut } from "react-icons/io";
+import { useAuthStore } from "../features/useAuthStore";
 
 const MobileSidebar = () => {
   const { isOpen, toggleSidebar } = useSidebarStore();
   const { cart } = useCartStore();
   const cartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const { logout } = useAuthStore();
 
   return (
     <>
@@ -53,7 +56,6 @@ const MobileSidebar = () => {
           <div className="flex-1 overflow-y-auto px-1 mt-4 custom-scrollbar">
             <div className={`flex flex-col ${isOpen ? "gap-y-4" : "gap-y-6"}`}>
               {SidebarLinks.map(({ icon, name, id, path }) => {
-                const isLogout = name.toLowerCase() === "logout";
                 return (
                   <NavLink
                     key={id}
@@ -63,9 +65,7 @@ const MobileSidebar = () => {
                     }}
                     className={({ isActive }) =>
                       `block w-full transition-all duration-200 libre-baskerville-bold ${
-                        isLogout
-                          ? "text-red-500"
-                          : isActive
+                        isActive
                           ? "bg-[#EFFCF2] text-primary-color font-semibold border-r-4 border-secondary-color"
                           : "text-white hover:bg-secondary-color hover:text-primary-color"
                       }`
@@ -73,12 +73,10 @@ const MobileSidebar = () => {
                   >
                     <div
                       className={`relative flex items-center ${
-                        isOpen ? "gap-4 justify-start pl-6" : "justify-center"
-                      } ${
-                        isLogout
-                          ? "bg-white mt-9 mb-6 rounded-full px-5 py-4 w-fit mx-auto"
-                          : "sm:py-4 py-7 w-full"
-                      }`}
+                        isOpen
+                          ? "gap-4 justify-start pl-6 sm:py-4 py-7 w-full"
+                          : "justify-center "
+                      } `}
                     >
                       <motion.span
                         whileHover={{
@@ -97,9 +95,7 @@ const MobileSidebar = () => {
 
                       {isOpen && (
                         <span
-                          className={`text-[18px] font-semibold whitespace-nowrap ${
-                            isLogout ? "text-red-500" : ""
-                          }`}
+                          className={`text-[18px] font-semibold whitespace-nowrap`}
                         >
                           {name}
                         </span>
@@ -108,6 +104,19 @@ const MobileSidebar = () => {
                   </NavLink>
                 );
               })}
+
+              {isOpen && (
+                <div className="flex justify-center items-center bg-white max-w-[250px] mx-auto px-9 py-2 mb-5 rounded-full gap-2">
+                  <IoMdLogOut className="text-red-500 text-3xl" />
+
+                  <button
+                    onClick={logout}
+                    className="font-medium cursor-pointer "
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

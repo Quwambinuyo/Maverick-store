@@ -29,7 +29,7 @@ const SwiperCarousel = () => {
             return (
               <SwiperSlide key={id}>
                 <div
-                  className="w-full rounded-md overflow-hidden relative flex flex-col justify-end h-[200px] sm:h-[300px] bg-cover bg-center"
+                  className="w-full rounded-md overflow-hidden relative flex flex-col justify-end h-[200px] sm:h-[400px] lg:h-[75vh] lg:max-h-[500px] bg-cover bg-center"
                   style={{ backgroundImage: `url(${image})` }}
                 >
                   {/* Overlay */}

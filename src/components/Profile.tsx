@@ -122,12 +122,17 @@ const Profile = () => {
           <input
             type="file"
             accept="image/*"
-            {...register("profileImage")}
+            {...register("profileImage", { required: "Profile Photo needed" })}
             onChange={(e) => {
               handleImageChange(e);
             }}
             className="text-sm border p-4 rounded-md border-gray-500 cursor-pointer text-primary-color"
           />
+          {errors.profileImage && (
+            <p className="text-sm text-red-500">
+              {errors.profileImage.message}
+            </p>
+          )}
         </div>
 
         {/* Name */}
