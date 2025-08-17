@@ -105,7 +105,7 @@ export const getUserInfoFromStore = async () => {
       ...updData,
     };
 
-    return { user: updUser, context };
+    return { user: updUser, context, id: uid };
   } catch (error: any) {
     let message = "Something went wrong";
 

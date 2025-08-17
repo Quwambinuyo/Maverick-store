@@ -71,7 +71,6 @@ export default function PaystackPayment({
         ],
       },
       callback: (response: any) => {
-        // navigate back to thank you page
         console.log("Payment successful:", response);
         clearFromCart();
 

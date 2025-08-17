@@ -106,11 +106,14 @@ const MobileSidebar = () => {
               })}
 
               {isOpen && (
-                <div className="flex justify-center items-center bg-white max-w-[250px] mx-auto px-9 py-2 mb-5 rounded-full gap-2">
+                <div
+                  onClick={logout}
+                  className="flex justify-center items-center bg-white max-w-[250px] mx-auto px-9 py-2 mb-5 rounded-full gap-2 cursor-pointer"
+                >
                   <IoMdLogOut className="text-red-500 text-3xl" />
 
                   <button
-                    onClick={logout}
+                    // onClick={logout}
                     className="font-medium cursor-pointer "
                   >
                     Logout

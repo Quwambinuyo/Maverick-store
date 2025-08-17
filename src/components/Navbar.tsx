@@ -47,14 +47,14 @@ const Navbar = () => {
       </div>
 
       {/* Right: Icons (wrapped in a parent) */}
-      <div className="flex items-center justify-end flex-[0.5]">
+      <div className="flex items-center justify-end ">
         <div className="flex items-center gap-4  sm:gap-7 text-2xl text-gray-800">
           <IoIosNotifications />
           {userData?.photoURL ? (
             <NavLink to="/profile">
               <img
                 src={userData?.photoURL.base64}
-                className="sm:w-[25px] sm:h-[25px] w-[15px] h-[15px] rounded-full object-cover"
+                className="sm:w-[30px] sm:h-[30px] w-[20px] h-[20px] rounded-full object-cover"
                 alt="User avatar"
               />
             </NavLink>

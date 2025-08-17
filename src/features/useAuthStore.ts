@@ -146,14 +146,14 @@ export const useAuthStore = create<AuthStore>((set) => {
 
     fetchUser: async () => {
       set({ loading: true, error: null });
-      const { user, context, error } = await getUserInfoFromStore();
+      const { user, context, id, error } = await getUserInfoFromStore();
 
       if (error) {
         set({ loading: false, error });
         return;
       }
 
-      saveUserData(uid, context as string, user);
+      saveUserData(id as string, context as string, user);
 
       set({ user, loading: false, error: null });
       // set({ user, loading: false, error: null, loggedIn: true });
