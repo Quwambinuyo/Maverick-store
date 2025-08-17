@@ -4,9 +4,11 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useSidebarStore } from "../features/store";
 import Loader from "./Loader";
 import { useEffect } from "react";
+import { useAuthStore } from "../features/useAuthStore";
 
 const Layout = () => {
   const { isOpen, setLoading, loading } = useSidebarStore();
+  const { fetchUser } = useAuthStore();
   const location = useLocation();
 
   useEffect(() => {
@@ -18,6 +20,10 @@ const Layout = () => {
 
     return () => clearTimeout(timer);
   }, [location.pathname]);
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <div className="flex h-screen overflow-hidden relative">

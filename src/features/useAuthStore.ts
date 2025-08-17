@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { signUp } from "../Auth/userAuth";
+import { getUserInfoFromStore, signUp } from "../Auth/userAuth";
 import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
@@ -142,6 +142,21 @@ export const useAuthStore = create<AuthStore>((set) => {
       set({
         user: updUser,
       });
+    },
+
+    fetchUser: async () => {
+      set({ loading: true, error: null });
+      const { user, context, error } = await getUserInfoFromStore();
+
+      if (error) {
+        set({ loading: false, error });
+        return;
+      }
+
+      saveUserData(uid, context as string, user);
+
+      set({ user, loading: false, error: null });
+      // set({ user, loading: false, error: null, loggedIn: true });
     },
 
     // NEW: Initialize Firebase auth listener

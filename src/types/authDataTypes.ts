@@ -78,6 +78,7 @@ export interface AuthStore {
   setUser: (user: AuthUserProps | null) => void;
   setRememberMe: (value: boolean) => void;
   initAuth: () => void;
+  fetchUser: () => void;
 
   registerUser: (data: SignUpData) => Promise<void>;
   login: (

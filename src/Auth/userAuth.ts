@@ -3,12 +3,14 @@ import { type ReactNode } from "react";
 
 import {
   createUserWithEmailAndPassword,
+  getAuth,
   signInWithEmailAndPassword,
   updateProfile,
   type User,
 } from "firebase/auth";
 import { type SignUpData, type SignInData } from "../types/authDataTypes";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import { getSavedUserData } from "../utils/utils";
 
 export const signUp = async ({ email, password, name }: SignUpData) => {
   try {
@@ -85,3 +87,36 @@ export interface ProtectedRouteProps {
 
 //   return { loggedIn, checkingStatus };
 // };
+
+export const getUserInfoFromStore = async () => {
+  try {
+    const auth = getAuth();
+
+    const { uid } = auth?.currentUser as User;
+
+    const userD = await getDoc(doc(db, "users", uid));
+
+    const updData = userD.exists() ? userD.data() : {};
+
+    const { userData, context } = getSavedUserData(uid);
+
+    const updUser = {
+      ...userData,
+      ...updData,
+    };
+
+    return { user: updUser, context };
+  } catch (error: any) {
+    let message = "Something went wrong";
+
+    if (error.code === "auth/email-already-in-use") {
+      message = "Email already exists";
+    } else if (error.code === "auth/invalid-email") {
+      message = "Invalid email address";
+    } else if (error.code === "auth/weak-password") {
+      message = "Password should be at least 6 characters";
+    }
+
+    return { error: message };
+  }
+};

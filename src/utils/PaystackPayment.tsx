@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import CustomBtn from "./CustomBtn";
 import { toast } from "react-toastify";
+import { useCartStore } from "../features/cartstore";
 
 interface PaystackBtnType {
   totalPrice: number;
@@ -23,6 +24,8 @@ export default function PaystackPayment({
   logistic,
 }: PaystackBtnType) {
   const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+
+  // const {clearFromCart} = useCartStore()
 
   useEffect(() => {
     // Load Paystack inline script
@@ -69,14 +72,14 @@ export default function PaystackPayment({
         ],
       },
       callback: (response: any) => {
+        // navigate back to thank you page
         console.log("Payment successful:", response);
-        console.log(address);
+        clearFromCart();
 
         toast.success("Payment successful! Reference: " + response.reference);
       },
       onClose: () => {
         console.log("Payment window closed");
-        clearFromCart;
         toast.error("Transaction was not completed, window closed.");
       },
     });

@@ -1,12 +1,12 @@
 import Form from "../utils/Form";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { db } from "../Auth/firebaseconfig";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { getAuth, updateProfile, type User } from "firebase/auth";
 import { toast } from "react-toastify";
 import { getSavedUserData, saveUserData } from "../utils/utils";
 import Loader from "./Loader";
+import { db } from "../Auth/firebaseconfig";
 
 type ProfileFormData = {
   name: string;
@@ -62,7 +62,6 @@ const Profile = () => {
       });
 
       const userRef = doc(db, "users", uid);
-      console.log(userRef);
 
       await updateDoc(userRef, {
         photoURL: { base64: profileImagePreview },
