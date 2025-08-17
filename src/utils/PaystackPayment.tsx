@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import CustomBtn from "./CustomBtn";
 import { toast } from "react-toastify";
-import { useCartStore } from "../features/cartstore";
 
 interface PaystackBtnType {
   totalPrice: number;
