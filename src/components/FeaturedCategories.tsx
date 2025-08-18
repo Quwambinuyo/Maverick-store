@@ -26,7 +26,7 @@ const FeaturedCategories = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 max-w-screen-xl mx-auto mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 max-w-screen-xl mx-auto mb-5 px-5">
         {Object.entries(Products).map(([categoryName, subGroups]) => (
           <div
             key={categoryName}

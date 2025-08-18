@@ -29,7 +29,7 @@ const DiscountProducts = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 px-2 pb-20">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 xl:grid-cols-4 sm:gap-4 px-2 pb-20">
         {allProducts.map((product) => {
           const cartItem = cart.find((item) => item.id === product.id);
           const price = Number(product.price ?? 0);
@@ -56,7 +56,7 @@ const DiscountProducts = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-40 sm:h-48 object-cover rounded mb-3"
+                className="w-full h-40 sm:h-48 object-contain rounded mb-3"
               />
 
               {/* Product Name */}

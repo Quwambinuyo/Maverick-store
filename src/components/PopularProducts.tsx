@@ -54,7 +54,7 @@ const PopularProducts = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-44 sm:h-48 object-cover rounded mb-2"
+                className="w-full h-44 sm:h-48 object-contain rounded mb-2"
               />
 
               <h2 className="text-xs sm:text-sm font-semibold line-clamp-1">

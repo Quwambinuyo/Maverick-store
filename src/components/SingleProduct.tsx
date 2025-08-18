@@ -52,7 +52,7 @@ const SingleProduct = () => {
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-auto object-cover rounded-lg"
+          className="w-auto max-h-[300px] md:max-h-[400px] justify-self-center object-cover rounded-lg"
         />
 
         {/* Product Details */}

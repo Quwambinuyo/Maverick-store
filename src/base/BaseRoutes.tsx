@@ -12,6 +12,7 @@ import {
   Pages,
   Products,
   Profile,
+  SIngleCategory,
   SingleProduct,
 } from "../components";
 import {
@@ -51,7 +52,11 @@ const router = createBrowserRouter([
       { path: "/home", element: <Home /> },
       { path: "/dashboard", element: <Dashboard /> },
       { path: "/cart", element: <Cart /> },
-      { path: "/categories/:category/:subCategory?", element: <Categories /> },
+      { path: "/categories", element: <Categories /> },
+      {
+        path: "/categories/:category/:subCategory?",
+        element: <SIngleCategory />,
+      },
       { path: "/pages", element: <Pages /> },
       { path: "/contact", element: <Contact /> },
       { path: "/about", element: <About /> },
