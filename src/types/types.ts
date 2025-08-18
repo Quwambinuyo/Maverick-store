@@ -41,6 +41,7 @@ export interface Product {
   discountPrice?: number;
   quantity: number;
   amount: number;
+  // category: string;
   colors?: string[];
 }
 

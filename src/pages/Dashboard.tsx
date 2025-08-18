@@ -1,6 +1,6 @@
 import { BsCart } from "react-icons/bs";
 import CustomBtn from "../utils/CustomBtn";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Checkout from "./Checkout";
 import { FaHome } from "react-icons/fa";
 import { useAuthStore } from "../features/useAuthStore";
@@ -36,15 +36,19 @@ const Dashboard = () => {
         {/* Profile container (circle always) */}
         <div className="bg-primary-color h-[50px] w-[50px] flex justify-center items-center sm:h-[100px] sm:w-[100px] rounded-full overflow-hidden">
           {userData?.photoURL ? (
-            <img
-              src={userData?.photoURL.base64}
-              className="w-full h-full object-cover"
-              alt="User avatar"
-            />
+            <NavLink to="/profile">
+              <img
+                src={userData?.photoURL.base64}
+                className="w-full h-full object-cover cursor-pointer"
+                alt="User avatar"
+              />
+            </NavLink>
           ) : (
-            <h1 className="text-white text-4xl sm:text-3xl lg:text-[70px]">
-              {user?.displayName?.charAt(0)}
-            </h1>
+            <NavLink to="/profile">
+              <h1 className="text-white text-4xl sm:text-3xl lg:text-[70px]">
+                {user?.displayName?.charAt(0)}
+              </h1>
+            </NavLink>
           )}
         </div>
       </div>
@@ -86,7 +90,7 @@ const Dashboard = () => {
               <BsCart />
             </div>
             <div className="text-lg sm:text-[17px] font-semibold">
-              <h1>Completed Order</h1>
+              <h1>Completed</h1>
               <p>1</p>
             </div>
           </div>
