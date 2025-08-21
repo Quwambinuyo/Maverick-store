@@ -32,7 +32,7 @@ const Navbar = () => {
         >
           {!isOpen && <RxHamburgerMenu />}
         </button>
-        <span className="text-sm roboto sm:inline capitalize md:text-lg text-primary-color font-semibold truncate">
+        <span className="text-sm ml-5 roboto sm:inline capitalize md:text-lg text-primary-color font-semibold truncate">
           Hello, {user?.displayName?.split(" ")[0]}. {greeting} 👋
         </span>
       </div>

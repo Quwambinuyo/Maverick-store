@@ -33,7 +33,7 @@ const PopularProducts = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 p-1 sm:gap-4 md:px-2">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 xl:grid-cols-4 p-1 sm:gap-4 md:px-2">
         {allProducts.map((product) => {
           const cartItem = cart.find((item) => item.id === product.id);
           const isOutOfStock =

@@ -1,7 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import { SidebarLinks } from "../utils/SidebarLinks";
 import { useSidebarStore } from "../features/store";
-import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";
+// import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";
+import {
+  IoIosArrowDroprightCircle,
+  IoIosArrowDropleftCircle,
+} from "react-icons/io";
 import { useCartStore } from "../features/cartstore";
 import { motion } from "framer-motion";
 import MobileSidebar from "./MobileSidebar";
@@ -25,8 +29,8 @@ const Sidebar = () => {
       animate={{ width: isOpen ? 250 : 80 }}
       transition={{
         type: "spring",
-        stiffness: 250,
-        damping: 12,
+        stiffness: 350,
+        damping: 20,
       }}
       className={`h-screen bg-primary-color border-r border-gray-300 flex-shrink-0 fixed top-0 left-0 ${
         isOpen ? "block" : "hidden sm:block"
@@ -34,32 +38,31 @@ const Sidebar = () => {
     >
       <div className="relative h-full flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-5 flex-shrink-0">
-          {isOpen ? (
+        <div className="flex items-center justify-between px-4 py-5 flex-shrink-0 relative">
+          {isOpen && (
             <Link
               to="/home"
               className="text-2xl font-bold text-white henny-penny-regular whitespace-nowrap"
             >
               Maverick Store
             </Link>
-          ) : (
-            ""
           )}
+
           <button
-            className="items-center justify-center bg-transparent rounded-full w-8 h-8 flex-shrink-0 hidden sm:flex"
+            className="ml-auto bg-slate-300 rounded-full w-10 h-10 flex items-center justify-center shadow"
             onClick={toggleSidebar}
           >
             {isOpen ? (
-              <BsArrowLeftSquareFill className="text-secondary-color text-4xl drop-shadow-sm" />
+              <IoIosArrowDropleftCircle className="text-primary-color text-3xl" />
             ) : (
-              <BsArrowRightSquareFill className="text-secondary-color text-4xl drop-shadow-sm" />
+              <IoIosArrowDroprightCircle className="text-primary-color text-3xl" />
             )}
           </button>
         </div>
 
         {/* Links */}
         <div className="flex-1 overflow-y-auto px-1 mt-4 custom-scrollbar">
-          <div className={`flex flex-col ${isOpen ? "gap-y-4" : "gap-y-6"}`}>
+          <div className={`flex flex-col ${isOpen ? "gap-y-4" : "gap-y-4"}`}>
             {SidebarLinks.map(({ icon, name, id, path }) => {
               return (
                 <NavLink
