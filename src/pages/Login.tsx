@@ -6,6 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { type LoginValues } from "../types/formTypes";
 import { useAuthStore } from "../features/useAuthStore";
 import { useState } from "react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const Login = () => {
@@ -13,6 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -93,11 +95,25 @@ const Login = () => {
             >
               Password
             </label>
-            <input
-              type="password"
-              {...register("password", { required: "Password is required" })}
-              className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••••••"
+                {...register("password", { required: "Password is required" })}
+                className="px-3 py-2 pr-10 border border-primary-color bg-[#E8F0FE] rounded w-full"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600"
+              >
+                {showPassword ? (
+                  <AiOutlineEyeInvisible size={20} />
+                ) : (
+                  <AiOutlineEye size={20} />
+                )}
+              </button>
+            </div>
             {errors.password && (
               <p className="text-red-500 text-sm font-bold mt-2">
                 {errors.password.message}

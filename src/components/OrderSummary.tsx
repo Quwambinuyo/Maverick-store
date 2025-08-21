@@ -26,7 +26,7 @@ const OrderSummary = () => {
             <div>
               <p className="font-semibold text-sm">{item.name}</p>
               <p className="text-gray-500 text-xs">
-                {formatPrice(item.price)} × {item.quantity}
+                ₦{formatPrice(item.price)} × {item.quantity}
               </p>
             </div>
             <p className="font-bold text-sm">

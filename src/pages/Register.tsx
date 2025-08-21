@@ -8,11 +8,14 @@ import { useAuthStore } from "../features/useAuthStore";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { useState } from "react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const Register = () => {
   const navigate = useNavigate();
 
   const { registerUser, loading, error, user } = useAuthStore();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -121,30 +124,44 @@ const Register = () => {
               >
                 Password
               </label>
-              <input
-                type="password"
-                id="password"
-                placeholder="***********"
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: {
-                    value: 8,
-                    message: "Password must be at least 8 characters",
-                  },
-                  validate: {
-                    hasUpper: (value) =>
-                      /[A-Z]/.test(value) ||
-                      "Must contain at least one uppercase letter",
-                    hasLower: (value) =>
-                      /[a-z]/.test(value) ||
-                      "Must contain at least one lowercase letter",
-                    hasSymbol: (value) =>
-                      /[^A-Za-z0-9]/.test(value) ||
-                      "Must contain at least one special character",
-                  },
-                })}
-                className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  placeholder="••••••••••••"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 8,
+                      message: "Password must be at least 8 characters",
+                    },
+                    validate: {
+                      hasUpper: (value) =>
+                        /[A-Z]/.test(value) ||
+                        "Must contain at least one uppercase letter",
+                      hasLower: (value) =>
+                        /[a-z]/.test(value) ||
+                        "Must contain at least one lowercase letter",
+                      hasSymbol: (value) =>
+                        /[^A-Za-z0-9]/.test(value) ||
+                        "Must contain at least one special character",
+                    },
+                  })}
+                  className="px-3 py-2 pr-10 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color w-full"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600"
+                >
+                  {showPassword ? (
+                    <AiOutlineEyeInvisible size={20} />
+                  ) : (
+                    <AiOutlineEye size={20} />
+                  )}
+                </button>
+              </div>
+
               {errors.password && (
                 <div className="text-red-500 text-sm font-bold mt-2 space-y-1">
                   {errors.password.types?.hasUpper && (
@@ -172,7 +189,7 @@ const Register = () => {
               <input
                 type="password"
                 id="confirm-password"
-                placeholder="***********"
+                placeholder="••••••••••••"
                 {...register("confirmPassword", {
                   required: "Please confirm your password",
                   validate: (value) =>
