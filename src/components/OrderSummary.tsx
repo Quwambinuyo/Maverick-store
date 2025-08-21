@@ -1,4 +1,5 @@
 import { useCartStore } from "../features/cartstore";
+import { formatPrice } from "../utils/utilityfunc";
 
 const OrderSummary = () => {
   const { cart } = useCartStore();
@@ -25,11 +26,11 @@ const OrderSummary = () => {
             <div>
               <p className="font-semibold text-sm">{item.name}</p>
               <p className="text-gray-500 text-xs">
-                ₦{item.price.toFixed(2)} × {item.quantity}
+                {formatPrice(item.price)} × {item.quantity}
               </p>
             </div>
             <p className="font-bold text-sm">
-              ₦{(item.price * item.quantity).toFixed(2)}
+              {formatPrice(item.price * item.quantity)}
             </p>
           </div>
         ))}
@@ -37,7 +38,7 @@ const OrderSummary = () => {
 
       <div className="flex justify-between items-center font-bold text-lg border-gray-300 border-t pt-2">
         <span>Total</span>
-        <span>₦{totalPrice.toFixed(2)}</span>
+        <span>{formatPrice(totalPrice)}</span>
       </div>
     </div>
   );

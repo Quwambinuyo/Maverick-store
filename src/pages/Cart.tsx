@@ -67,7 +67,7 @@ const Cart = () => {
                     </div>
                   ) : (
                     <p className="text-gray-500 text-xs sm:text-sm">
-                      Price: ₦{item.price.toFixed(2)}
+                      Price: ₦ {formatPrice(item.price)}
                     </p>
                   )}
 
