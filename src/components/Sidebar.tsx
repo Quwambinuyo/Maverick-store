@@ -29,8 +29,8 @@ const Sidebar = () => {
       animate={{ width: isOpen ? 250 : 80 }}
       transition={{
         type: "spring",
-        stiffness: 350,
-        damping: 20,
+        stiffness: 150,
+        damping: 12,
       }}
       className={`h-screen bg-primary-color border-r border-gray-300 flex-shrink-0 fixed top-0 left-0 ${
         isOpen ? "block" : "hidden sm:block"
@@ -49,7 +49,7 @@ const Sidebar = () => {
           )}
 
           <button
-            className="ml-auto bg-slate-300 rounded-full w-10 h-10 flex items-center justify-center shadow"
+            className="ml-auto cursor-pointer bg-slate-300 rounded-full w-10 h-10 flex items-center justify-center shadow"
             onClick={toggleSidebar}
           >
             {isOpen ? (
@@ -83,8 +83,8 @@ const Sidebar = () => {
                     }}
                     className={`relative flex items-center ${
                       isOpen
-                        ? "gap-4 justify-start pl-6 sm:py-4 py-7 w-full"
-                        : "justify-center sm:py-4 py-7 w-ful"
+                        ? "gap-4 justify-start pl-6 sm:py-3 py-7 w-full"
+                        : "justify-center  sm:py-4 py-7 w-ful"
                     } `}
                   >
                     <span className="text-[20px] relative">
@@ -115,7 +115,9 @@ const Sidebar = () => {
               >
                 <IoMdLogOut className="text-red-500 text-3xl" />
 
-                <button className="font-medium cursor-pointer ">Logout</button>
+                <button className="font-medium cursor-pointer text-gray-800 ">
+                  Logout
+                </button>
               </div>
             ) : (
               <button
