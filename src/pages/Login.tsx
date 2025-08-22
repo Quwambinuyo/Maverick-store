@@ -30,6 +30,9 @@ const Login = () => {
 
     if (res.error) {
       setErrorMsg(res.error);
+      if (res.error === "Something went wrong") {
+        setErrorMsg("Please check your internet");
+      }
     } else {
       navigate("/dashboard");
     }
