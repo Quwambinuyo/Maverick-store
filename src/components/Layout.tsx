@@ -30,10 +30,8 @@ const Layout = () => {
       {loading && <Loader />}
       <Sidebar />
       <div
-        className={`
-          flex flex-col transition-all duration-300 w-full 
-          ${isOpen ? "sm:pl-60" : "sm:pl-20"}
-        `}
+        className={`flex flex-col transition-all duration-300 w-full 
+          ${isOpen ? "sm:pl-60" : "sm:pl-25"}`}
       >
         <Navbar />
         <main className="flex-1 overflow-y-auto md:p-3 bg-gray-50 pb-19 min-h-screen">
