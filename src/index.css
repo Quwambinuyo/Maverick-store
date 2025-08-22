@@ -181,7 +181,7 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: 2px solid var(--color-primary-color);
   position: absolute;
   left: 0;
   top: 0;
