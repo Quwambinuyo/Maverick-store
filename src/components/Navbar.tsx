@@ -40,7 +40,7 @@ const Navbar = () => {
       {/* Middle: Search (slightly wider than greeting) */}
       <div className="relative hidden sm:block min-w-0">
         <CustomInput
-          className="w-full pl-10 pr-3 py-2 border border-primary-color rounded-md"
+          className="w-full pl-10 pr-3 py-2 border-b border-primary-color rounded-none focus:outline-none"
           placeholder="Search product..."
         />
         <AiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary-color text-xl" />

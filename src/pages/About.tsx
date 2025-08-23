@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import CustomBtn from "../utils/CustomBtn";
 
 const About = () => {
+  const navigate = useNavigate();
   return (
     <section className="text-primary-color py-16 px-6 sm:px-12 lg:px-24">
       {/* Header */}
@@ -79,7 +81,10 @@ const About = () => {
           From high-end fashion to exclusive collections, Maverick Store is here
           to make every purchase unforgettable.
         </p>
-        <CustomBtn className="mt-6 px-8 py-3  text-black font-medium rounded-full ">
+        <CustomBtn
+          onClick={() => navigate("/products")}
+          className="mt-6 px-8 py-3  cursor-pointer text-black font-medium rounded-full "
+        >
           Shop Now
         </CustomBtn>
       </div>

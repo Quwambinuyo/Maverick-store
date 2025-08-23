@@ -13,7 +13,7 @@ const CustomInput: React.FC<InputProps> = ({
       <input
         type={type}
         placeholder={placeholder}
-        className={`border px-4 pr-10 py-2 rounded-md focus:outline-non w-[100px]  sm:w-[100px] md:w-[180px] lg:w-[370px] ${className}`}
+        className={` px-4 pr-10 py-2 rounded-md focus:outline-non w-[100px]  sm:w-[100px] md:w-[180px] lg:w-[370px] ${className}`}
         {...rest}
       />
       {children && (
