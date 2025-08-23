@@ -74,7 +74,9 @@ const SwiperCarousel = () => {
             </div>
             <p className="text-base sm:text-lg font-light text-gray-500 break-words whitespace-normal">
               See our latest discounted products and get a special
-              <span className="text-purple-800 font-bold ml-2">discount</span>
+              <span className="text-primary-color font-bold ml-2">
+                discount
+              </span>
             </p>
           </div>
 
