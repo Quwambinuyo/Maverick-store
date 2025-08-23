@@ -36,10 +36,10 @@ const Pages = () => {
         <h2 className="mb-3 font-bold text-lg sm:text-[17px] text-gray-800 px-2">
           Pages
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 px-2 ">
           <NavLink
             to="/profile"
-            className="bg-blue-500 text-white p-4 md:rounded shadow flex gap-4 items-center"
+            className="bg-blue-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
             <div className="bg-blue-200 text-blue-500 p-4 rounded-full text-lg sm:text-[20px]">
               <IoPersonSharp />
@@ -50,7 +50,7 @@ const Pages = () => {
           </NavLink>
           <NavLink
             to="/checkout"
-            className="bg-rose-500 text-white p-4 md:rounded shadow flex gap-4 items-center"
+            className="bg-rose-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
             <div className="bg-rose-200 text-rose-500 p-4 rounded-full text-lg sm:text-[20px]">
               <RiShoppingCartLine />
@@ -61,7 +61,7 @@ const Pages = () => {
           </NavLink>
           <NavLink
             to="/privacy"
-            className="bg-gray-500 text-white p-4 md:rounded shadow flex gap-4 items-center"
+            className="bg-gray-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
             <div className="bg-gray-200 text-gray-500 p-4 rounded-full text-lg sm:text-[20px]">
               <LuMessageCircleWarning />
@@ -72,7 +72,7 @@ const Pages = () => {
           </NavLink>
           <NavLink
             to="/t&c"
-            className="bg-green-500 text-white p-4 md:rounded shadow flex gap-4 items-center"
+            className="bg-green-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
             <div className="bg-green-200 text-green-500 p-4 rounded-full text-lg sm:text-[17px]">
               <SlNote />
@@ -83,7 +83,7 @@ const Pages = () => {
           </NavLink>
           <NavLink
             to="/FAQ"
-            className="bg-indigo-500 text-white p-4 md:rounded shadow flex gap-4 items-center"
+            className="bg-indigo-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
             <div className="bg-indigo-200 text-indigo-500 p-4 rounded-full text-lg sm:text-[17px]">
               <FaQuestion />
@@ -94,7 +94,7 @@ const Pages = () => {
           </NavLink>
           <NavLink
             to="/contact"
-            className="bg-fuchsia-500 text-white p-4 md:rounded shadow flex gap-4 items-center"
+            className="bg-fuchsia-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
             <div className="bg-fuchsia-200 text-fuchsia-500 p-4 rounded-full text-lg sm:text-[17px]">
               <MdOutlineCallEnd />
@@ -105,7 +105,7 @@ const Pages = () => {
           </NavLink>
           <NavLink
             to="/products"
-            className="bg-lime-500 text-white p-4 md:rounded shadow flex gap-4 items-center"
+            className="bg-lime-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
             <div className="bg-lime-200 text-lime-500 p-4 rounded-full text-lg sm:text-[17px]">
               <CiShoppingTag />
@@ -116,7 +116,7 @@ const Pages = () => {
           </NavLink>
           <NavLink
             to="/history"
-            className="bg-stone-500 text-white p-4 md:rounded shadow flex gap-4 items-center"
+            className="bg-stone-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
             <div className="bg-stone-200 text-stone-500 p-4 rounded-full text-lg sm:text-[17px]">
               <FaHistory />
