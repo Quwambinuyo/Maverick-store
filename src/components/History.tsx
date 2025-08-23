@@ -3,6 +3,7 @@ import { FaChevronDown } from "react-icons/fa";
 import { CgSearch } from "react-icons/cg";
 import { CgSortAz } from "react-icons/cg";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 const History = () => {
   const dateInputRef = useRef<HTMLInputElement | null>(null);
@@ -24,8 +25,8 @@ const History = () => {
   ];
 
   const orderInfo = [
-    { title: "Order" },
     { title: "Date" },
+    { title: "Order No" },
     { title: "Customer" },
     { title: "Payment" },
     { title: "Total" },
@@ -45,7 +46,7 @@ const History = () => {
         <input
           ref={dateInputRef}
           type="date"
-          className="w-full font-bold text-primary-color px-3 py-2 pr-10 border border-primary-color rounded-lg focus:outline-none appearance-none"
+          className="w-full font-bold text-primary-color px-3 py-2 pr-10 border border-primary-color rounded-lg focus:outline-none "
         />
         <button
           type="button"
@@ -56,7 +57,7 @@ const History = () => {
         </button>
       </div>
 
-      {/* Order Stats - back to normal grid */}
+      {/* Order Stats  */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         {orderStats.map((stat, i) => (
           <div key={i} className="p-4">
@@ -89,19 +90,10 @@ const History = () => {
         ))}
       </div>
 
-      <div className="flex overflow-x-auto scrollbar-hide mt-5 gap-7  items-center bg-neutral-200 p-2 rounded-lg justify-between">
-        <div className="flex gap-10 md:gap-20">
-          {orderInfo.map((info, i) => {
-            return (
-              <div key={i} className="flex flex-col items-center">
-                <h2 className="text-sm md:text-md text-gray-800 font-semibold">
-                  {info.title}
-                </h2>
-              </div>
-            );
-          })}
-        </div>
+      {/* icons - search - sort  */}
+      <div className="mt-5">
         <div className="flex items-center gap-4">
+          {" "}
           {showSearch && (
             <input
               type="search"
@@ -112,18 +104,54 @@ const History = () => {
             onClick={() => setShowSearch((prev) => !prev)}
             className="bg-primary-color p-1 rounded-lg flex items-center justify-center"
           >
-            <CgSearch size={20} className="text-white" />
-          </button>
+            {" "}
+            <CgSearch size={20} className="text-white" />{" "}
+          </button>{" "}
           <button className="bg-primary-color p-1 rounded-lg flex items-center justify-center">
-            <CgSortAz size={20} className="text-white" />
-          </button>
+            {" "}
+            <CgSortAz size={20} className="text-white" />{" "}
+          </button>{" "}
           <button className="bg-primary-color p-1 rounded-lg flex items-center justify-center">
-            <PiDotsThreeOutlineFill size={20} className="text-white" />
-          </button>
+            {" "}
+            <PiDotsThreeOutlineFill size={20} className="text-white" />{" "}
+          </button>{" "}
         </div>
       </div>
 
-      <div></div>
+      {/*  Table */}
+      <div className="overflow-x-auto scrollbar-hide mt-5">
+        {/* Table Header */}
+        <div className="grid grid-cols-8 min-w-[800px] bg-neutral-200 p-2 rounded-lg">
+          {orderInfo.map((info, i) => (
+            <div key={i} className="flex justify-center">
+              <h2 className="text-sm md:text-md text-gray-800 font-semibold">
+                {info.title}
+              </h2>
+            </div>
+          ))}
+        </div>
+
+        {/* Orders List Row */}
+        <ul className="grid grid-cols-8 min-w-[800px] font-semibold place-items-center text-gray-800 mt-3 text-sm bg-white p-2 rounded-lg">
+          <li className="text-center">23/08/2025</li>
+          <li className="text-center">#1002</li>
+          <li className="text-center">Quwam Bode</li>
+          <li className="text-center  max-w-[100px] border border-green-500 font-bold text-green-600 rounded-lg p-1">
+            • Completed
+          </li>
+          <li className="text-center">N20,000</li>
+          <li className="text-center">FedEx</li>
+          <li className="text-center">4 items</li>
+          <li className="flex justify-center">
+            <button
+              type="button"
+              className="p-1 rounded-full hover:bg-gray-100"
+            >
+              <IoChatbubbleEllipsesOutline size={25} />
+            </button>
+          </li>
+        </ul>
+      </div>
     </section>
   );
 };
