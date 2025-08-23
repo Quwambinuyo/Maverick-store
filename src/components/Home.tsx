@@ -7,11 +7,13 @@ import SwiperCarousel from "./SwiperCarousel";
 const Home = () => {
   return (
     <>
-      <SwiperCarousel />
-      <FeaturedCategories />
-      <PopularProducts />
-      <DownloadApp />
-      <DiscountProducts />
+      <div className="p-2">
+        <SwiperCarousel />
+        <FeaturedCategories />
+        <PopularProducts />
+        <DownloadApp />
+        <DiscountProducts />
+      </div>
     </>
   );
 };

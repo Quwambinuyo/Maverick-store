@@ -47,7 +47,7 @@ const Contact = () => {
   ];
 
   return (
-    <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-2">
       {contacts.map((contact, index) => (
         <div key={index} className="bg-stone-300 p-4 rounded">
           <div className="flex flex-col justify-center items-center">

@@ -34,7 +34,7 @@ const Layout = () => {
           ${isOpen ? "sm:pl-60" : "sm:pl-25"}`}
       >
         <Navbar />
-        <main className="flex-1 overflow-y-auto md:p-3 bg-gray-50 pb-19 min-h-screen">
+        <main className="flex-1 overflow-y-auto  bg-gray-50 pb-19 min-h-screen">
           <Outlet />
         </main>
       </div>
