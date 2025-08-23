@@ -19,7 +19,7 @@ const TermsAndConditon = () => {
           Terms & Condition
         </h1>
       </div>
-      <div className="md:px-9 px-3 mb-4">
+      <div className="md:px-5 px-3 mb-4">
         <div>
           <h2 className="text-gray-800 font-bold text-sm sm:text-lg md:text-xl mt-5">
             Welcome to Maverick Store!
