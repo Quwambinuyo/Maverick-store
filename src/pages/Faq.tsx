@@ -75,13 +75,19 @@ const Faq = () => {
                   className="border-b border-gray-300 md:px-5 px-3 py-4 cursor-pointer"
                 >
                   <div className="flex items-center justify-between">
-                    <h2 className="text-gray-800 font-bold text-sm sm:text-lg md:text-xl">
+                    <h2 className="text-primary-color font-bold text-sm sm:text-lg md:text-xl">
                       {question.questions}
                     </h2>
                     {openAnswer === question.id ? (
-                      <MdOutlineKeyboardArrowUp size={25} />
+                      <MdOutlineKeyboardArrowUp
+                        size={25}
+                        className="text-primary-color"
+                      />
                     ) : (
-                      <MdOutlineKeyboardArrowDown size={25} />
+                      <MdOutlineKeyboardArrowDown
+                        size={25}
+                        className="text-primary-color"
+                      />
                     )}
                   </div>
                   <div
