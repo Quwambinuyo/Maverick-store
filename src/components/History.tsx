@@ -1,21 +1,13 @@
-import { useRef, useState } from "react";
-import { FaChevronDown } from "react-icons/fa";
+import { useState } from "react";
 import { CgSearch } from "react-icons/cg";
 import { CgSortAz } from "react-icons/cg";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import DateInput from "../utils/DateInput";
 
 const History = () => {
-  const dateInputRef = useRef<HTMLInputElement | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [showSearch, setShowSearch] = useState<boolean>(false);
-
-  const openCalendar = () => {
-    if (dateInputRef.current) {
-      dateInputRef.current.showPicker?.();
-      dateInputRef.current.click();
-    }
-  };
 
   const orderStats = [
     { title: "Total Orders", value: 5 },
@@ -43,18 +35,9 @@ const History = () => {
 
       {/* Date input */}
       <div className="relative w-60 mb-6">
-        <input
-          ref={dateInputRef}
-          type="date"
-          className="w-full font-bold text-primary-color px-3 py-2 pr-10 border border-primary-color rounded-lg focus:outline-none "
-        />
-        <button
-          type="button"
-          onClick={openCalendar}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-primary-color"
-        >
-          <FaChevronDown />
-        </button>
+        <div className=" mb-6">
+          <DateInput />
+        </div>
       </div>
 
       {/* Order Stats  */}
@@ -91,9 +74,8 @@ const History = () => {
       </div>
 
       {/* icons - search - sort  */}
-      <div className="mt-5">
+      <div className="mt-5 flex justify-end">
         <div className="flex items-center gap-4">
-          {" "}
           {showSearch && (
             <input
               type="search"
@@ -104,17 +86,14 @@ const History = () => {
             onClick={() => setShowSearch((prev) => !prev)}
             className="bg-primary-color p-1 rounded-lg flex items-center justify-center"
           >
-            {" "}
             <CgSearch size={20} className="text-white" />{" "}
           </button>{" "}
           <button className="bg-primary-color p-1 rounded-lg flex items-center justify-center">
-            {" "}
             <CgSortAz size={20} className="text-white" />{" "}
-          </button>{" "}
+          </button>
           <button className="bg-primary-color p-1 rounded-lg flex items-center justify-center">
-            {" "}
             <PiDotsThreeOutlineFill size={20} className="text-white" />{" "}
-          </button>{" "}
+          </button>
         </div>
       </div>
 
