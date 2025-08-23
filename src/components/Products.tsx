@@ -1,5 +1,13 @@
+import DiscountProducts from "./DiscountProducts";
+import PopularProducts from "./PopularProducts";
+
 const Products = () => {
-  return <div></div>;
+  return (
+    <section>
+      <PopularProducts />
+      <DiscountProducts />
+    </section>
+  );
 };
 
 export default Products;
