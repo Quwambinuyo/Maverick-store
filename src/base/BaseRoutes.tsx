@@ -1,6 +1,5 @@
 // src/base/BaseRoutes.tsx
 import { useEffect } from "react";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import {
@@ -16,6 +15,7 @@ import {
   SIngleCategory,
   SingleProduct,
 } from "../components";
+
 import {
   Dashboard,
   Cart,
@@ -33,7 +33,6 @@ import {
 
 import ProtectedRoute from "../base/ProtectedRoutes";
 import { useAuthStore } from "../features/useAuthStore";
-// import { useAuthStore } from "../features/useAuthStore";
 
 const router = createBrowserRouter([
   { path: "/", element: <Landing /> },
@@ -51,10 +50,12 @@ const router = createBrowserRouter([
     errorElement: <Error404 />,
     children: [
       { path: "/home", element: <Home /> },
+
+      { path: "/search", element: <Search /> },
+
       { path: "/dashboard", element: <Dashboard /> },
       { path: "/cart", element: <Cart /> },
       { path: "/categories", element: <Categories /> },
-      { path: "/search", element: <Search /> },
       {
         path: "/categories/:category/:subCategory?",
         element: <SIngleCategory />,
@@ -75,7 +76,6 @@ const router = createBrowserRouter([
 ]);
 
 export default function BaseRoutes() {
-  // const initAuth = useAuthStore((state) => state.);
   const { initAuth } = useAuthStore();
 
   useEffect(() => {

@@ -4,41 +4,59 @@ import { BsCartPlus } from "react-icons/bs";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { formatPrice } from "../utils/utilityfunc";
 import { useCartStore } from "../features/cartstore";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
-const PopularProducts = () => {
-  const allProducts: Product[] = [];
+const Search = () => {
+  const allProducts: (Product & { category: string; subCategory: string })[] =
+    [];
   const typedProducts = Products as ProductsType;
 
-  // Collect all products
   for (const categoryKey in typedProducts) {
     const category = typedProducts[categoryKey];
     for (const subKey in category) {
       const productsArray = category[subKey];
-      allProducts.push(...productsArray);
+      allProducts.push(
+        ...productsArray.map((p) => ({
+          ...p,
+          category: categoryKey.toLowerCase(),
+          subCategory: subKey.toLowerCase(),
+        }))
+      );
     }
   }
 
   const { cart, addToCart, increment, decrement } = useCartStore();
+
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("q")?.toLowerCase() || "";
+
+  const filteredProducts = query
+    ? allProducts.filter(
+        (product) =>
+          product.name.toLowerCase().includes(query) ||
+          product.category.includes(query) ||
+          product.subCategory.includes(query)
+      )
+    : [];
 
   return (
     <section>
       {/* Header */}
       <div className="sm:w-[500px] w-[90%] text-center flex flex-col justify-center mx-auto py-3 space-y-3.5 mb-4">
         <h2 className="text-sm font-bold sm:text-2xl">
-          Popular Products for Daily Shopping
+          Search results for "{query}"
         </h2>
         <p className="text-sm sm:text-[15px] font-semibold text-gray-800">
-          See all our popular products in this week. You can choose your daily
-          needs products from this list and get some special offer with free
-          shipping.
+          {filteredProducts.length > 0
+            ? `We found ${filteredProducts.length} product(s) matching your search.`
+            : "No matching products found."}
         </p>
       </div>
 
       {/* Products grid */}
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 xl:grid-cols-4 p-1 sm:gap-4 md:px-2">
-        {allProducts.length > 0 ? (
-          allProducts.map((product) => {
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => {
             const cartItem = cart.find((item) => item.id === product.id);
             const isOutOfStock =
               product.amount === 0 || (cartItem && cartItem.quantity === 0);
@@ -126,4 +144,4 @@ const PopularProducts = () => {
   );
 };
 
-export default PopularProducts;
+export default Search;
