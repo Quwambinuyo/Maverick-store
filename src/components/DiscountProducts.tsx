@@ -3,12 +3,13 @@ import type { Product, ProductsType } from "../types/types";
 import { BsCartPlus, BsCheckCircle } from "react-icons/bs";
 import { useCartStore } from "../features/cartstore";
 import { formatPrice } from "../utils/utilityfunc";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const DiscountProducts = () => {
   const allProducts: Product[] = [];
   const typedProducts = DiscountedProduct as ProductsType;
 
+  // Flatten products from categories
   for (const categoryKey in typedProducts) {
     const category = typedProducts[categoryKey];
     for (const subKey in category) {
@@ -18,6 +19,29 @@ const DiscountProducts = () => {
   }
 
   const { cart, addToCart, removeFromCart } = useCartStore();
+
+  const [searchParams] = useSearchParams();
+  const qRaw = String(searchParams.get("q") ?? "");
+  const q = qRaw.replace(/^\s+|\s+$/g, "").toLowerCase();
+
+  // Flexible search
+  const filteredProducts = q
+    ? allProducts.filter((p) => {
+        const name = p.name.toLowerCase();
+
+        // 1. Remove spaces from query
+        const qLetters = q.replace(/\s+/g, "");
+
+        // 2. Regex for sequential letter match (e.g. "nik" -> n.*i.*k)
+        const regex = new RegExp(qLetters.split("").join(".*"), "i");
+
+        // 3. Word-based match (e.g. "max air" finds "Nike Air Max")
+        const words = q.split(/\s+/);
+        const wordMatch = words.every((word) => name.includes(word));
+
+        return regex.test(name) || wordMatch;
+      })
+    : allProducts;
 
   return (
     <section>
@@ -30,7 +54,7 @@ const DiscountProducts = () => {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 xl:grid-cols-4 sm:gap-4 px-2 pb-20">
-        {allProducts.map((product) => {
+        {filteredProducts.map((product) => {
           const cartItem = cart.find((item) => item.id === product.id);
           const price = Number(product.price ?? 0);
           const discountPercent = Number(product.discountPercent ?? 0);

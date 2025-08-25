@@ -24,13 +24,13 @@ const Footer = () => {
             <a href="">
               <FaFacebookF className="text-sm md:text-[20px]" />
             </a>
-            <a href="">
+            <a href="https://x.com/devboyq">
               <FaXTwitter className="text-sm md:text-[20px]" />
             </a>
             <a href="">
               <MdOutlineWhatsapp className="text-sm md:text-[20px]" />
             </a>
-            <a href="">
+            <a href="https://www.instagram.com/devboyq">
               <IoLogoInstagram className="text-sm md:text-[20px]" />
             </a>
           </div>
