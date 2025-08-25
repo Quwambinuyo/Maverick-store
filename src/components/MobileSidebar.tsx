@@ -6,12 +6,25 @@ import { useCartStore } from "../features/cartstore";
 import { motion } from "framer-motion";
 import { IoMdLogOut } from "react-icons/io";
 import { useAuthStore } from "../features/useAuthStore";
+import { useEffect } from "react";
 
 const MobileSidebar = () => {
   const { isOpen, toggleSidebar } = useSidebarStore();
   const { cart } = useCartStore();
   const cartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
   const { logout } = useAuthStore();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   return (
     <>
