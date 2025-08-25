@@ -33,60 +33,81 @@ const Navbar = () => {
       : "Good evening";
 
   return (
-    <nav className="flex items-center justify-between bg-white px-4 py-3 shadow-lg w-full gap-2">
-      {/* Left */}
-      <div className="flex items-center gap-4 min-w-0">
-        <button
-          onClick={toggleSidebar}
-          className="sm:hidden text-primary-color text-3xl focus:outline-none"
-        >
-          {!isOpen && <RxHamburgerMenu />}
-        </button>
-        <span className="text-sm ml-5 roboto sm:inline capitalize md:text-lg text-primary-color font-semibold truncate">
-          Hello, {user?.displayName?.split(" ")[0]}. {greeting} 👋
-        </span>
-      </div>
+    <>
+      {/* Top Navbar */}
+      <nav className="flex items-center justify-between bg-white px-4 py-3 shadow-lg w-full gap-2">
+        {/* Left */}
+        <div className="flex items-center gap-4 min-w-0">
+          <button
+            onClick={toggleSidebar}
+            className="sm:hidden text-primary-color text-3xl focus:outline-none"
+          >
+            {!isOpen && <RxHamburgerMenu />}
+          </button>
+          <span className="text-sm ml-5 roboto sm:inline capitalize md:text-lg text-primary-color font-semibold truncate">
+            Hello, {user?.displayName?.split(" ")[0]}. {greeting} 👋
+          </span>
+        </div>
 
-      {/* Middle: Search */}
-      <div className="relative hidden sm:block min-w-0">
-        <form onSubmit={handleSearch}>
+        {/* Middle: Search (Desktop only) */}
+        <div className="relative hidden sm:block lg:min-w-[600px]">
+          <form onSubmit={handleSearch}>
+            <CustomInput
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              className="w-full pl-10  pr-3 py-2 border-b border-primary-color rounded-none focus:outline-none"
+              placeholder="Search product..."
+            />
+            <button
+              className="absolute left-3 cursor-pointer top-1/2 transform -translate-y-1/2 text-primary-color text-xl"
+              type="submit"
+            >
+              <AiOutlineSearch />
+            </button>
+          </form>
+        </div>
+
+        {/* Right */}
+        <div className="flex items-center justify-end ">
+          <div className="flex items-center gap-4 sm:gap-7 text-2xl text-gray-800">
+            <IoIosNotifications />
+            {userData?.photoURL ? (
+              <NavLink to="/profile">
+                <img
+                  src={userData?.photoURL.base64}
+                  className="sm:w-[30px] sm:h-[30px] w-[20px] h-[20px] rounded-full object-cover"
+                  alt="User avatar"
+                />
+              </NavLink>
+            ) : (
+              <NavLink to="/profile">
+                <h1 className="text-white flex justify-center bg-primary-color rounded-full text-center w-[25px] h-[25px] text-sm items-center sm:text-[20px]">
+                  {user?.displayName?.charAt(0)}
+                </h1>
+              </NavLink>
+            )}
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Search (Full width below navbar) */}
+      <div className="block sm:hidden px-4 py-2 bg-white shadow-md">
+        <form onSubmit={handleSearch} className="relative w-full">
           <CustomInput
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            className="w-full pl-10 pr-3 py-2 border-b border-primary-color rounded-none focus:outline-none"
+            className="w-full pl-10 pr-3 py-2 border border-primary-color rounded-md focus:outline-none"
             placeholder="Search product..."
           />
           <button
-            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary-color text-xl"
+            className=" cursor-pointer absolute left-3 top-1/2 transform -translate-y-1/2 text-primary-color text-xl"
             type="submit"
           >
             <AiOutlineSearch />
           </button>
         </form>
       </div>
-
-      {/* Right */}
-      <div className="flex items-center justify-end ">
-        <div className="flex items-center gap-4 sm:gap-7 text-2xl text-gray-800">
-          <IoIosNotifications />
-          {userData?.photoURL ? (
-            <NavLink to="/profile">
-              <img
-                src={userData?.photoURL.base64}
-                className="sm:w-[30px] sm:h-[30px] w-[20px] h-[20px] rounded-full object-cover"
-                alt="User avatar"
-              />
-            </NavLink>
-          ) : (
-            <NavLink to="/profile">
-              <h1 className="text-white flex justify-center bg-primary-color rounded-full text-center w-[25px] h-[25px] text-sm items-center sm:text-[20px]">
-                {user?.displayName?.charAt(0)}
-              </h1>
-            </NavLink>
-          )}
-        </div>
-      </div>
-    </nav>
+    </>
   );
 };
 
