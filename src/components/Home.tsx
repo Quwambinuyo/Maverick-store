@@ -1,5 +1,5 @@
-import { useSearchParams } from "react-router-dom";
-import { useSidebarStore } from "../features/store";
+import { useSearchParams, Navigate } from "react-router-dom";
+// import { useSidebarStore } from "../features/store";
 import DiscountProducts from "./DiscountProducts";
 import DownloadApp from "./DownloadApp";
 import FeaturedCategories from "./FeaturedCategories";
@@ -9,22 +9,18 @@ import SwiperCarousel from "./SwiperCarousel";
 
 const Home = () => {
   const [searchParams] = useSearchParams();
-  const { loading } = useSidebarStore();
   const q = searchParams.get("q") || "";
 
-  const isSearching = q.trim() !== "" || loading;
+  if (q.trim() !== "") {
+    return <Navigate to={`/search?q=${q}`} replace />;
+  }
 
   return (
     <>
       <div className="p-2">
-        {!isSearching && (
-          <>
-            <SwiperCarousel />
-            <FeaturedCategories />
-            <DownloadApp />
-          </>
-        )}
-
+        <SwiperCarousel />
+        <FeaturedCategories />
+        <DownloadApp />
         <PopularProducts />
         <DiscountProducts />
       </div>

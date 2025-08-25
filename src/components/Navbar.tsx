@@ -1,4 +1,3 @@
-// Navbar.tsx
 import { useSidebarStore } from "../features/store";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoIosNotifications } from "react-icons/io";
@@ -7,22 +6,21 @@ import CustomInput from "../utils/CustomInput";
 import moment from "moment";
 import { useAuthStore } from "../features/useAuthStore";
 import { getSavedUserData } from "../utils/utils";
-import { NavLink, useSearchParams } from "react-router-dom";
-import type React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Navbar = () => {
   const { isOpen, toggleSidebar } = useSidebarStore();
   const { user } = useAuthStore();
   const { userData } = getSavedUserData(user?.uid as string);
-  const [query, setQuery] = useSearchParams();
+
+  const [q, setQ] = useState("");
+  const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    const q = query.get("q") || "";
-    if (q !== "") {
-      // setLoading(true);
-      setQuery({ q });
-      // setTimeout(() => setLoading(false), 500);
+    if (q.trim() !== "") {
+      navigate(`/search?q=${encodeURIComponent(q.trim())}`);
     }
   };
 
@@ -53,8 +51,8 @@ const Navbar = () => {
       <div className="relative hidden sm:block min-w-0">
         <form onSubmit={handleSearch}>
           <CustomInput
-            value={query.get("q") || ""}
-            onChange={(e) => setQuery({ q: e.target.value })}
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
             className="w-full pl-10 pr-3 py-2 border-b border-primary-color rounded-none focus:outline-none"
             placeholder="Search product..."
           />
@@ -88,12 +86,6 @@ const Navbar = () => {
           )}
         </div>
       </div>
-
-      {/* {loading && (
-        <div className="absolute top-[60px] left-0 w-full text-center bg-yellow-100 py-2 text-yellow-700 text-sm">
-          Searching products...
-        </div>
-      )} */}
     </nav>
   );
 };

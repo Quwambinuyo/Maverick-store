@@ -22,23 +22,15 @@ const DiscountProducts = () => {
 
   const [searchParams] = useSearchParams();
   const qRaw = String(searchParams.get("q") ?? "");
-  const q = qRaw.replace(/^\s+|\s+$/g, "").toLowerCase();
+  const q = qRaw.trim().toLowerCase();
 
-  // Flexible search
   const filteredProducts = q
     ? allProducts.filter((p) => {
         const name = p.name.toLowerCase();
-
-        // 1. Remove spaces from query
         const qLetters = q.replace(/\s+/g, "");
-
-        // 2. Regex for sequential letter match (e.g. "nik" -> n.*i.*k)
         const regex = new RegExp(qLetters.split("").join(".*"), "i");
-
-        // 3. Word-based match (e.g. "max air" finds "Nike Air Max")
         const words = q.split(/\s+/);
         const wordMatch = words.every((word) => name.includes(word));
-
         return regex.test(name) || wordMatch;
       })
     : allProducts;
@@ -53,79 +45,87 @@ const DiscountProducts = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 xl:grid-cols-4 sm:gap-4 px-2 pb-20">
-        {filteredProducts.map((product) => {
-          const cartItem = cart.find((item) => item.id === product.id);
-          const price = Number(product.price ?? 0);
-          const discountPercent = Number(product.discountPercent ?? 0);
-          const discountPrice = price - (price * discountPercent) / 100;
-          const percentOff =
-            price > 0 ? Math.round(((price - discountPrice) / price) * 100) : 0;
-          const isInCart = !!cartItem;
+      {filteredProducts.length === 0 ? (
+        <p className="text-center text-gray-600 font-medium py-10">
+          No discounted products found for "{qRaw}"
+        </p>
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 xl:grid-cols-4 sm:gap-4 px-2 pb-20">
+          {filteredProducts.map((product) => {
+            const cartItem = cart.find((item) => item.id === product.id);
+            const price = Number(product.price ?? 0);
+            const discountPercent = Number(product.discountPercent ?? 0);
+            const discountPrice = price - (price * discountPercent) / 100;
+            const percentOff =
+              price > 0
+                ? Math.round(((price - discountPrice) / price) * 100)
+                : 0;
+            const isInCart = !!cartItem;
 
-          return (
-            <Link
-              to={`/singleProduct/${product.id}`}
-              key={product.id}
-              className="p-3 rounded-md shadow relative bg-white flex flex-col md:h-[300px]"
-            >
-              {/* Percent-off badge */}
-              {percentOff > 0 && (
-                <div className="absolute top-7 left-5 bg-red-200 text-red-500 text-xs px-2 py-1 rounded font-semibold">
-                  {percentOff}% OFF
-                </div>
-              )}
+            return (
+              <Link
+                to={`/singleProduct/${product.id}`}
+                key={product.id}
+                className="p-3 rounded-md shadow relative bg-white flex flex-col md:h-[300px]"
+              >
+                {/* Percent-off badge */}
+                {percentOff > 0 && (
+                  <div className="absolute top-7 left-5 bg-red-200 text-red-500 text-xs px-2 py-1 rounded font-semibold">
+                    {percentOff}% OFF
+                  </div>
+                )}
 
-              {/* Product Image */}
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-40 sm:h-48 object-contain rounded mb-3"
-              />
+                {/* Product Image */}
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-40 sm:h-48 object-contain rounded mb-3"
+                />
 
-              {/* Product Name */}
-              <h2 className="text-xs sm:text-sm font-semibold line-clamp-1 mb-2">
-                {product.name}
-              </h2>
+                {/* Product Name */}
+                <h2 className="text-xs sm:text-sm font-semibold line-clamp-1 mb-2">
+                  {product.name}
+                </h2>
 
-              {/* Price & Cart Button */}
-              <div className="flex items-center justify-between">
-                {/* Price section */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
-                  <span className="text-primary-color font-bold text-sm sm:text-base">
-                    {formatPrice(discountPrice)}
-                  </span>
-                  {percentOff > 0 && (
-                    <span className="text-gray-500 line-through text-xs sm:text-sm">
-                      {formatPrice(price)}
+                {/* Price & Cart Button */}
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                    <span className="text-primary-color font-bold text-sm sm:text-base">
+                      {formatPrice(discountPrice)}
                     </span>
-                  )}
-                </div>
+                    {percentOff > 0 && (
+                      <span className="text-gray-500 line-through text-xs sm:text-sm">
+                        {formatPrice(price)}
+                      </span>
+                    )}
+                  </div>
 
-                {/* Add / Remove Cart button */}
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    isInCart ? removeFromCart(product.id) : addToCart(product);
-                  }}
-                  className={`p-2 rounded-full font-medium transition-colors duration-300 flex items-center gap-1 ${
-                    isInCart
-                      ? "bg-green-500 text-white"
-                      : "bg-primary-color text-white hover:bg-secondary-color"
-                  }`}
-                >
-                  {isInCart ? (
-                    <BsCheckCircle size={18} />
-                  ) : (
-                    <BsCartPlus size={18} />
-                  )}
-                </button>
-              </div>
-            </Link>
-          );
-        })}
-      </div>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      isInCart
+                        ? removeFromCart(product.id)
+                        : addToCart(product);
+                    }}
+                    className={`p-2 rounded-full font-medium transition-colors duration-300 flex items-center gap-1 ${
+                      isInCart
+                        ? "bg-green-500 text-white"
+                        : "bg-primary-color text-white hover:bg-secondary-color"
+                    }`}
+                  >
+                    {isInCart ? (
+                      <BsCheckCircle size={18} />
+                    ) : (
+                      <BsCartPlus size={18} />
+                    )}
+                  </button>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 };

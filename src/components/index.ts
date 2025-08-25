@@ -18,3 +18,4 @@ export { default as LandingNav } from "./LandingNav";
 export { default as Profile } from "./Profile";
 export { default as History } from "./History";
 export { default as SIngleCategory } from "./SingleCategory";
+export { default as Search } from "./Search";
