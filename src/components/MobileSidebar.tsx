@@ -16,23 +16,23 @@ const MobileSidebar = () => {
   return (
     <>
       {/* Overlay */}
-      {isOpen && (
-        <div
-          onClick={toggleSidebar}
-          className="fixed inset-0 bg-[#393F4266] backdrop-blur-[2px] sm:hidden h-[lvh]"
-          style={{ zIndex: 5 }}
-        >
-          <button className="absolute cursor-pointer top-2 right-3 rounded-full h-[42px] w-[42px] bg-primary-color flex items-center justify-center">
-            <FaTimes color="#ffffff" size={20} />
-          </button>
-        </div>
-      )}
+      <div
+        onClick={toggleSidebar}
+        className={`fixed inset-0 bg-[#393F4266] backdrop-blur-[2px] sm:hidden transition-opacity duration-300 ${
+          isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+        style={{ zIndex: 5 }}
+      >
+        <button className="absolute cursor-pointer top-2 right-3 rounded-full h-[42px] w-[42px] bg-primary-color flex items-center justify-center">
+          <FaTimes color="#ffffff" size={20} />
+        </button>
+      </div>
 
       {/* Sidebar */}
       <aside
-        className={`h-screen bg-primary-color border-r border-gray-300 flex-shrink-0 fixed top-0 left-0 ${
-          isOpen ? "block w-60" : "hidden sm:block w-20"
-        } z-10`}
+        className={`fixed top-0 left-0 h-screen bg-primary-color border-r border-gray-300 flex-shrink-0 z-20 transform transition-transform duration-300 ease-in-out 
+        ${isOpen ? "translate-x-0 w-60" : "-translate-x-full w-60"} 
+        sm:translate-x-0 sm:w-20`}
       >
         <div className="relative h-full flex flex-col">
           {/* Header */}
@@ -94,9 +94,7 @@ const MobileSidebar = () => {
                       </motion.span>
 
                       {isOpen && (
-                        <span
-                          className={`text-[18px] font-semibold whitespace-nowrap`}
-                        >
+                        <span className="text-[18px] font-semibold whitespace-nowrap">
                           {name}
                         </span>
                       )}
@@ -111,11 +109,7 @@ const MobileSidebar = () => {
                   className="flex justify-center items-center bg-white max-w-[250px] mx-auto px-9 py-2 mb-5 rounded-full gap-2 cursor-pointer"
                 >
                   <IoMdLogOut className="text-red-500 text-3xl" />
-
-                  <button
-                    // onClick={logout}
-                    className="font-medium cursor-pointer "
-                  >
+                  <button className="font-medium cursor-pointer ">
                     Logout
                   </button>
                 </div>

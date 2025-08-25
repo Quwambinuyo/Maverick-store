@@ -50,9 +50,7 @@ const router = createBrowserRouter([
     errorElement: <Error404 />,
     children: [
       { path: "/home", element: <Home /> },
-
       { path: "/search", element: <Search /> },
-
       { path: "/dashboard", element: <Dashboard /> },
       { path: "/cart", element: <Cart /> },
       { path: "/categories", element: <Categories /> },
