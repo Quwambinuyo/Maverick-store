@@ -117,7 +117,7 @@ const Cart = () => {
       </div>
 
       {/* Cart total + checkout */}
-      <div className="text-right mt-4">
+      <div className="text-right mt-4  pb-16 ">
         <p className="font-bold text-lg mb-3">
           Total: {formatPrice(totalAmount)}
         </p>

@@ -31,7 +31,7 @@ const MobileSidebar = () => {
       {/* Overlay */}
       <div
         onClick={toggleSidebar}
-        className={`fixed inset-0 bg-[#393F4266] backdrop-blur-[2px] sm:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-[#393F4266] backdrop-blur-[2px] sm:hidden transition-opacity duration-100 ${
           isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         style={{ zIndex: 5 }}
@@ -119,7 +119,7 @@ const MobileSidebar = () => {
               {isOpen && (
                 <div
                   onClick={logout}
-                  className="flex justify-center items-center bg-white max-w-[250px] mx-auto px-9 py-2 mb-5 rounded-full gap-2 cursor-pointer"
+                  className="flex justify-center items-center bg-white max-w-[250px] mx-auto px-9 py-2  mb-16 rounded-full gap-2 cursor-pointer"
                 >
                   <IoMdLogOut className="text-red-500 text-3xl" />
                   <button className="font-medium cursor-pointer ">
