@@ -4,6 +4,8 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useCartStore } from "../features/cartstore";
 // import { toast } from "react-toastify";
 import PaystackPayment from "../utils/PaystackPayment";
+// import { auth } from "../Auth/firebaseconfig";
+import { getAuth } from "firebase/auth";
 
 type CheckoutFormData = {
   name: string;
@@ -43,6 +45,9 @@ const Checkout = () => {
       logistic: "",
     },
   });
+
+  const authUser = getAuth();
+  const userId = authUser.currentUser?.uid;
 
   const selectedLogistic = watch("logistic");
   const email = watch("email");
@@ -190,7 +195,9 @@ const Checkout = () => {
             totalPrice={totalPrice}
             clearFromCart={clearFromCart}
             name={name}
+            cart={cart}
             email={email}
+            userId={userId as string}
             zipCode={zipCode}
             logistic={logistic}
             address={address}

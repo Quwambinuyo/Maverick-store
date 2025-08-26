@@ -1,11 +1,16 @@
 import { useEffect } from "react";
 import CustomBtn from "./CustomBtn";
 import { toast } from "react-toastify";
-
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../Auth/firebaseconfig";
+import { useSidebarStore } from "../features/store";
+import type { CartItem } from "../types/cartTypes";
 interface PaystackBtnType {
   totalPrice: number;
   clearFromCart: () => void;
+  cart: CartItem[];
   name: string;
+  userId: string;
   email: string;
   zipCode: string;
   phone: string;
@@ -13,18 +18,21 @@ interface PaystackBtnType {
   address: string;
   logistic: string;
 }
+
 export default function PaystackPayment({
   totalPrice,
   clearFromCart,
   email,
+  name,
   address,
+  userId,
   phone,
+  cart,
+  zipCode,
   country,
   logistic,
 }: PaystackBtnType) {
   const publicKey = import.meta.env.VITE_PUBLIC_KEY;
-
-  // const {clearFromCart} = useCartStore()
 
   useEffect(() => {
     // Load Paystack inline script
@@ -33,7 +41,44 @@ export default function PaystackPayment({
     script.async = true;
     document.body.appendChild(script);
   }, []);
-  // console.log(email);
+
+  const randomUid = Math.floor(Math.random() * 10000000 + 1);
+  const { setLoading } = useSidebarStore();
+  // console.log(randomUid);
+
+  const handleOrderToStore = async (id: string) => {
+    const data = {
+      address,
+      name,
+      email,
+      userId,
+      phone,
+      logistic,
+      orderId: String(randomUid),
+      amount: totalPrice,
+      country,
+      zipCode,
+      cart,
+      reference: id,
+      status: "Pending",
+      createdAt: new Date().toISOString(),
+    };
+
+    console.log(id, data);
+
+    try {
+      // const response = await setDoc(doc(db, "orders", data.orderId), data);
+      const response = await setDoc(doc(db, "orders", String(randomUid)), data);
+      setLoading(true);
+      console.log(response);
+      toast.success("Order placed successfully!");
+      clearFromCart();
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handlePayment = () => {
     const handler = (window as any).PaystackPop.setup({
@@ -71,10 +116,7 @@ export default function PaystackPayment({
         ],
       },
       callback: (response: any) => {
-        console.log("Payment successful:", response);
-        clearFromCart();
-
-        toast.success("Payment successful! Reference: " + response.reference);
+        handleOrderToStore(response.reference);
       },
       onClose: () => {
         console.log("Payment window closed");
