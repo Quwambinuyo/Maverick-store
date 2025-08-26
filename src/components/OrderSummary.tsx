@@ -2,17 +2,18 @@ import { useCartStore } from "../features/cartstore";
 import { formatPrice } from "../utils/utilityfunc";
 
 const OrderSummary = () => {
-  const { cart } = useCartStore();
+  const { cart, logisticPrice } = useCartStore();
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-
   const totalPrice = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
 
+  const finalTotal = totalPrice + logisticPrice;
+
   return (
-    <div className=" p-4 space-y-4">
+    <div className="p-4 space-y-4">
       <h2 className="text-lg font-bold border-b border-gray-300 pb-2">
         Order Summary ({totalItems} {totalItems === 1 ? "item" : "items"})
       </h2>
@@ -26,7 +27,7 @@ const OrderSummary = () => {
             <div>
               <p className="font-semibold text-sm">{item.name}</p>
               <p className="text-gray-500 text-xs">
-                ₦{formatPrice(item.price)} × {item.quantity}
+                {formatPrice(item.price)} × {item.quantity}
               </p>
             </div>
             <p className="font-bold text-sm">
@@ -36,9 +37,16 @@ const OrderSummary = () => {
         ))}
       </div>
 
+      {logisticPrice > 0 && (
+        <div className="flex justify-between items-center text-green-800 font-semibold">
+          <h3>Logistic</h3>
+          <h4>{formatPrice(logisticPrice)}</h4>
+        </div>
+      )}
+
       <div className="flex justify-between items-center font-bold text-lg border-gray-300 border-t pt-2">
         <span>Total</span>
-        <span>{formatPrice(totalPrice)}</span>
+        <span>{formatPrice(finalTotal)}</span>
       </div>
     </div>
   );

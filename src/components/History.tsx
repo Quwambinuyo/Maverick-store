@@ -94,16 +94,14 @@ const History = () => {
             className="bg-primary-color p-1 rounded-lg flex items-center justify-center"
           >
             <CgSearch size={20} className="text-white" />
-          </button>{" "}
+          </button>
           <button className="bg-primary-color p-1 rounded-lg flex items-center justify-center">
-            {" "}
             <CgSortAz size={20} className="text-white" />
-          </button>{" "}
+          </button>
           <button className="bg-primary-color p-1 rounded-lg flex items-center justify-center">
-            {" "}
             <PiDotsThreeOutlineFill size={20} className="text-white" />
-          </button>{" "}
-        </div>{" "}
+          </button>
+        </div>
       </div>
 
       {/* Filters */}
@@ -168,7 +166,7 @@ const History = () => {
                     ? "border-green-500 text-green-600"
                     : order.status === "Pending"
                     ? "border-yellow-500 text-yellow-600"
-                    : "border-gray-400 text-gray-500"
+                    : "border-blue-400 text-blue-500"
                 }`}
               >
                 • {order.status}

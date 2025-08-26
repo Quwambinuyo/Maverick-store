@@ -11,4 +11,6 @@ export interface CartState {
   decrement: (id: string) => void;
   removeFromCart: (id: string) => void;
   clearFromCart: () => void;
+  logisticPrice: number;
+  setLogisticPrice: (price: number) => void;
 }

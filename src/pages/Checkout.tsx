@@ -2,9 +2,7 @@ import Form from "../utils/Form";
 import OrderSummary from "../components/OrderSummary";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useCartStore } from "../features/cartstore";
-// import { toast } from "react-toastify";
 import PaystackPayment from "../utils/PaystackPayment";
-// import { auth } from "../Auth/firebaseconfig";
 import { getAuth } from "firebase/auth";
 
 type CheckoutFormData = {
@@ -18,11 +16,9 @@ type CheckoutFormData = {
 };
 
 const Checkout = () => {
-  const { cart, clearFromCart } = useCartStore();
-
-  // const publicKey = import.meta.env.VITE_PUBLIC_KEY;
-
-  // console.log(publicKey);
+  // get logisticPrice & setter from store (no local useState)
+  const { cart, clearFromCart, logisticPrice, setLogisticPrice } =
+    useCartStore();
 
   const totalPrice = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -46,47 +42,33 @@ const Checkout = () => {
     },
   });
 
+  const handleLogisticChange = (value: string) => {
+    if (value === "DHL") setLogisticPrice(4500);
+    else if (value === "FedEx") setLogisticPrice(5020);
+    else setLogisticPrice(0);
+  };
+
   const authUser = getAuth();
   const userId = authUser.currentUser?.uid;
 
   const selectedLogistic = watch("logistic");
   const email = watch("email");
-  const address = watch("email");
+  const address = watch("address");
   const country = watch("country");
   const logistic = watch("logistic");
   const zipCode = watch("zipCode");
   const phone = watch("phone");
   const name = watch("name");
 
-  // const componentProps: any = {
-  //   email: watch("email"),
-  //   zipCode: watch("zipCode"),
-  //   phone: watch("phone"),
-  //   logistic: watch("logistic"),
-  //   name: watch("name"),
-  //   address: watch("address"),
-  //   amount: totalPrice * 100,
-  //   metadata: {
-  //     name: "",
-  //     phone: "",
-  //   },
-  //   publicKey,
-  //   text: "Pay Now",
-  //   onSuccess: () => {
-  //     toast.success("Thanks for doing business with us! Come back soon!!");
-  //     clearFromCart();
-  //   },
-  // };
-  // console.log(componentProps, 3, "sdkhskdj");
-
   const onSubmit: SubmitHandler<CheckoutFormData> = (data) => {
-    console.log(data);
+    console.log("Form submitted", data);
   };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-14">
       {/* Left: Form */}
       <Form onSubmit={handleSubmit(onSubmit)}>
+        {/* Full Name */}
         <div>
           <label className="block text-sm font-medium">Full Name</label>
           <input
@@ -99,6 +81,7 @@ const Checkout = () => {
           )}
         </div>
 
+        {/* Address */}
         <div>
           <label className="block text-sm font-medium">Address</label>
           <input
@@ -111,6 +94,7 @@ const Checkout = () => {
           )}
         </div>
 
+        {/* Phone */}
         <div>
           <label className="block text-sm font-medium">Phone Number</label>
           <input
@@ -123,6 +107,7 @@ const Checkout = () => {
           )}
         </div>
 
+        {/* Zip & Country */}
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium">Zip Code</label>
@@ -148,6 +133,7 @@ const Checkout = () => {
           </div>
         </div>
 
+        {/* Email */}
         <div>
           <label className="block text-sm font-medium">Email Address</label>
           <input
@@ -160,39 +146,62 @@ const Checkout = () => {
           )}
         </div>
 
+        {/* Logistic Options */}
         <p className="block text-sm font-medium mb-2">Choose Logistic</p>
-        <div className="flex flex-col sm:flex  gap-4">
-          <label className="flex items-center gap-2">
+        <div className="flex flex-col gap-4">
+          {/* DHL */}
+          <label
+            className={`items-center gap-2 border max-w-[200px] text-nowrap justify-start pl-2 p-1 rounded-lg flex cursor-pointer
+              ${
+                selectedLogistic === "DHL"
+                  ? "border-green-700 text-green-700 font-bold"
+                  : "border-gray-300 text-gray-800"
+              }
+            `}
+          >
             <input
               type="radio"
-              className="accent-primary-color"
+              className="accent-green-700"
               value="DHL"
               {...register("logistic", {
                 required: "Please choose a logistic",
+                onChange: (e) => handleLogisticChange(e.target.value),
               })}
               checked={selectedLogistic === "DHL"}
             />
-            DHL Express
+            DHL Express <p>₦4,500</p>
           </label>
-          <label className="flex items-center gap-2">
+
+          {/* FedEx */}
+          <label
+            className={`items-center gap-2 border max-w-[200px] text-nowrap justify-start pl-2 p-1 rounded-lg flex cursor-pointer
+              ${
+                selectedLogistic === "FedEx"
+                  ? "border-green-700 text-green-700 font-bold"
+                  : "border-gray-300 text-gray-800"
+              }
+            `}
+          >
             <input
-              className="accent-primary-color"
               type="radio"
+              className="accent-green-800"
               value="FedEx"
               {...register("logistic", {
                 required: "Please choose a logistic",
+                onChange: (e) => handleLogisticChange(e.target.value),
               })}
               checked={selectedLogistic === "FedEx"}
             />
-            FedEx
+            FedEx <p>₦5,020</p>
           </label>
+
           {errors.logistic && (
             <p className="text-red-500 text-sm">{errors.logistic.message}</p>
           )}
-          {/* <CustomBtn label="Proceed to Payment" type="submit" /> */}
 
+          {/* Payment Button */}
           <PaystackPayment
-            totalPrice={totalPrice}
+            totalPrice={totalPrice + logisticPrice}
             clearFromCart={clearFromCart}
             name={name}
             cart={cart}

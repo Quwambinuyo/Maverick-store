@@ -5,24 +5,66 @@ import Checkout from "./Checkout";
 import { FaHome } from "react-icons/fa";
 import { useAuthStore } from "../features/useAuthStore";
 import { getSavedUserData } from "../utils/utils";
+import { db } from "../Auth/firebaseconfig";
+import { fetchUserOrders } from "../features/OrderStore";
+import { useEffect, useState } from "react";
+import { useSidebarStore } from "../features/store";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { user } = useAuthStore();
+  const { setLoading } = useSidebarStore();
+  const [orders, setOrders] = useState<any[]>([]);
+  const user = useAuthStore((state) => state.user);
+  const { userData } = getSavedUserData(user?.uid as string);
+
   const backToHome = () => {
     navigate("/home");
   };
-  const { userData } = getSavedUserData(user?.uid as string);
+
+  const orderStats = [
+    {
+      title: "Total Orders",
+      value: orders.length,
+      color: "bg-red-200 text-red-500",
+    },
+    {
+      title: "Pending Orders",
+      value: orders.filter((o) => o.status === "Pending").length,
+      color: "bg-orange-200 text-orange-500",
+    },
+    {
+      title: "Processing Orders",
+      value: orders.filter((o) => o.status === "Processing").length,
+      color: "bg-blue-200 text-blue-500",
+    },
+    {
+      title: "Completed Orders",
+      value: orders.filter((o) => o.status === "Completed").length,
+      color: "bg-green-200 text-green-500",
+    },
+  ];
+
+  useEffect(() => {
+    const loadOrders = async () => {
+      if (!user) return;
+      setLoading(true);
+      const data = await fetchUserOrders(db, user.uid);
+      setOrders(data);
+      setLoading(false);
+    };
+    loadOrders();
+  }, [user]);
 
   return (
     <section className="">
-      <div className=" mx-2 flex justify-between rounded-lg items-center px-5 py-5">
+      {/* User Header */}
+      <div className="mx-2 flex justify-between rounded-lg items-center px-5 py-5">
         <div>
           <div className="flex items-center gap-2">
             <p className="text-lg sm:text-2xl font-bold text-gray-900">
               Welcome,
             </p>
-            <p className="text-[15px]  sm:text-[25px] font-bold text-primary-color">
+            <p className="text-[15px] sm:text-[25px] font-bold text-primary-color">
               {user?.displayName}
             </p>
           </div>
@@ -53,50 +95,35 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* Dashboard Stats */}
       <article className="mt-5">
         <h2 className="mb-3 font-bold text-lg sm:text-[17px] px-2 text-gray-800">
           Dashboard
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mx-2">
-          <div className="bg-white p-4 rounded shadow flex gap-4 items-center">
-            <div className="bg-red-200 text-red-500 p-4 rounded-full text-lg sm:text-[20px]">
-              <BsCart />
+          {orderStats.map((stat, idx) => (
+            <div
+              key={idx}
+              className="bg-white p-4 rounded shadow flex gap-4 items-center"
+            >
+              <div
+                className={`${stat.color} p-4 rounded-full text-lg sm:text-[20px]`}
+              >
+                <BsCart />
+              </div>
+              <div className="text-lg sm:text-[17px] font-semibold">
+                <h1>{stat.title}</h1>
+                <p>{stat.value}</p>
+              </div>
             </div>
-            <div className="text-lg sm:text-[17px] font-semibold">
-              <h1>Total Order</h1>
-              <p>5</p>
-            </div>
-          </div>
-          <div className="bg-white p-4 rounded shadow flex gap-4 items-center">
-            <div className="bg-orange-200 text-orange-500 p-4 rounded-full text-lg sm:text-[20px]">
-              <BsCart />
-            </div>
-            <div className="text-lg sm:text-[17px] font-semibold">
-              <h1>Pending Order</h1>
-              <p>3</p>
-            </div>
-          </div>
-          <div className="bg-white p-4 rounded shadow flex gap-4 items-center">
-            <div className="bg-blue-200 text-blue-500 p-4 rounded-full text-lg sm:text-[20px]">
-              <BsCart />
-            </div>
-            <div className="text-lg sm:text-[17px] font-semibold">
-              <h1>Processing Order</h1>
-              <p>1</p>
-            </div>
-          </div>
-          <div className="bg-white p-4 rounded shadow flex gap-4 items-center">
-            <div className="bg-green-200 text-green-500 p-4 rounded-full text-lg sm:text-[20px]">
-              <BsCart />
-            </div>
-            <div className="text-lg sm:text-[17px] font-semibold">
-              <h1>Completed</h1>
-              <p>1</p>
-            </div>
-          </div>
+          ))}
         </div>
+
+        {/* Checkout Section */}
         <Checkout />
       </article>
+
+      {/* Back to home */}
       <CustomBtn
         label="Home"
         className="mt-2 mx-2 flex flex-row-reverse items-center gap-2"

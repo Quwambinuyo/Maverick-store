@@ -7,6 +7,7 @@ export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       cart: [],
+      logisticPrice: 0,
 
       addToCart: (product) => {
         const existing = get().cart.find((item) => item.id === product.id);
@@ -66,7 +67,11 @@ export const useCartStore = create<CartState>()(
       },
 
       clearFromCart: () => {
-        set({ cart: [] });
+        set({ cart: [], logisticPrice: 0 });
+      },
+
+      setLogisticPrice: (price: number) => {
+        set({ logisticPrice: price });
       },
     }),
     {
