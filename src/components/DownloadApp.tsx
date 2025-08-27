@@ -3,8 +3,8 @@ import CustomBtn from "../utils/CustomBtn";
 const DownloadApp = () => {
   return (
     <section>
-      <div className="md:p-9 p-2 bg-primary-color ">
-        <div className="flex justify-between bg-white md:p-8 p-4 rounded-xl items-center">
+      <div className="md:p-9 px-2.5 py-5  bg-primary-color ">
+        <div className="flex justify-between bg-white md:p-8 p-4 rounded-md items-center">
           <div className="md:w-[550px] max-w-[600px]  md:space-y-4 space-y-2">
             <h2 className="text-sm md:text-[20px] font-bold capitalize text-gray-800">
               Organic Products and Food
