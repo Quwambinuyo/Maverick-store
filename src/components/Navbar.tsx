@@ -35,7 +35,7 @@ const Navbar = () => {
   return (
     <>
       {/* Top Navbar */}
-      <nav className="flex items-center justify-between bg-[#E7EFC7] px-4 py-3 shadow-lg w-full gap-2">
+      <nav className="flex items-center justify-between bg-white md:bg-accent-color px-4 py-3 shadow-lg w-full gap-2">
         {/* Left */}
         <div className="flex items-center gap-4 min-w-0">
           <button
@@ -55,7 +55,7 @@ const Navbar = () => {
             <CustomInput
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              className="w-full pl-10  pr-3 py-2 border-b border-primary-color rounded-none focus:outline-none"
+              className="w-full pl-10 text-primary-color font-semibold pr-3 py-2 border-b border-primary-color rounded-none focus:outline-none"
               placeholder="Search product..."
             />
             <button

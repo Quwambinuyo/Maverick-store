@@ -6,9 +6,10 @@
   --breakpoint-lg: 1056px;
   --breakpoint-xl: 1240px;
   /* --color-primary-color: #543776; */
-  --color-primary-color: #3b3b1a;
-  --color-secondary-color: #a6a181;
   /* --color-secondary-color: #c3acd0; */
+  --color-primary-color: #543776;
+  --color-secondary-color: #c3acd0;
+  --color-accent-color: #dfccfb;
   --color-neutral-700: #2e2e2e;
   --color-neutral-600: #454545;
   --color-neutral-500: #5c5c5c;

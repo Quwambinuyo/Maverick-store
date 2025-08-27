@@ -64,7 +64,7 @@ const Checkout = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-14">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-3">
       {/* Left: Form */}
       <Form onSubmit={handleSubmit(onSubmit)}>
         {/* Full Name */}

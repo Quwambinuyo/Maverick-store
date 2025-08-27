@@ -97,7 +97,7 @@ const Dashboard = () => {
 
       {/* Dashboard Stats */}
       <article className="mt-5">
-        <h2 className="mb-3 font-bold text-lg sm:text-[17px] px-2 text-gray-800">
+        <h2 className="mb-2 font-bold text-lg sm:text-[17px] px-2 text-gray-800">
           Dashboard
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mx-2">
@@ -126,7 +126,7 @@ const Dashboard = () => {
       {/* Back to home */}
       <CustomBtn
         label="Home"
-        className="mt-2 mx-2 flex flex-row-reverse items-center gap-2"
+        className="mt-2 mx-2 p-3 rounded-lg mb-9 flex flex-row-reverse items-center gap-2"
         onClick={backToHome}
       >
         <FaHome />
