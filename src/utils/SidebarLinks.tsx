@@ -1,10 +1,9 @@
 import { RxDashboard } from "react-icons/rx";
-import { BsCart3 } from "react-icons/bs";
+import { IoBagHandleOutline } from "react-icons/io5";
 import { BiFoodMenu } from "react-icons/bi";
 import { SiSendgrid } from "react-icons/si";
 import { MdPermPhoneMsg } from "react-icons/md";
 import { TiInfoLargeOutline } from "react-icons/ti";
-// import { IoMdLogOut } from "react-icons/io";
 import { IoMdHome } from "react-icons/io";
 
 export const SidebarLinks = [
@@ -23,7 +22,7 @@ export const SidebarLinks = [
   {
     id: 3,
     name: "Cart",
-    icon: <BsCart3 />,
+    icon: <IoBagHandleOutline />,
     path: "/cart",
   },
   {

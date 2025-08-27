@@ -17,10 +17,12 @@ const Home = () => {
 
   return (
     <>
+      <SwiperCarousel />
       <div className="p-2">
-        <SwiperCarousel />
         <FeaturedCategories />
-        <DownloadApp />
+      </div>
+      <DownloadApp />
+      <div className="px-2">
         <PopularProducts />
         <DiscountProducts />
       </div>
