@@ -54,7 +54,7 @@ const History = () => {
     { title: "Dispute" },
   ];
 
-  const filters = ["All", "Unified", "Unpaid", "Closed"];
+  const filters = ["All", "Processing", "Completed", "Pending"];
 
   return (
     <section className="px-6 py-4">
