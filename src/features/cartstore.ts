@@ -3,6 +3,9 @@ import { persist } from "zustand/middleware";
 import { type CartState } from "../types/cartTypes";
 import { toast } from "react-toastify";
 
+const ADD_TO_CART_TOAST_ID = "add-to-cart-toast";
+const REMOVE_FROM_CART_TOAST_ID = "remove-from-cart-toast";
+
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
@@ -11,7 +14,12 @@ export const useCartStore = create<CartState>()(
 
       addToCart: (product) => {
         const existing = get().cart.find((item) => item.id === product.id);
-        toast.success("Item added to cart");
+
+        toast.success("Item added to cart", {
+          toastId: ADD_TO_CART_TOAST_ID,
+          className: "custom-toast border-l-4 border-secondary-color",
+        });
+
         if (existing) {
           set({
             cart: get().cart.map((item) =>
@@ -46,7 +54,10 @@ export const useCartStore = create<CartState>()(
         if (!item) return;
 
         if (item.quantity === 1) {
-          toast.success("Item removed from cart");
+          toast.success("Item removed from cart", {
+            className: "custom-toast border-l-4 border-secondary-color",
+            toastId: REMOVE_FROM_CART_TOAST_ID,
+          });
           set({
             cart: cart.filter((i) => i.id !== id),
           });
@@ -60,7 +71,10 @@ export const useCartStore = create<CartState>()(
       },
 
       removeFromCart: (id) => {
-        toast.success("Item removed from cart");
+        toast.success("Item removed from cart", {
+          toastId: REMOVE_FROM_CART_TOAST_ID,
+          className: "custom-toast border-l-4 border-secondary-color",
+        });
         set({
           cart: get().cart.filter((item) => item.id !== id),
         });

@@ -16,7 +16,6 @@ type CheckoutFormData = {
 };
 
 const Checkout = () => {
-  // get logisticPrice & setter from store (no local useState)
   const { cart, clearFromCart, logisticPrice, setLogisticPrice } =
     useCartStore();
 
@@ -151,48 +150,62 @@ const Checkout = () => {
         <div className="flex flex-col gap-4">
           {/* DHL */}
           <label
-            className={`items-center gap-2 border max-w-[200px] text-nowrap justify-start pl-2 p-1 rounded-lg flex cursor-pointer
-              ${
-                selectedLogistic === "DHL"
-                  ? "border-green-700 text-green-700 font-bold"
-                  : "border-gray-300 text-gray-800"
-              }
-            `}
+            className={`items-start gap-2 border max-w-[250px] text-nowrap pl-2 p-2 rounded-lg flex flex-col cursor-pointer
+    ${
+      selectedLogistic === "DHL"
+        ? "border-green-700 text-green-700 font-bold"
+        : "border-gray-300 text-gray-800"
+    }
+  `}
           >
-            <input
-              type="radio"
-              className="accent-green-700"
-              value="DHL"
-              {...register("logistic", {
-                required: "Please choose a logistic",
-                onChange: (e) => handleLogisticChange(e.target.value),
-              })}
-              checked={selectedLogistic === "DHL"}
-            />
-            DHL Express <p>₦4,500</p>
+            <div className="flex items-center gap-2">
+              <input
+                type="radio"
+                className="accent-green-700"
+                value="DHL"
+                {...register("logistic", {
+                  required: "Please choose a logistic",
+                  onChange: (e) => handleLogisticChange(e.target.value),
+                })}
+                checked={selectedLogistic === "DHL"}
+              />
+              <span>DHL Express</span>
+              <p className="ml-2">₦4,500</p>
+            </div>
+
+            <h2 className="text-sm text-gray-900">
+              Estimated Delivery: 2 Days
+            </h2>
           </label>
 
           {/* FedEx */}
           <label
-            className={`items-center gap-2 border max-w-[200px] text-nowrap justify-start pl-2 p-1 rounded-lg flex cursor-pointer
-              ${
-                selectedLogistic === "FedEx"
-                  ? "border-green-700 text-green-700 font-bold"
-                  : "border-gray-300 text-gray-800"
-              }
-            `}
+            className={`items-start gap-2 border max-w-[250px] text-nowrap pl-2 p-2 rounded-lg flex flex-col cursor-pointer
+    ${
+      selectedLogistic === "FedEx"
+        ? "border-green-700 text-green-700 font-bold"
+        : "border-gray-300 text-gray-800"
+    }
+  `}
           >
-            <input
-              type="radio"
-              className="accent-green-800"
-              value="FedEx"
-              {...register("logistic", {
-                required: "Please choose a logistic",
-                onChange: (e) => handleLogisticChange(e.target.value),
-              })}
-              checked={selectedLogistic === "FedEx"}
-            />
-            FedEx <p>₦5,020</p>
+            <div className="flex items-center gap-2">
+              <input
+                type="radio"
+                className="accent-green-800"
+                value="FedEx"
+                {...register("logistic", {
+                  required: "Please choose a logistic",
+                  onChange: (e) => handleLogisticChange(e.target.value),
+                })}
+                checked={selectedLogistic === "FedEx"}
+              />
+              <span>FedEx</span>
+              <p className="ml-2">₦5,020</p>
+            </div>
+
+            <h2 className="text-sm text-gray-900">
+              Estimated Delivery: 3 Days
+            </h2>
           </label>
 
           {errors.logistic && (

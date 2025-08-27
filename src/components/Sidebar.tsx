@@ -47,7 +47,7 @@ const Sidebar = () => {
           )}
 
           <button
-            className="ml-auto cursor-pointer absolute -right-5 top-6 bg-white rounded-full w-9 h-9 flex items-center justify-center shadow"
+            className="ml-auto cursor-pointer absolute -right-5 top-6 bg-secondary-color rounded-full w-9 h-9 flex items-center justify-center shadow"
             onClick={toggleSidebar}
           >
             {isOpen ? (
@@ -84,7 +84,7 @@ const Sidebar = () => {
                     <span className="text-[20px] relative">
                       {icon}
                       {name.toLowerCase() === "cart" && (
-                        <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2 rounded-full bg-red-200 text-red-600">
+                        <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2 rounded-full bg-secondary-color text-primary-color">
                           {cartQuantity}
                         </span>
                       )}

@@ -35,7 +35,7 @@ const Navbar = () => {
   return (
     <>
       {/* Top Navbar */}
-      <nav className="flex items-center justify-between bg-white px-4 py-3 shadow-lg w-full gap-2">
+      <nav className="flex items-center justify-between bg-[#E7EFC7] px-4 py-3 shadow-lg w-full gap-2">
         {/* Left */}
         <div className="flex items-center gap-4 min-w-0">
           <button

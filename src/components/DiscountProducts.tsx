@@ -70,7 +70,7 @@ const DiscountProducts = () => {
               >
                 {/* Percent-off badge */}
                 {percentOff > 0 && (
-                  <div className="absolute top-7 left-5 bg-red-200 text-red-500 text-xs px-2 py-1 rounded font-semibold">
+                  <div className="absolute top-7 left-5 bg-secondary-color text-primary-color text-xs px-2 py-1 rounded font-semibold">
                     {percentOff}% OFF
                   </div>
                 )}
@@ -110,7 +110,7 @@ const DiscountProducts = () => {
                     }}
                     className={`p-2 rounded-full font-medium transition-colors duration-300 flex items-center gap-1 ${
                       isInCart
-                        ? "bg-green-500 text-white"
+                        ? "bg-secondary-color text-white"
                         : "bg-primary-color text-white hover:bg-secondary-color"
                     }`}
                   >

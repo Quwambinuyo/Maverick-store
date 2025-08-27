@@ -6,7 +6,7 @@
   --breakpoint-lg: 1056px;
   --breakpoint-xl: 1240px;
   /* --color-primary-color: #543776; */
-  --color-primary-color: #000;
+  --color-primary-color: #3b3b1a;
   --color-secondary-color: #a6a181;
   /* --color-secondary-color: #c3acd0; */
   --color-neutral-700: #2e2e2e;
@@ -97,7 +97,7 @@
 .swiper-button-prev {
   width: 48px !important;
   height: 48px !important;
-  background-color: rgba(84, 55, 118, 0.9);
+  background-color: var(--color-primary-color);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   color: #fff;
   border-radius: 9999px;
@@ -116,7 +116,7 @@
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  background-color: #facc15;
+  background-color: var(--color-secondary-color);
   transform: translateY(-50%) scale(1.1);
 }
 
@@ -210,4 +210,26 @@
 
 .scrollbar-hide {
   scrollbar-width: none;
+}
+
+.custom-toast {
+  background: var(--color-primary-color) !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.Toastify__toast--success .Toastify__progress-bar {
+  background: #3b3b1a !important;
+}
+
+.Toastify__toast--error .Toastify__progress-bar {
+  background: #ff0000 !important;
+}
+
+.Toastify__toast--info .Toastify__progress-bar {
+  background: #0000ff !important;
+}
+
+.Toastify__toast--warning .Toastify__progress-bar {
+  background: #ff9900 !important;
 }
