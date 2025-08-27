@@ -49,7 +49,7 @@ const Cart = () => {
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-16 h-16 object-cover rounded"
+                  className="w-16 h-16 object-contain rounded"
                 />
                 <div>
                   <h3 className="font-semibold text-sm sm:text-base">
