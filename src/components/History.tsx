@@ -81,7 +81,7 @@ const History = () => {
         ))}
       </div>
 
-      <div className="mt-5 flex justify-end">
+      <div className="mt-5 flex justify-end mb-3">
         <div className="flex items-center gap-4">
           {showSearch && (
             <input

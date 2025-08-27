@@ -1,7 +1,7 @@
 import { BsCart } from "react-icons/bs";
 import CustomBtn from "../utils/CustomBtn";
 import { NavLink, useNavigate } from "react-router-dom";
-import Checkout from "./Checkout";
+import History from "../components/History";
 import { FaHome } from "react-icons/fa";
 import { useAuthStore } from "../features/useAuthStore";
 import { getSavedUserData } from "../utils/utils";
@@ -119,8 +119,8 @@ const Dashboard = () => {
           ))}
         </div>
 
-        {/* Checkout Section */}
-        <Checkout />
+        {/* Orders History*/}
+        <History />
       </article>
 
       {/* Back to home */}
