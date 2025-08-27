@@ -88,7 +88,7 @@ const MobileSidebar = () => {
                       className={`relative flex items-center ${
                         isOpen
                           ? "gap-4 justify-start pl-6 sm:py-2 py-7 w-full"
-                          : "justify-center "
+                          : "hidden "
                       } `}
                     >
                       <motion.span

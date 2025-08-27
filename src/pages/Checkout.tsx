@@ -174,7 +174,7 @@ const Checkout = () => {
             </div>
 
             <h2 className="text-sm text-gray-900">
-              Estimated Delivery: 2 Days
+              Estimated Delivery: 3-5 Days
             </h2>
           </label>
 
@@ -204,7 +204,7 @@ const Checkout = () => {
             </div>
 
             <h2 className="text-sm text-gray-900">
-              Estimated Delivery: 3 Days
+              Estimated Delivery: 2-3 Days
             </h2>
           </label>
 
