@@ -7,6 +7,7 @@ import moment from "moment";
 import { useAuthStore } from "../features/useAuthStore";
 import { getSavedUserData } from "../utils/utils";
 import { NavLink, useNavigate } from "react-router-dom";
+import { PiHandWavingFill } from "react-icons/pi";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -37,7 +38,7 @@ const Navbar = () => {
       {/* Top Navbar */}
       <nav className="flex items-center justify-between bg-white  px-4 py-3 shadow-lg w-full gap-2">
         {/* Left */}
-        <div className="flex items-center gap-4 min-w-0">
+        <div className="flex items-center gap-2 min-w-0">
           <button
             onClick={toggleSidebar}
             className="sm:hidden text-primary-color text-3xl focus:outline-none"
@@ -45,7 +46,10 @@ const Navbar = () => {
             {!isOpen && <RxHamburgerMenu />}
           </button>
           <span className="text-sm ml-5 roboto sm:inline capitalize md:text-lg text-primary-color font-semibold truncate">
-            Hello, {user?.displayName?.split(" ")[0]}. {greeting} 👋
+            Hello, {user?.displayName?.split(" ")[0]}. {greeting}{" "}
+          </span>
+          <span className="text-primary-color">
+            <PiHandWavingFill size={20} />
           </span>
         </div>
 

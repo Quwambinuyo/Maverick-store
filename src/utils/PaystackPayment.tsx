@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CustomBtn from "./CustomBtn";
 import { toast } from "react-toastify";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../Auth/firebaseconfig";
 import { useSidebarStore } from "../features/store";
 import type { CartItem } from "../types/cartTypes";
+import SuccessfulModal from "../components/SuccessfulModal";
+import { useNavigate } from "react-router-dom";
+
 interface PaystackBtnType {
   totalPrice: number;
   clearFromCart: () => void;
@@ -33,6 +36,11 @@ export default function PaystackPayment({
   logistic,
 }: PaystackBtnType) {
   const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+  const { setLoading } = useSidebarStore();
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
+  const randomUid = Math.floor(Math.random() * 10000000 + 1);
 
   useEffect(() => {
     // Load Paystack inline script
@@ -41,10 +49,6 @@ export default function PaystackPayment({
     script.async = true;
     document.body.appendChild(script);
   }, []);
-
-  const randomUid = Math.floor(Math.random() * 10000000 + 1);
-  const { setLoading } = useSidebarStore();
-  // console.log(randomUid);
 
   const handleOrderToStore = async (id: string) => {
     const data = {
@@ -64,17 +68,16 @@ export default function PaystackPayment({
       createdAt: new Date().toISOString(),
     };
 
-    console.log(id, data);
-
     try {
-      // const response = await setDoc(doc(db, "orders", data.orderId), data);
-      const response = await setDoc(doc(db, "orders", String(randomUid)), data);
       setLoading(true);
-      console.log(response);
-      toast.success("Order placed successfully!");
+      await setDoc(doc(db, "orders", String(randomUid)), data);
+
       clearFromCart();
+
+      setShowModal(true);
     } catch (error) {
       console.error("Error adding document: ", error);
+      toast.error("Something went wrong saving your order!");
     } finally {
       setLoading(false);
     }
@@ -82,35 +85,19 @@ export default function PaystackPayment({
 
   const handlePayment = () => {
     const handler = (window as any).PaystackPop.setup({
-      key: publicKey, // from .env
+      key: publicKey,
       email,
-      // phone: phone,
-      // logistic: logistic,
-      // address: address,
-      // country: country,
-      amount: totalPrice * 100, // Paystack expects amount in kobo
+      amount: totalPrice * 100,
       currency: "NGN",
-      ref: `PSK-${Date.now()}`, // unique transaction reference
+      ref: `PSK-${Date.now()}`,
       metadata: {
         custom_fields: [
-          {
-            display_name: "address",
-            variable_name: "address",
-            value: address,
-          },
-          {
-            display_name: "phone",
-            variable_name: "phone",
-            value: phone,
-          },
-          {
-            display_name: "coutry",
-            variable_name: "country",
-            value: country,
-          },
+          { display_name: "address", variable_name: "address", value: address },
+          { display_name: "phone", variable_name: "phone", value: phone },
+          { display_name: "country", variable_name: "country", value: country },
           {
             display_name: "logistic",
-            variable_name: "logostic",
+            variable_name: "logistic",
             value: logistic,
           },
         ],
@@ -127,5 +114,16 @@ export default function PaystackPayment({
     handler.openIframe();
   };
 
-  return <CustomBtn label="Payment" onClick={handlePayment} />;
+  const handleCloseModal = () => {
+    setShowModal(false);
+    navigate("/home");
+    window.location.reload();
+  };
+
+  return (
+    <>
+      <CustomBtn label="Payment" onClick={handlePayment} />
+      <SuccessfulModal isOpen={showModal} onClose={handleCloseModal} />
+    </>
+  );
 }
