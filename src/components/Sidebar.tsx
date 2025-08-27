@@ -33,14 +33,14 @@ const Sidebar = () => {
           {isOpen ? (
             <Link
               to="/home"
-              className="text-2xl font-bold text-white henny-penny-regular whitespace-nowrap"
+              className="text-2xl font-bold text-secondary-color henny-penny-regular whitespace-nowrap"
             >
               Maverick Store
             </Link>
           ) : (
             <Link
               to="/home"
-              className="text-2xl font-bold text-white henny-penny-regular whitespace-nowrap"
+              className="text-2xl font-bold text-secondary-color henny-penny-regular whitespace-nowrap"
             >
               Mav
             </Link>

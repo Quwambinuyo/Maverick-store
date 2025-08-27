@@ -67,7 +67,7 @@ const MobileSidebar = () => {
 
           {/* Links */}
           <div className="flex-1 overflow-y-auto px-1 mt-4 custom-scrollbar">
-            <div className={`flex flex-col ${isOpen ? "gap-y-4" : "gap-y-6"}`}>
+            <div className={`flex flex-col ${isOpen ? "gap-y-1" : "gap-y-1"}`}>
               {SidebarLinks.map(({ icon, name, id, path }) => {
                 return (
                   <NavLink
@@ -87,7 +87,7 @@ const MobileSidebar = () => {
                     <div
                       className={`relative flex items-center ${
                         isOpen
-                          ? "gap-4 justify-start pl-6 sm:py-4 py-7 w-full"
+                          ? "gap-4 justify-start pl-6 sm:py-2 py-7 w-full"
                           : "justify-center "
                       } `}
                     >
