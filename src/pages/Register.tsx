@@ -89,6 +89,11 @@ const Register = () => {
                 id="name"
                 placeholder="Quwam Bode"
                 {...register("name", { required: "Name id Required" })}
+                onKeyDown={(e) => {
+                  if (e.key === "," || e.key === ".") {
+                    e.preventDefault();
+                  }
+                }}
                 className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded focus:outline-none focus:ring focus:border-primary-color"
               />
               {errors.name && (

@@ -143,6 +143,11 @@ const Profile = () => {
             defaultValue={displayName as string}
             placeholder="Enter your name"
             {...register("name", { required: "name is required" })}
+            onKeyDown={(e) => {
+              if (e.key === "," || ".") {
+                e.preventDefault();
+              }
+            }}
             className="w-full border border-gray-400 rounded p-2 capitalize "
           />
 
