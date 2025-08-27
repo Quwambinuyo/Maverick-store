@@ -220,7 +220,7 @@
 }
 
 .Toastify__toast--success .Toastify__progress-bar {
-  background: #3b3b1a !important;
+  background: #fff !important;
 }
 
 .Toastify__toast--error .Toastify__progress-bar {

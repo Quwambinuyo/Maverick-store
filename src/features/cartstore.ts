@@ -17,7 +17,7 @@ export const useCartStore = create<CartState>()(
 
         toast.success("Item added to cart", {
           toastId: ADD_TO_CART_TOAST_ID,
-          className: "custom-toast border-l-4 border-secondary-color",
+          className: "custom-toast border-l-4 border-primary-color",
         });
 
         if (existing) {
@@ -55,7 +55,7 @@ export const useCartStore = create<CartState>()(
 
         if (item.quantity === 1) {
           toast.success("Item removed from cart", {
-            className: "custom-toast border-l-4 border-secondary-color",
+            className: "custom-toast border-l-4 border-primary-color",
             toastId: REMOVE_FROM_CART_TOAST_ID,
           });
           set({
