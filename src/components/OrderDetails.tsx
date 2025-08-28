@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
 import { formatPrice } from "../utils/utilityfunc";
+import { useEffect } from "react";
 
 type OrderItem = {
   name: string;
@@ -36,6 +37,18 @@ export default function OrderDetailsModal({
     0
   );
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
   return (
     <div
       onClick={onClose}
@@ -53,7 +66,7 @@ export default function OrderDetailsModal({
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 40, opacity: 0 }}
-        className="bg-gray-900 rounded-2xl shadow-2xl w-full max-w-[90%] md:max-w-[50%]  h-[70vh] flex flex-col relative"
+        className="bg-gray-900 rounded-2xl shadow-2xl w-full max-w-[90%] md:max-w-[50%] flex flex-col relative"
       >
         {/* Header */}
         <div className="p-4 border-b">
@@ -61,7 +74,7 @@ export default function OrderDetailsModal({
           <p className="text-xs text-white">Placed: {placedAt}</p>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-hide">
+        <div className="flex-1  p-4 space-y-4 scrollbar-hide">
           {/* Customer Info */}
           <div className="text-sm text-white space-y-1">
             <p>

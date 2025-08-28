@@ -139,7 +139,7 @@ const History = () => {
       {/* Table */}
       <div className="overflow-x-auto scrollbar-hide mt-5">
         {/* Table Header */}
-        <div className="grid grid-cols-9 min-w-[800px] bg-neutral-200 p-2 rounded-lg">
+        <div className="grid grid-cols-9 min-w-[1000px] bg-neutral-200 p-2 rounded-lg">
           {orderInfo.map((info, i) => (
             <div key={i} className="flex justify-center">
               <h2 className="text-sm md:text-md text-gray-800 font-semibold">
@@ -160,7 +160,7 @@ const History = () => {
           orders.map((order, i) => (
             <ul
               key={order.id || i}
-              className="grid grid-cols-9 min-w-[900px] font-semibold place-items-center text-gray-800 mt-3 text-sm bg-white p-2 rounded-lg"
+              className="grid grid-cols-9 min-w-[1000px] font-semibold place-items-center text-gray-800 mt-3 text-sm bg-white p-2 rounded-lg"
             >
               <li className="text-center">
                 {order.createdAt
@@ -221,7 +221,7 @@ const History = () => {
                   onClick={() => openDetails(order)}
                   className="px-3 py-1 text-sm rounded-lg bg-primary-color text-white hover:bg-primary-dark"
                 >
-                  View Details
+                  Details
                 </button>
               </li>
             </ul>
