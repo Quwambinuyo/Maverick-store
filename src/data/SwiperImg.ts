@@ -1,4 +1,3 @@
-import landing from "../assets/images/landing.png";
 import image1 from "../assets/carousel/image1.jpg";
 import image2 from "../assets/carousel/image2.jpg";
 import image3 from "../assets/carousel/image3.jpg";
