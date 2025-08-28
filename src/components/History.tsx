@@ -71,7 +71,7 @@ const History = () => {
   const filters = ["All", "Processing", "Completed", "Pending"];
 
   return (
-    <section className="px-6 py-4">
+    <section className="px-6 py-4 pb-16">
       <h2 className="text-xl font-semibold mb-4 text-gray-600">Orders</h2>
 
       {/* Date input */}
