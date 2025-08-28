@@ -104,7 +104,7 @@ const Dashboard = () => {
           {orderStats.map((stat, idx) => (
             <div
               key={idx}
-              className="bg-white p-4 rounded shadow flex gap-4 items-center"
+              className="bg-white text-nowrap p-4 rounded shadow flex gap-4 items-center"
             >
               <div
                 className={`${stat.color} p-4 rounded-full text-lg sm:text-[20px]`}

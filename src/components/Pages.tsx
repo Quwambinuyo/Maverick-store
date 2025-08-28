@@ -14,26 +14,26 @@ const Pages = () => {
       {/* <div className="bg-secondary-color flex justify-between rounded-lg items-center px-5 py-5">
         <div>
           <div className="flex items-center gap-2">
-            <p className="text-lg sm:text-2xl font-bold text-gray-900">
+            <p className="text-sm sm:text-2xl font-bold text-gray-900">
               Welcome,
             </p>
-            <p className="text-lg sm:text-[25px] font-bold text-primary-color">
+            <p className="text-sm sm:text-[25px] font-bold text-primary-color">
               Quwam
             </p>
           </div>
           <div>
-            <h1 className="text-lg sm:text-[17px] font-semibold text-gray-700">
+            <h1 className="text-sm sm:text-[17px] font-semibold text-gray-700">
               Test@gmail.com
             </h1>
           </div>
         </div>
         <div className="bg-primary-color flex rounded-full justify-center items-center h-20 w-20">
-          <h1 className="text-white text-lg sm:text-3xl">Q</h1>
+          <h1 className="text-white text-sm sm:text-3xl">Q</h1>
         </div>
       </div> */}
 
       <article className="mt-5">
-        <h2 className="mb-3 font-bold text-lg sm:text-[17px] text-gray-800 px-2">
+        <h2 className="mb-3 font-bold text-sm sm:text-[17px] text-gray-800 px-2">
           Pages
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 px-2 ">
@@ -41,10 +41,10 @@ const Pages = () => {
             to="/profile"
             className="bg-blue-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
-            <div className="bg-blue-200 text-blue-500 p-4 rounded-full text-lg sm:text-[20px]">
+            <div className="bg-blue-200 text-blue-500 p-4 rounded-full text-sm sm:text-[20px]">
               <IoPersonSharp />
             </div>
-            <div className="text-lg sm:text-[17px] font-semibold">
+            <div className="text-sm sm:text-[17px] font-semibold">
               <h1>Profile</h1>
             </div>
           </NavLink>
@@ -52,10 +52,10 @@ const Pages = () => {
             to="/checkout"
             className="bg-rose-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
-            <div className="bg-rose-200 text-rose-500 p-4 rounded-full text-lg sm:text-[20px]">
+            <div className="bg-rose-200 text-rose-500 p-4 rounded-full text-sm sm:text-[20px]">
               <RiShoppingCartLine />
             </div>
-            <div className="text-lg sm:text-[17px] font-semibold">
+            <div className="text-sm sm:text-[17px] font-semibold">
               <h1>Checkout</h1>
             </div>
           </NavLink>
@@ -63,10 +63,10 @@ const Pages = () => {
             to="/privacy"
             className="bg-gray-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
-            <div className="bg-gray-200 text-gray-500 p-4 rounded-full text-lg sm:text-[20px]">
+            <div className="bg-gray-200 text-gray-500 p-4 rounded-full text-sm sm:text-[20px]">
               <LuMessageCircleWarning />
             </div>
-            <div className="text-lg sm:text-[17px] font-semibold">
+            <div className="text-sm sm:text-[17px] font-semibold">
               <h1>Privacy Policy</h1>
             </div>
           </NavLink>
@@ -74,10 +74,10 @@ const Pages = () => {
             to="/t&c"
             className="bg-green-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
-            <div className="bg-green-200 text-green-500 p-4 rounded-full text-lg sm:text-[17px]">
+            <div className="bg-green-200 text-green-500 p-4 rounded-full text-sm sm:text-[17px]">
               <SlNote />
             </div>
-            <div className="text-lg sm:text-[17px] font-semibold">
+            <div className="text-sm sm:text-[17px] font-semibold">
               <h1>Terms & Condition</h1>
             </div>
           </NavLink>
@@ -85,10 +85,10 @@ const Pages = () => {
             to="/FAQ"
             className="bg-indigo-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
-            <div className="bg-indigo-200 text-indigo-500 p-4 rounded-full text-lg sm:text-[17px]">
+            <div className="bg-indigo-200 text-indigo-500 p-4 rounded-full text-sm sm:text-[17px]">
               <FaQuestion />
             </div>
-            <div className="text-lg sm:text-[17px] font-semibold">
+            <div className="text-sm sm:text-[17px] font-semibold">
               <h1>FAQ</h1>
             </div>
           </NavLink>
@@ -96,10 +96,10 @@ const Pages = () => {
             to="/contact"
             className="bg-fuchsia-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
-            <div className="bg-fuchsia-200 text-fuchsia-500 p-4 rounded-full text-lg sm:text-[17px]">
+            <div className="bg-fuchsia-200 text-fuchsia-500 p-4 rounded-full text-sm sm:text-[17px]">
               <MdOutlineCallEnd />
             </div>
-            <div className="text-lg sm:text-[17px] font-semibold">
+            <div className="text-sm sm:text-[17px] font-semibold">
               <h1>Contact Us</h1>
             </div>
           </NavLink>
@@ -107,10 +107,10 @@ const Pages = () => {
             to="/products"
             className="bg-lime-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
-            <div className="bg-lime-200 text-lime-500 p-4 rounded-full text-lg sm:text-[17px]">
+            <div className="bg-lime-200 text-lime-500 p-4 rounded-full text-sm sm:text-[17px]">
               <CiShoppingTag />
             </div>
-            <div className="text-lg sm:text-[17px] font-semibold">
+            <div className="text-sm sm:text-[17px] font-semibold">
               <h1>Products</h1>
             </div>
           </NavLink>
@@ -118,10 +118,10 @@ const Pages = () => {
             to="/history"
             className="bg-stone-500 rounded-lg text-white p-4 md:rounded shadow flex gap-4 items-center"
           >
-            <div className="bg-stone-200 text-stone-500 p-4 rounded-full text-lg sm:text-[17px]">
+            <div className="bg-stone-200 text-stone-500 p-4 rounded-full text-sm sm:text-[17px]">
               <FaHistory />
             </div>
-            <div className="text-lg sm:text-[17px] font-semibold">
+            <div className="text-sm sm:text-[17px] font-semibold">
               <h1>Order History</h1>
             </div>
           </NavLink>

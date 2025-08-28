@@ -210,7 +210,7 @@ const History = () => {
               <li className="flex justify-center">
                 <button
                   type="button"
-                  className="p-1 rounded-full hover:bg-gray-100"
+                  className="p-1 cursor-pointer rounded-full hover:bg-gray-100"
                 >
                   <IoChatbubbleEllipsesOutline size={25} />
                 </button>
