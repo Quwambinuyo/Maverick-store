@@ -6,8 +6,11 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css";
 import "../index.css";
+import { useNavigate } from "react-router-dom";
 
 const SwiperCarousel = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="w-[99%] md:w-full m-auto mx-1 md:mx-0">
       <div className="mt-2">
@@ -37,10 +40,10 @@ const SwiperCarousel = () => {
 
                   {/* Text Content */}
                   <div className="p-4 absolute bottom-0 left-0 right-0 z-10">
-                    <span className="block text-neutral-200  text-lg md:text-3xl font-bold capitalize mb-1">
+                    <span className="block carousel-text  text-xl md:text-3xl font-bold capitalize mb-1">
                       {description}
                     </span>
-                    <p className="text-sm text-stone-200 font-semibold md:block hidden">
+                    <p className="text-lg carousel-text font-light md:block hidden">
                       {paragraph}
                     </p>
                     <p className="text-sm text-neutral-300 font-semibold md:hidden">
@@ -50,8 +53,9 @@ const SwiperCarousel = () => {
                     </p>
                     <div className="mt-2 hidden sm:block">
                       <CustomBtn
+                        onClick={() => navigate("/products")}
                         label="Shop Now"
-                        className="bg-primary-color p-3 rounded-md text-white"
+                        className="bg-primary-color cursor-pointer p-3 rounded-md text-white"
                       />
                     </div>
                   </div>

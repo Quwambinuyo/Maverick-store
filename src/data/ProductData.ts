@@ -9,7 +9,7 @@ export const Products = {
         image:
           "https://m.media-amazon.com/images/I/51iQLUgUMzL._AC_UL480_FMwebp_QL65_.jpg",
         colors: ["Navy Blue", "Charcoal Gray"],
-        price: 129000,
+        price: 12950,
         quantity: 0,
         amount: 96,
       },
@@ -405,7 +405,7 @@ export const DiscountedProduct = {
         image:
           "https://www.houseoferrors.org/cdn/shop/files/YELLOWBOTTOMSFRONT.jpg?v=1745508328&width=823",
         colors: ["Navy Blue", "Charcoal Gray"],
-        price: 120,
+        price: 12000,
         discountPercent: 20,
 
         quantity: 1,
@@ -756,7 +756,7 @@ export const DiscountedProduct = {
           "https://ajebomarket.com/cdn/shop/files/17d_1.jpg?v=1707066914&width=360",
         colors: ["Red", "Black"],
         price: 75000,
-        discountPercent: 15,
+        discountPercent: 25,
 
         quantity: 1,
         amount: 63.75,

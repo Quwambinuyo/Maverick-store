@@ -11,6 +11,7 @@ const Search = () => {
     [];
   const typedProducts = Products as ProductsType;
 
+  // Flatten product data with category + subCategory
   for (const categoryKey in typedProducts) {
     const category = typedProducts[categoryKey];
     for (const subKey in category) {
@@ -81,19 +82,28 @@ const Search = () => {
                   className="w-full h-44 sm:h-48 object-contain rounded mb-2"
                 />
 
-                {/* Product name */}
-                <h2 className="text-xs sm:text-sm font-semibold line-clamp-1">
+                {/* Product name (truncated) */}
+                <h2 className="text-xs sm:text-sm font-semibold line-clamp-1 min-w-0">
                   {product.name}
                 </h2>
 
                 {/* Price + Cart button */}
                 <div className="flex justify-between items-center mt-2">
-                  <span className="text-primary-color font-bold text-sm sm:text-base">
-                    {formatPrice(product.price)}
-                  </span>
+                  <div className="min-w-0 flex-shrink">
+                    <span
+                      className={`block text-primary-color font-bold truncate ${
+                        product.price > 99999
+                          ? "text-xs"
+                          : "text-sm sm:text-base"
+                      } max-w-[100px]`}
+                    >
+                      {formatPrice(product.price)}
+                    </span>
+                  </div>
 
+                  {/* Cart Actions */}
                   {cartItem && cartItem.quantity > 0 ? (
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-2 flex-shrink-0">
                       <button
                         onClick={(e) => {
                           e.preventDefault();
@@ -125,7 +135,7 @@ const Search = () => {
                         e.stopPropagation();
                         addToCart(product);
                       }}
-                      className="bg-primary-color text-white p-1.5 rounded-full hover:bg-secondary-color transition"
+                      className="bg-primary-color text-white p-1.5 rounded-full hover:bg-secondary-color transition flex-shrink-0"
                     >
                       <BsCartPlus className="text-base" />
                     </button>
