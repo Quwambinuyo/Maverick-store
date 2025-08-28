@@ -66,17 +66,17 @@ export default function OrderDetailsModal({
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 40, opacity: 0 }}
-        className="bg-gray-900 rounded-2xl shadow-2xl w-full max-w-[90%] md:max-w-[50%] flex flex-col relative"
+        className="bg-white rounded-2xl shadow-2xl w-full max-w-[90%] md:max-w-[50%] flex flex-col relative"
       >
         {/* Header */}
-        <div className="p-4 border-b">
-          <h2 className="text-lg font-bold text-white  ">Order #{orderId}</h2>
-          <p className="text-xs text-white">Placed: {placedAt}</p>
+        <div className="p-4 border-b bg-primary-color text-white">
+          <h2 className="text-lg font-bold  ">Order #{orderId}</h2>
+          <p className="text-xs">Placed: {placedAt}</p>
         </div>
 
         <div className="flex-1  p-4 space-y-4 scrollbar-hide">
           {/* Customer Info */}
-          <div className="text-sm text-white space-y-1">
+          <div className="text-sm text-black space-y-1">
             <p>
               <span className="font-semibold">Customer:</span> {customer}
             </p>
@@ -90,12 +90,12 @@ export default function OrderDetailsModal({
 
           {/* Items */}
           <div>
-            <h3 className="font-semibold  text-white mb-2">Items Ordered:</h3>
+            <h3 className="font-semibold  text-black mb-2">Items Ordered:</h3>
             <div className="divide-y rounded-lg border border-white">
               {items.map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex justify-between py-2 px-3 text-sm text-white"
+                  className="flex justify-between py-2 px-3 text-sm text-black"
                 >
                   <span>
                     {item.name} × {item.quantity}
@@ -110,7 +110,7 @@ export default function OrderDetailsModal({
         </div>
 
         {/* Footer */}
-        <div className="border-t text-white border-white p-4 flex justify-between items-center">
+        <div className="border-t text-black border-white p-4 flex justify-between items-center">
           <span className="text-lg font-semibold">Total:</span>
           <span className="text-lg font-bold ">{formatPrice(total)}</span>
         </div>

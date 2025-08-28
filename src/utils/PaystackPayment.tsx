@@ -20,6 +20,7 @@ interface PaystackBtnType {
   country: string;
   address: string;
   logistic: string;
+  disabled: boolean;
 }
 
 export default function PaystackPayment({
@@ -34,6 +35,7 @@ export default function PaystackPayment({
   zipCode,
   country,
   logistic,
+  disabled,
 }: PaystackBtnType) {
   const publicKey = import.meta.env.VITE_PUBLIC_KEY;
   const { setLoading } = useSidebarStore();
@@ -122,7 +124,7 @@ export default function PaystackPayment({
 
   return (
     <>
-      <CustomBtn label="Payment" onClick={handlePayment} />
+      <CustomBtn label="Payment" onClick={handlePayment} disabled={disabled} />
       <SuccessfulModal isOpen={showModal} onClose={handleCloseModal} />
     </>
   );

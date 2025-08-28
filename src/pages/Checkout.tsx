@@ -13,6 +13,7 @@ type CheckoutFormData = {
   country: string;
   email: string;
   logistic: string;
+  mode: string;
 };
 
 const Checkout = () => {
@@ -27,10 +28,11 @@ const Checkout = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     watch,
   } = useForm<CheckoutFormData>({
     defaultValues: {
+      mode: "onChange",
       name: "",
       address: "",
       phone: "",
@@ -225,6 +227,7 @@ const Checkout = () => {
             address={address}
             country={country}
             phone={phone}
+            disabled={!isValid}
           />
         </div>
       </Form>
