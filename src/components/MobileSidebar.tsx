@@ -100,7 +100,7 @@ const MobileSidebar = () => {
                       >
                         {icon}
                         {name.toLowerCase() === "cart" && (
-                          <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2 rounded-full bg-red-200 text-red-600">
+                          <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2 rounded-full bg-gray-400  outfit text-white">
                             {cartQuantity}
                           </span>
                         )}

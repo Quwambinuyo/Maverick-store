@@ -84,7 +84,10 @@ const SwiperCarousel = () => {
             </p>
           </div>
 
-          <CustomBtn className="bg-primary-color items-start text-white font-bold px-4 py-2 rounded-md">
+          <CustomBtn
+            onClick={() => navigate("/products")}
+            className="bg-primary-color items-start text-white font-bold px-4 py-2 rounded-md"
+          >
             Shop
           </CustomBtn>
         </div>

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import CustomBtn from "../utils/CustomBtn";
 
 const DownloadApp = () => {
@@ -23,10 +24,11 @@ const DownloadApp = () => {
               offer. See Our latest discounted products from here and get a
               special discount.
             </p>
-            <CustomBtn
-              label="Download App"
-              className="bg-primary-color text-white p-2 px-3 rounded-xl "
-            />
+            <CustomBtn className="bg-primary-color text-white p-2 px-3 rounded-xl ">
+              <NavLink to="https://play.google.com/store/games?hl=en">
+                Download App
+              </NavLink>
+            </CustomBtn>
           </div>
           <div className="hidden md:block">
             <img
