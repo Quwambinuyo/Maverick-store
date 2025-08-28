@@ -35,9 +35,9 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Top Navbar */}
-      <nav className="flex items-center justify-between bg-white  px-4 py-3 shadow-lg w-full gap-2">
-        {/* Left */}
+      {/* Navbar stacked in rows */}
+      <nav className="flex justify-between bg-white px-4 py-3 shadow-lg w-full gap-3">
+        {/* Row 1: Left (Greeting) */}
         <div className="flex items-center gap-2 min-w-0">
           <button
             onClick={toggleSidebar}
@@ -45,7 +45,7 @@ const Navbar = () => {
           >
             {!isOpen && <RxHamburgerMenu />}
           </button>
-          <span className="text-sm ml-5 roboto sm:inline capitalize md:text-lg text-primary-color font-semibold truncate">
+          <span className="text-sm ml-2 roboto sm:inline capitalize md:text-lg text-primary-color font-semibold truncate">
             Hello, {user?.displayName?.split(" ")[0]}. {greeting}{" "}
           </span>
           <span className="text-primary-color">
@@ -53,48 +53,49 @@ const Navbar = () => {
           </span>
         </div>
 
-        {/* Middle: Search (Desktop only) */}
-        <div className="relative hidden sm:block lg:min-w-[600px]">
+        {/* Row 2: Search (Desktop only) */}
+        <div className="relative hidden sm:block ">
           <form onSubmit={handleSearch}>
             <CustomInput
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              className="w-full pl-10 text-primary-color font-semibold pr-3 py-2 border-b border-primary-color rounded-none focus:outline-none"
+              className="w-full pl-19 text-primary-color rounded-md font-semibold p-2 
+             border-2 border-transparent focus:border-primary-color focus:ring-0 
+             outline-none"
               placeholder="Search product..."
             />
+
             <button
-              className="absolute left-3 cursor-pointer top-1/2 transform -translate-y-1/2 text-primary-color text-xl"
+              className="absolute left-0 bg-primary-color cursor-pointer top-1/2 transform -translate-y-1/2 text-white p-2 px-5 h-full  flex justify-center items-center text-xl"
               type="submit"
             >
-              <AiOutlineSearch />
+              <AiOutlineSearch className="text-[25px]" />
             </button>
           </form>
         </div>
 
-        {/* Right */}
-        <div className="flex items-center justify-end ">
-          <div className="flex items-center gap-4 sm:gap-7 text-2xl text-gray-800">
-            <IoIosNotifications />
-            {userData?.photoURL ? (
-              <NavLink to="/profile">
-                <img
-                  src={userData?.photoURL.base64}
-                  className="sm:w-[30px] sm:h-[30px] w-[20px] h-[20px] rounded-full object-cover"
-                  alt="User avatar"
-                />
-              </NavLink>
-            ) : (
-              <NavLink to="/profile">
-                <h1 className="text-white flex justify-center bg-primary-color rounded-full text-center w-[25px] h-[25px] text-sm items-center sm:text-[20px]">
-                  {user?.displayName?.charAt(0)}
-                </h1>
-              </NavLink>
-            )}
-          </div>
+        {/* Row 3: Right (Icons) */}
+        <div className="flex items-center justify-end gap-4 text-2xl text-gray-800">
+          <IoIosNotifications />
+          {userData?.photoURL ? (
+            <NavLink to="/profile">
+              <img
+                src={userData?.photoURL.base64}
+                className="sm:w-[30px] sm:h-[30px] w-[20px] h-[20px] rounded-full object-cover"
+                alt="User avatar"
+              />
+            </NavLink>
+          ) : (
+            <NavLink to="/profile">
+              <h1 className="text-white flex justify-center bg-primary-color rounded-full text-center w-[25px] h-[25px] text-sm items-center sm:text-[20px]">
+                {user?.displayName?.charAt(0)}
+              </h1>
+            </NavLink>
+          )}
         </div>
       </nav>
 
-      {/* Mobile Search (Full width below navbar) */}
+      {/* Mobile Search (full width below navbar) */}
       <div className="block sm:hidden px-4 py-2 bg-white shadow-md">
         <form onSubmit={handleSearch} className="relative w-full">
           <CustomInput
@@ -104,7 +105,7 @@ const Navbar = () => {
             placeholder="Search product..."
           />
           <button
-            className=" cursor-pointer absolute left-3 top-1/2 transform -translate-y-1/2 text-primary-color text-xl"
+            className="cursor-pointer absolute left-3 top-1/2 transform -translate-y-1/2 text-primary-color text-xl"
             type="submit"
           >
             <AiOutlineSearch />
