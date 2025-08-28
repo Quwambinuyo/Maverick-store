@@ -1,6 +1,7 @@
 import { DiscountedProduct } from "../data/ProductData";
 import type { Product, ProductsType } from "../types/types";
-import { BsCartPlus, BsCheckCircle } from "react-icons/bs";
+import { BsCheckCircle } from "react-icons/bs";
+import { IoBagAdd } from "react-icons/io5";
 import { useCartStore } from "../features/cartstore";
 import { formatPrice } from "../utils/utilityfunc";
 import { Link, useSearchParams } from "react-router-dom";
@@ -110,14 +111,14 @@ const DiscountProducts = () => {
                     }}
                     className={`p-2 rounded-full font-medium transition-colors duration-300 flex items-center gap-1 ${
                       isInCart
-                        ? "bg-secondary-color text-white"
-                        : "bg-primary-color text-white hover:bg-secondary-color"
+                        ? "bg-green-800 text-white"
+                        : " text-primary-color hover:text-white hover:bg-primary-color"
                     }`}
                   >
                     {isInCart ? (
                       <BsCheckCircle size={18} />
                     ) : (
-                      <BsCartPlus size={18} />
+                      <IoBagAdd size={18} />
                     )}
                   </button>
                 </div>

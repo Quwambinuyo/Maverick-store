@@ -82,6 +82,7 @@ const Login = () => {
               type="email"
               {...register("email", { required: "Email is required" })}
               className="px-3 py-2 border border-primary-color bg-[#E8F0FE] rounded"
+              placeholder="quwam@maverick.com"
             />
             {errors.email && (
               <p className="text-red-500 text-sm font-bold mt-2">

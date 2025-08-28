@@ -1,6 +1,6 @@
 import { Products } from "../data/ProductData";
 import type { Product, ProductsType } from "../types/types";
-import { BsCartPlus } from "react-icons/bs";
+import { IoBagAdd } from "react-icons/io5";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { formatPrice } from "../utils/utilityfunc";
 import { useCartStore } from "../features/cartstore";
@@ -97,11 +97,11 @@ const PopularProducts = () => {
                           e.stopPropagation();
                           decrement(product.id);
                         }}
-                        className="bg-primary-color text-white p-2 rounded-full"
+                        className=" text-primary-color bg-secondary-color p-2 rounded-full"
                       >
                         <FaMinus className="text-xs" />
                       </button>
-                      <span className="text-xs font-bold">
+                      <span className="text-md font-bold text-primary-color">
                         {cartItem.quantity}
                       </span>
                       <button
@@ -110,7 +110,7 @@ const PopularProducts = () => {
                           e.stopPropagation();
                           increment(product.id);
                         }}
-                        className="bg-primary-color text-white p-2 rounded-full"
+                        className=" text-primary-color p-2 bg-secondary-color rounded-full"
                       >
                         <FaPlus className="text-xs" />
                       </button>
@@ -122,9 +122,9 @@ const PopularProducts = () => {
                         e.stopPropagation();
                         addToCart(product);
                       }}
-                      className="bg-primary-color text-white p-1.5 rounded-full hover:bg-secondary-color transition"
+                      className=" text-primary-color  p-1.5 rounded-full hover:bg-primary-color hover:text-white transition"
                     >
-                      <BsCartPlus className="text-base" />
+                      <IoBagAdd className="text-base" />
                     </button>
                   )}
                 </div>
