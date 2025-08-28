@@ -9,7 +9,7 @@ export const Products = {
         image:
           "https://m.media-amazon.com/images/I/51iQLUgUMzL._AC_UL480_FMwebp_QL65_.jpg",
         colors: ["Navy Blue", "Charcoal Gray"],
-        price: 12900,
+        price: 129000,
         quantity: 0,
         amount: 96,
       },

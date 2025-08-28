@@ -84,15 +84,21 @@ const PopularProducts = () => {
                 </h2>
 
                 {/* Price + Cart button */}
-                <div className="flex justify-between items-center mt-2">
-                  <span className="text-primary-color font-bold text-sm sm:text-base">
+                <div className="flex items-center justify-between gap-3 mt-2 min-w-0">
+                  <span
+                    className={`text-primary-color font-bold truncate ${
+                      product.price > 999999
+                        ? "text-xs"
+                        : "text-sm sm:text-base"
+                    } max-w-[100px]`}
+                  >
                     {formatPrice(product.price)}
                   </span>
 
-                  {/* Cart Actions Wrapper  */}
-                  <div className="w-[90px] h-[40px] flex justify-end items-center">
+                  {/* Cart Actions Wrapper */}
+                  <div className="flex items-center gap-2 flex-shrink-0">
                     {cartItem && cartItem.quantity > 0 ? (
-                      <div className="flex items-center justify-between w-full h-full">
+                      <div className="flex items-center gap-2">
                         <button
                           onClick={(e) => {
                             e.preventDefault();
