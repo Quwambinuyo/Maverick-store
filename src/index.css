@@ -242,3 +242,32 @@
 .Toastify__toast--warning .Toastify__progress-bar {
   background: #ff9900 !important;
 }
+
+/* Add to your global CSS (e.g., index.css) */
+.clip-zigzag {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 10px),
+    95% 100%,
+    90% calc(100% - 10px),
+    85% 100%,
+    80% calc(100% - 10px),
+    75% 100%,
+    70% calc(100% - 10px),
+    65% 100%,
+    60% calc(100% - 10px),
+    55% 100%,
+    50% calc(100% - 10px),
+    45% 100%,
+    40% calc(100% - 10px),
+    35% 100%,
+    30% calc(100% - 10px),
+    25% 100%,
+    20% calc(100% - 10px),
+    15% 100%,
+    10% calc(100% - 10px),
+    5% 100%,
+    0 calc(100% - 10px)
+  );
+}

@@ -52,7 +52,7 @@ export default function OrderDetailsModal({
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 flex items-center justify-center bg-black/50 z-[9999]"
+      className="fixed inset-0  flex items-center justify-center bg-black/50 z-[9999]"
     >
       {/* Close button outside the card */}
       <button
@@ -66,7 +66,7 @@ export default function OrderDetailsModal({
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 40, opacity: 0 }}
-        className="bg-white rounded-2xl shadow-2xl w-full max-w-[90%] md:max-w-[50%] flex flex-col relative"
+        className="bg-white clip-zigzag rounded-2xl shadow-2xl w-full max-w-[90%] md:max-w-[50%] flex flex-col relative"
       >
         {/* Header */}
         <div className="p-4 border-b inter border-primary-color border-dashed bg-primary-color text-white">
@@ -110,7 +110,7 @@ export default function OrderDetailsModal({
         </div>
 
         {/* Footer */}
-        <div className="border-t nanum-gothic-regular bg-primary-color text-white border-white border-dashed p-4 flex justify-between items-center">
+        <div className="border-t nanum-gothic-regular bg-white text-black border-primary-color border-dashed p-4 flex justify-between items-center">
           <span className="text-lg font-semibold">Total:</span>
           <span className="text-lg font-bold ">{formatPrice(total)}</span>
         </div>
