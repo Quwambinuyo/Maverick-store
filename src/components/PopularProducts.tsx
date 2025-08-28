@@ -96,7 +96,7 @@ const PopularProducts = () => {
                   </span>
 
                   {/* Cart Actions Wrapper */}
-                  <div className="flex items-center gap-2 flex-shrink-0">
+                  <div className="flex items-center gap-2 flex-shrink-0 min-h-[40px]">
                     {cartItem && cartItem.quantity > 0 ? (
                       <div className="flex items-center gap-2">
                         <button
