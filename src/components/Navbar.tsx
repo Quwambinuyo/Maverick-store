@@ -101,14 +101,16 @@ const Navbar = () => {
           <CustomInput
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            className="w-full pl-10 pr-3 py-2 border border-primary-color rounded-md focus:outline-none"
+            className="w-full pl-19 pr-3 py-2text-primary-color rounded-md font-semibold p-2 
+             border border-transparent focus:border-primary-color focus:ring-0 
+             outline-none"
             placeholder="Search product..."
           />
           <button
-            className="cursor-pointer absolute left-3 top-1/2 transform -translate-y-1/2 text-primary-color text-xl"
+            className="absolute left-0 bg-primary-color cursor-pointer top-1/2 transform -translate-y-1/2 text-white p-2 px-5 h-full  flex justify-center items-center text-xl"
             type="submit"
           >
-            <AiOutlineSearch />
+            <AiOutlineSearch className="text-[25px]" />
           </button>
         </form>
       </div>
