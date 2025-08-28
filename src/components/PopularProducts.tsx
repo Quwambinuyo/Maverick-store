@@ -89,44 +89,47 @@ const PopularProducts = () => {
                     {formatPrice(product.price)}
                   </span>
 
-                  {cartItem && cartItem.quantity > 0 ? (
-                    <div className="flex items-center space-x-2">
+                  {/* Cart Actions Wrapper  */}
+                  <div className="w-[90px] h-[40px] flex justify-end items-center">
+                    {cartItem && cartItem.quantity > 0 ? (
+                      <div className="flex items-center justify-between w-full h-full">
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            decrement(product.id);
+                          }}
+                          className="text-primary-color bg-secondary-color w-8 h-8 flex items-center justify-center rounded-full"
+                        >
+                          <FaMinus className="text-xs" />
+                        </button>
+                        <span className="text-md font-bold text-primary-color">
+                          {cartItem.quantity}
+                        </span>
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            increment(product.id);
+                          }}
+                          className="text-primary-color bg-secondary-color w-8 h-8 flex items-center justify-center rounded-full"
+                        >
+                          <FaPlus className="text-xs" />
+                        </button>
+                      </div>
+                    ) : (
                       <button
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          decrement(product.id);
+                          addToCart(product);
                         }}
-                        className=" text-primary-color bg-secondary-color p-2 rounded-full"
+                        className="text-primary-color w-[40px] h-[40px] flex items-center justify-center rounded-full hover:bg-primary-color hover:text-white transition"
                       >
-                        <FaMinus className="text-xs" />
+                        <IoBagAdd className="text-[20px]" />
                       </button>
-                      <span className="text-md font-bold text-primary-color">
-                        {cartItem.quantity}
-                      </span>
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          increment(product.id);
-                        }}
-                        className=" text-primary-color p-2 bg-secondary-color rounded-full"
-                      >
-                        <FaPlus className="text-xs" />
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        addToCart(product);
-                      }}
-                      className=" text-primary-color  p-1.5 rounded-full hover:bg-primary-color hover:text-white transition"
-                    >
-                      <IoBagAdd className="text-[25px]" />
-                    </button>
-                  )}
+                    )}
+                  </div>
                 </div>
               </Link>
             );
