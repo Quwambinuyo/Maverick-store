@@ -62,7 +62,7 @@ const PopularProducts = () => {
               <Link
                 to={`/singleProduct/${product.id}`}
                 key={product.id}
-                className="p-2 rounded-md shadow relative bg-white flex flex-col h-[270px]"
+                className="p-2 rounded-md shadow relative bg-white flex flex-col min-h-[270px]"
               >
                 {/* Out of stock badge */}
                 {isOutOfStock && (
@@ -124,7 +124,7 @@ const PopularProducts = () => {
                       }}
                       className=" text-primary-color  p-1.5 rounded-full hover:bg-primary-color hover:text-white transition"
                     >
-                      <IoBagAdd className="text-base" />
+                      <IoBagAdd className="text-[25px]" />
                     </button>
                   )}
                 </div>

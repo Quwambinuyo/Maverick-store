@@ -116,9 +116,9 @@ const DiscountProducts = () => {
                     }`}
                   >
                     {isInCart ? (
-                      <BsCheckCircle size={18} />
+                      <BsCheckCircle className="text-[20px]" />
                     ) : (
-                      <IoBagAdd size={18} />
+                      <IoBagAdd className="text-[20px]" />
                     )}
                   </button>
                 </div>
