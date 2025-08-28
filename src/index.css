@@ -171,6 +171,14 @@
   background-position: right;
 }
 
+.receipt {
+  background-image: url("./assets/images/receipt.svg");
+  background-color: white;
+  background-repeat: repeat;
+  background-size: 10px;
+  background-position: center;
+}
+
 .loader {
   width: 25px;
   height: 25px;

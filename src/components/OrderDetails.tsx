@@ -69,14 +69,14 @@ export default function OrderDetailsModal({
         className="bg-white rounded-2xl shadow-2xl w-full max-w-[90%] md:max-w-[50%] flex flex-col relative"
       >
         {/* Header */}
-        <div className="p-4 border-b bg-primary-color text-white">
+        <div className="p-4 border-b inter border-primary-color border-dashed bg-primary-color text-white">
           <h2 className="text-lg font-bold  ">Order #{orderId}</h2>
           <p className="text-xs">Placed: {placedAt}</p>
         </div>
 
-        <div className="flex-1  p-4 space-y-4 scrollbar-hide">
+        <div className="flex-1  p-4 space-y-4 scrollbar-hide receipt">
           {/* Customer Info */}
-          <div className="text-sm text-black space-y-1">
+          <div className="text-sm text-black space-y-1 libre-baskerville-regular ">
             <p>
               <span className="font-semibold">Customer:</span> {customer}
             </p>
@@ -91,7 +91,7 @@ export default function OrderDetailsModal({
           {/* Items */}
           <div>
             <h3 className="font-semibold  text-black mb-2">Items Ordered:</h3>
-            <div className="divide-y rounded-lg border border-white">
+            <div className="divide-y-1 divide-primary-color divide-dotted  rounded-lg border-1 border-dotted border-primary-color roboto">
               {items.map((item, idx) => (
                 <div
                   key={idx}
@@ -110,7 +110,7 @@ export default function OrderDetailsModal({
         </div>
 
         {/* Footer */}
-        <div className="border-t text-black border-white p-4 flex justify-between items-center">
+        <div className="border-t nanum-gothic-regular bg-primary-color text-white border-white border-dashed p-4 flex justify-between items-center">
           <span className="text-lg font-semibold">Total:</span>
           <span className="text-lg font-bold ">{formatPrice(total)}</span>
         </div>
