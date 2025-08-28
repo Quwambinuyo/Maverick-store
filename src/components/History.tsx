@@ -7,14 +7,27 @@ import DateInput from "../utils/DateInput";
 import LoadingSpinner from "./LoadingSpinner";
 import { CgSearch, CgSortAz } from "react-icons/cg";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
+import OrderDetailsModal from "../components/OrderDetails";
 
 const History = () => {
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [orders, setOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedOrder, setSelectedOrder] = useState<any | null>(null);
+  const [orderDetails, setOrderDetails] = useState(false);
 
   const user = useAuthStore((state) => state.user);
+
+  const openDetails = (order: any) => {
+    setSelectedOrder(order);
+    setOrderDetails(true);
+  };
+
+  const closeDetails = () => {
+    setSelectedOrder(null);
+    setOrderDetails(false);
+  };
 
   useEffect(() => {
     const loadOrders = async () => {
@@ -52,6 +65,7 @@ const History = () => {
     { title: "Delivery" },
     { title: "Items" },
     { title: "Dispute" },
+    { title: "Details" },
   ];
 
   const filters = ["All", "Processing", "Completed", "Pending"];
@@ -125,7 +139,7 @@ const History = () => {
       {/* Table */}
       <div className="overflow-x-auto scrollbar-hide mt-5">
         {/* Table Header */}
-        <div className="grid grid-cols-8 min-w-[800px] bg-neutral-200 p-2 rounded-lg">
+        <div className="grid grid-cols-9 min-w-[800px] bg-neutral-200 p-2 rounded-lg">
           {orderInfo.map((info, i) => (
             <div key={i} className="flex justify-center">
               <h2 className="text-sm md:text-md text-gray-800 font-semibold">
@@ -146,7 +160,7 @@ const History = () => {
           orders.map((order, i) => (
             <ul
               key={order.id || i}
-              className="grid grid-cols-8 min-w-[800px] font-semibold place-items-center text-gray-800 mt-3 text-sm bg-white p-2 rounded-lg"
+              className="grid grid-cols-9 min-w-[900px] font-semibold place-items-center text-gray-800 mt-3 text-sm bg-white p-2 rounded-lg"
             >
               <li className="text-center">
                 {order.createdAt
@@ -201,10 +215,36 @@ const History = () => {
                   <IoChatbubbleEllipsesOutline size={25} />
                 </button>
               </li>
+              <li className="flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => openDetails(order)}
+                  className="px-3 py-1 text-sm rounded-lg bg-primary-color text-white hover:bg-primary-dark"
+                >
+                  View Details
+                </button>
+              </li>
             </ul>
           ))
         )}
       </div>
+
+      {selectedOrder && (
+        <OrderDetailsModal
+          isOpen={orderDetails}
+          onClose={closeDetails}
+          orderId={selectedOrder.id}
+          placedAt={
+            selectedOrder.createdAt
+              ? new Date(selectedOrder.createdAt).toLocaleString()
+              : "--"
+          }
+          customer={selectedOrder.name || "Unknown"}
+          phone={selectedOrder.phone || "--"}
+          address={selectedOrder.address || "--"}
+          items={selectedOrder.cart || []}
+        />
+      )}
     </section>
   );
 };

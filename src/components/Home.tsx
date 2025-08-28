@@ -1,5 +1,4 @@
 import { useSearchParams, Navigate } from "react-router-dom";
-// import { useSidebarStore } from "../features/store";
 import DiscountProducts from "./DiscountProducts";
 import DownloadApp from "./DownloadApp";
 import FeaturedCategories from "./FeaturedCategories";
