@@ -8,6 +8,10 @@ import LoadingSpinner from "./LoadingSpinner";
 import { CgSearch, CgSortAz } from "react-icons/cg";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
 import OrderDetailsModal from "../components/OrderDetails";
+import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
+// import { usePagination } from "../utils/usePagination";
+// import PaginationContainer from "./PaginationContainer";
+import ReactPaginate from "react-paginate";
 
 const History = () => {
   const [activeFilter, setActiveFilter] = useState<string>("All");
@@ -16,8 +20,13 @@ const History = () => {
   const [loading, setLoading] = useState(true);
   const [selectedOrder, setSelectedOrder] = useState<any | null>(null);
   const [orderDetails, setOrderDetails] = useState(false);
+  // const [currentPage, setCurrentPage] = useState(1);
 
   const user = useAuthStore((state) => state.user);
+  const [searchText, setSearchText] = useState("");
+
+  // const { searchText, setSearchText, totalPages, getSlicedData } =
+  // usePagination(orders, currentPage);
 
   const openDetails = (order: any) => {
     setSelectedOrder(order);
@@ -70,6 +79,32 @@ const History = () => {
 
   const filters = ["All", "Processing", "Completed", "Pending"];
 
+  const [itemOffset, setItemOffset] = useState(0);
+
+  const itemsPerPage = 5;
+
+  const endOffset = itemOffset + itemsPerPage;
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+
+  const filteredHistory = orders?.filter(
+    (d: any) =>
+      d?.orderId?.toLowerCase().startsWith(searchText.toLowerCase()) ||
+      d?.name?.toLowerCase().startsWith(searchText.toLowerCase()) ||
+      d?.logistic?.toLowerCase().startsWith(searchText.toLowerCase())
+  );
+
+  const currentItems = filteredHistory.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(filteredHistory.length / itemsPerPage);
+  // const pageCount = Math.ceil(filteredHistory.length / itemsPerPage);
+
+  const handlePageClick = (event: any) => {
+    const newOffset = (event.selected * itemsPerPage) % filteredHistory.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+
   return (
     <section className="px-6 py-4 pb-16">
       <h2 className="text-xl font-semibold mb-4 text-gray-600">Orders</h2>
@@ -100,7 +135,10 @@ const History = () => {
           {showSearch && (
             <input
               type="search"
-              className="border-1 border-primary-color focus:outline outline-none px-2 rounded-lg max-w-[100px]"
+              placeholder="order id / name / logistic"
+              className="border-1 border-primary-color focus:outline outline-none px-2 rounded-lg max-w-[300px]"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
             />
           )}
           <button
@@ -157,7 +195,8 @@ const History = () => {
         ) : orders.length === 0 ? (
           <p className="mt-4 text-gray-500">No orders found.</p>
         ) : (
-          orders.map((order, i) => (
+          currentItems.map((order: any, i: number) => (
+            // getSlicedData().map((order: any, i: number) => (
             <ul
               key={order.id || i}
               className="grid grid-cols-9 min-w-[1000px] font-semibold place-items-center text-gray-800 mt-3 text-sm bg-white p-2 rounded-lg"
@@ -227,6 +266,26 @@ const History = () => {
             </ul>
           ))
         )}
+
+        <ReactPaginate
+          activeClassName="bg-secondary-color px-1 text-primary-color"
+          className="flex justify-center items-center gap-5  mt-7 cursor-pointer text-gray-800 font-bold"
+          breakLabel="....."
+          nextLabel={
+            <button className="bg-primary-color p-1 text-white rounded-md">
+              <MdNavigateNext />
+            </button>
+          }
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={pageCount}
+          previousLabel={
+            <button className="bg-primary-color p-1 text-white rounded-md">
+              <MdNavigateBefore />
+            </button>
+          }
+          renderOnZeroPageCount={null}
+        />
       </div>
 
       {selectedOrder && (

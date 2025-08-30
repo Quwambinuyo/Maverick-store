@@ -57,7 +57,7 @@ export default function OrderDetailsModal({
       {/* Close button outside the card */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 text-white bg-gray-900 rounded-full text-3xl hover:text-gray-300"
+        className="absolute top-4 right-4 text-white bg-primary-color rounded-full text-3xl hover:text-gray-300"
       >
         <IoMdClose />
       </button>
