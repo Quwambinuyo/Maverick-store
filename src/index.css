@@ -206,6 +206,7 @@
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;
+  -webkit-animation: r0tation 1s linear infinite;
   animation: rotation 1s linear infinite;
 }
 
@@ -220,10 +221,11 @@
   position: absolute;
   left: 0;
   top: 0;
+  -webkit-animation: animloader 2s linear infinite;
   animation: animloader 2s linear infinite;
 }
 .loader::after {
-  animation-delay: 2s;
+  animation-delay: 1s;
 }
 
 .scrollbar-hide::-webkit-scrollbar {

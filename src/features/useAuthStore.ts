@@ -105,8 +105,14 @@ export const useAuthStore = create<AuthStore>((set) => {
         // set({ user, rememberMe: remember, loading: false, loggedIn: true });
         return {};
       } catch (error: any) {
-        let message = "Something went wrong";
-        if (error.code === "auth/invalid-email")
+        console.log(error?.message, error?.code);
+
+        let message;
+        if (error.code === "auth/network-request-failed") {
+          message = "You are not connected to the internet";
+        } else if (error.code === "auth/invalid-credential") {
+          message = "Please check your credentials";
+        } else if (error.code === "auth/invalid-email")
           message = "Invalid email address";
         else if (error.code === "auth/user-not-found")
           message = "User not found";

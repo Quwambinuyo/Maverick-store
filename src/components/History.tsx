@@ -4,7 +4,6 @@ import { fetchUserOrders } from "../features/OrderStore";
 import { useAuthStore } from "../features/useAuthStore";
 import { db } from "../Auth/firebaseconfig";
 import DateInput from "../utils/DateInput";
-import LoadingSpinner from "./LoadingSpinner";
 import { CgSearch, CgSortAz } from "react-icons/cg";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
 import OrderDetailsModal from "../components/OrderDetails";
@@ -12,6 +11,7 @@ import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 // import { usePagination } from "../utils/usePagination";
 // import PaginationContainer from "./PaginationContainer";
 import ReactPaginate from "react-paginate";
+import Spinner from "../utils/spinner";
 
 const History = () => {
   const [activeFilter, setActiveFilter] = useState<string>("All");
@@ -191,7 +191,7 @@ const History = () => {
           {/* Orders List Rows */}
           {loading ? (
             <div className="flex justify-center mt-10">
-              <LoadingSpinner />
+              <Spinner modal />
             </div>
           ) : orders.length === 0 ? (
             <p className="mt-4 text-gray-500">No orders found.</p>

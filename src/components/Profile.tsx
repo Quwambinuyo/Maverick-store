@@ -5,8 +5,8 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { getAuth, updateProfile, type User } from "firebase/auth";
 import { toast } from "react-toastify";
 import { getSavedUserData, saveUserData } from "../utils/utils";
-import Loader from "./Loader";
 import { db } from "../Auth/firebaseconfig";
+import Spinner from "../utils/spinner";
 
 type ProfileFormData = {
   name: string;
@@ -213,7 +213,7 @@ const Profile = () => {
             type="submit"
             className="bg-primary-color text-white px-6 py-2 rounded"
           >
-            {loading ? <Loader /> : "Save Profile"}
+            {loading ? <Spinner /> : "Save Profile"}
           </button>
         </div>
       </Form>

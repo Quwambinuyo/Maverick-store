@@ -7,7 +7,8 @@ import { type LoginValues } from "../types/formTypes";
 import { useAuthStore } from "../features/useAuthStore";
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import LoadingSpinner from "../components/LoadingSpinner";
+// import LoadingSpinner from "../components/LoadingSpinner";
+import Spinner from "../utils/spinner";
 
 const Login = () => {
   const { login, setRememberMe } = useAuthStore();
@@ -29,6 +30,7 @@ const Login = () => {
     setLoading(false);
 
     if (res.error) {
+      console.log(res.error);
       setErrorMsg(res.error);
       if (res.error === "Something went wrong") {
         setErrorMsg("Please check your internet");
@@ -148,11 +150,11 @@ const Login = () => {
           <CustomBtn
             type="submit"
             disabled={loading}
-            className={`w-full bg-primary-color h-[45px] text-white py-2 rounded-lg ${
+            className={`w-full flex justify-center items-center bg-primary-color h-[45px] text-white py-2 rounded-lg ${
               loading ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >
-            {loading ? <LoadingSpinner /> : "Continue"}
+            {loading ? <Spinner /> : "Continue"}
           </CustomBtn>
 
           {/* Sign Up Link */}

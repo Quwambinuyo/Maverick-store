@@ -2,9 +2,9 @@ import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import { Outlet, useLocation } from "react-router-dom";
 import { useSidebarStore } from "../features/store";
-import Loader from "./Loader";
 import { useEffect, useRef } from "react";
 import { useAuthStore } from "../features/useAuthStore";
+import Spinner from "../utils/spinner";
 
 const Layout = () => {
   const { isOpen, setLoading, loading } = useSidebarStore();
@@ -42,7 +42,7 @@ const Layout = () => {
 
   return (
     <div className="flex h-screen overflow-hidden relative">
-      {loading && <Loader />}
+      {loading && <Spinner modal />}
       <Sidebar />
       <div
         className={`flex flex-col transition-all duration-300 w-full 
