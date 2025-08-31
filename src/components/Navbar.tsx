@@ -83,7 +83,7 @@ const Navbar = () => {
         {/* Row 3: Right (Icons) */}
         <div className="flex items-center justify-end gap-4 text-2xl text-gray-800">
           <div className="relative flex items-center">
-            <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2 rounded-full bg-white   text-red-700">
+            <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2 rounded-full bg-white font-bold   text-red-700">
               {cartQuantity}
             </span>
             <NavLink to="/cart" className="cursor-pointer">
