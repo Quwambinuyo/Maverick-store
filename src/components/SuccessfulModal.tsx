@@ -28,7 +28,7 @@ export default function SuccessfulModal({
           playsInline
           className="w-40 h-40 mx-auto rounded-lg"
         />
-        <h2 className="text-2xl font-bold text-green-700 mb-2">
+        <h2 className="text-2xl font-bold text-primary-color mb-2">
           🎉 Thank You!
         </h2>
         <p className="text-gray-600 mb-4">
@@ -36,7 +36,7 @@ export default function SuccessfulModal({
         </p>
         <button
           onClick={onClose}
-          className="bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-800"
+          className="bg-primary-color text-white px-4 py-2 rounded-lg cursor-pointer"
         >
           Close
         </button>

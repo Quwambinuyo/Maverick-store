@@ -19,6 +19,21 @@
   --color-success-500: #0f973d;
 }
 
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 4s ease infinite;
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
 }

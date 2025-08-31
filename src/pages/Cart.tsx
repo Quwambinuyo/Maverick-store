@@ -3,10 +3,12 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import CustomBtn from "../utils/CustomBtn";
 import { formatPrice } from "../utils/utilityfunc";
 import emptycart from "../assets/images/emptycart.svg";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { cart, increment, decrement, removeFromCart } = useCartStore();
+  const navigate = useNavigate();
 
   const totalAmount = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -80,7 +82,7 @@ const Cart = () => {
               {/* Quantity controls */}
               <div className="flex items-center justify-between mt-3">
                 {isDiscounted ? (
-                  <span className="text-sm text-green-500">
+                  <span className="text-sm font-bold bg-gradient-to-r from-primary-color via-purple-400 to-primary-color bg-clip-text text-transparent animate-gradient-x">
                     Limited quantity due to discount
                   </span>
                 ) : (
@@ -122,12 +124,12 @@ const Cart = () => {
           Total: {formatPrice(totalAmount)}
         </p>
 
-        <Link
-          to="/checkout"
-          className="bg-primary-color hover:bg-primary-dark text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-colors"
+        <CustomBtn
+          onClick={() => navigate("/checkout")}
+          className="bg-primary-color hover:bg-primary-dark text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-colors h-[45px]"
         >
           Proceed to Checkout
-        </Link>
+        </CustomBtn>
       </div>
     </section>
   );

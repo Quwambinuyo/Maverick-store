@@ -136,8 +136,8 @@ const History = () => {
             {showSearch && (
               <input
                 type="search"
-                placeholder="order id / name / logistic"
-                className="border-1 border-primary-color focus:outline outline-none px-2 rounded-lg max-w-[300px]"
+                placeholder="All"
+                className="border-1 border-primary-color focus:outline outline-none px-2 rounded-lg max-w-[100px]"
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
               />
