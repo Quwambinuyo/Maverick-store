@@ -5,10 +5,12 @@ import { IoBagAdd } from "react-icons/io5";
 import { useCartStore } from "../features/cartstore";
 import { formatPrice } from "../utils/utilityfunc";
 import { Link, useSearchParams } from "react-router-dom";
+import { useState } from "react";
 
 const DiscountProducts = () => {
   const allProducts: Product[] = [];
   const typedProducts = DiscountedProduct as ProductsType;
+  const [loaded, setLoaded] = useState(false);
 
   // Flatten products from categories
   for (const categoryKey in typedProducts) {
@@ -80,7 +82,11 @@ const DiscountProducts = () => {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-40 sm:h-48 object-contain rounded mb-3"
+                  loading="lazy"
+                  onLoad={() => setLoaded(true)}
+                  className={`w-full h-44 sm:h-48 object-contain rounded mb-2 ${
+                    loaded ? "opacity-100" : "opacity-0"
+                  }`}
                 />
 
                 {/* Product Name */}

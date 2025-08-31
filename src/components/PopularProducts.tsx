@@ -5,11 +5,13 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import { formatPrice } from "../utils/utilityfunc";
 import { useCartStore } from "../features/cartstore";
 import { Link, useSearchParams } from "react-router-dom";
+import { useState } from "react";
 
 const PopularProducts = () => {
   const allProducts: Product[] = [];
   const typedProducts = Products as ProductsType;
   const [searchParams] = useSearchParams();
+  const [loaded, setLoaded] = useState(false);
 
   // Collect all products
   for (const categoryKey in typedProducts) {
@@ -75,7 +77,11 @@ const PopularProducts = () => {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-44 sm:h-48 object-contain rounded mb-2"
+                  loading="lazy"
+                  onLoad={() => setLoaded(true)}
+                  className={`w-full h-44 sm:h-48 object-contain rounded mb-2 ${
+                    loaded ? "opacity-100" : "opacity-0"
+                  }`}
                 />
 
                 {/* Product name */}
