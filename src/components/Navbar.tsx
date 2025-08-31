@@ -6,7 +6,7 @@ import moment from "moment";
 import { useAuthStore } from "../features/useAuthStore";
 import { getSavedUserData } from "../utils/utils";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { useCartStore } from "../features/cartstore";
 
@@ -34,6 +34,12 @@ const Navbar = () => {
       : currentHour < 18
       ? "Good afternoon"
       : "Good evening";
+
+  useEffect(() => {
+    if (!location.pathname.startsWith("/search")) {
+      setQ("");
+    }
+  }, [location.pathname]);
 
   return (
     <>
