@@ -1,17 +1,19 @@
 import { useSidebarStore } from "../features/store";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { IoIosNotifications } from "react-icons/io";
 import { AiOutlineSearch } from "react-icons/ai";
 import CustomInput from "../utils/CustomInput";
 import moment from "moment";
 import { useAuthStore } from "../features/useAuthStore";
 import { getSavedUserData } from "../utils/utils";
 import { NavLink, useNavigate } from "react-router-dom";
-import { PiHandWavingFill } from "react-icons/pi";
 import { useState } from "react";
+import { IoBagHandleOutline } from "react-icons/io5";
+import { useCartStore } from "../features/cartstore";
 
 const Navbar = () => {
   const { isOpen, toggleSidebar } = useSidebarStore();
+  const { cart } = useCartStore();
+  const cartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
   const { user } = useAuthStore();
   const { userData } = getSavedUserData(user?.uid as string);
 
@@ -36,7 +38,7 @@ const Navbar = () => {
   return (
     <>
       {/* Navbar stacked in rows */}
-      <nav className="flex justify-between bg-white px-4 py-3 shadow-lg w-full gap-3">
+      <nav className="flex justify-between chillax bg-secondary-color/30 px-4 py-3 shadow-lg w-full gap-3">
         {/* Row 1: Left (Greeting) */}
         <div className="flex items-center gap-2 min-w-0">
           <button
@@ -45,12 +47,10 @@ const Navbar = () => {
           >
             {!isOpen && <RxHamburgerMenu />}
           </button>
-          <span className="text-sm ml-2 roboto sm:inline capitalize md:text-lg text-primary-color font-semibold truncate">
+          <span className="text-sm ml-2 sm:inline capitalize md:text-lg text-primary-color font-semibold truncate">
             Hello, {user?.displayName?.split(" ")[0]}. {greeting}{" "}
           </span>
-          <span className="text-primary-color">
-            <PiHandWavingFill size={20} />
-          </span>
+          <span>👋</span>
         </div>
 
         {/* Row 2: Search (Desktop only) */}
@@ -76,7 +76,14 @@ const Navbar = () => {
 
         {/* Row 3: Right (Icons) */}
         <div className="flex items-center justify-end gap-4 text-2xl text-gray-800">
-          <IoIosNotifications />
+          <div className="relative flex items-center">
+            <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2 rounded-full bg-white   text-red-700">
+              {cartQuantity}
+            </span>
+            <NavLink to="/cart" className="cursor-pointer">
+              <IoBagHandleOutline />
+            </NavLink>
+          </div>
           {userData?.photoURL ? (
             <NavLink to="/profile">
               <img

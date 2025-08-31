@@ -1,4 +1,3 @@
-// src/base/BaseRoutes.tsx
 import { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 

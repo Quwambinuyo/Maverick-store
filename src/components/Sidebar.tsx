@@ -67,7 +67,7 @@ const Sidebar = () => {
                   key={id}
                   to={path}
                   className={({ isActive }) =>
-                    `block w-full transition-all duration-200 libre-baskerville-bold ${
+                    `block w-full transition-all duration-200 chillax ${
                       isActive
                         ? "bg-[#EFFCF2] text-primary-color font-semibold border-r-4 border-secondary-color"
                         : "text-white hover:bg-secondary-color hover:text-primary-color"
@@ -84,7 +84,7 @@ const Sidebar = () => {
                     <span className="text-[20px] relative">
                       {icon}
                       {name.toLowerCase() === "cart" && (
-                        <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2 outfit rounded-full text-green-700 bg-white">
+                        <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2 outfit rounded-full text-red-700 bg-white">
                           {cartQuantity}
                         </span>
                       )}
