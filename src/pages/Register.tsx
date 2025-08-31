@@ -226,7 +226,9 @@ const Register = () => {
             <CustomBtn
               type="submit"
               disabled={loading}
-              className="w-full bg-primary-color text-white font-semibold py-3 mt-5 rounded-lg"
+              className={`w-full bg-primary-color h-[45px] text-white py-2 rounded-lg ${
+                loading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
             >
               {loading ? <LoadingSpinner /> : "Proceed"}
             </CustomBtn>
