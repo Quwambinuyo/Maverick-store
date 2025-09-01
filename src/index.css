@@ -19,6 +19,18 @@
   --color-success-500: #0f973d;
 }
 
+.custom-date-picker .rs-picker-toggle-value {
+  color: #543776; /* your primary color */
+}
+
+.custom-date-picker .rs-picker-toggle-placeholder {
+  color: #543776;
+}
+
+button {
+  cursor: pointer;
+}
+
 @keyframes gradient-x {
   0%,
   100% {

@@ -2,19 +2,20 @@ import { useState, useEffect } from "react";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { fetchUserOrders } from "../features/OrderStore";
 import { useAuthStore } from "../features/useAuthStore";
+import "rsuite/DateRangePicker/styles/index.css";
 import { db } from "../Auth/firebaseconfig";
-import DateInput from "../utils/DateInput";
-import { CgSearch, CgSortAz } from "react-icons/cg";
-import { PiDotsThreeOutlineFill } from "react-icons/pi";
+// import DateInput from "../utils/DateInput";
+import { CgSearch } from "react-icons/cg";
+import { DateRangePicker } from "rsuite";
+
 import OrderDetailsModal from "../components/OrderDetails";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
-// import { usePagination } from "../utils/usePagination";
-// import PaginationContainer from "./PaginationContainer";
 import ReactPaginate from "react-paginate";
 import Spinner from "../utils/spinner";
 
 const History = () => {
   const [activeFilter, setActiveFilter] = useState<string>("All");
+  const [dateRange, setDateRange] = useState<[Date, Date] | null>(null);
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [orders, setOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -24,9 +25,6 @@ const History = () => {
 
   const user = useAuthStore((state) => state.user);
   const [searchText, setSearchText] = useState("");
-
-  // const { searchText, setSearchText, totalPages, getSlicedData } =
-  // usePagination(orders, currentPage);
 
   const openDetails = (order: any) => {
     setSelectedOrder(order);
@@ -92,12 +90,33 @@ const History = () => {
       d?.logistic?.toLowerCase().startsWith(searchText.toLowerCase())
   );
 
-  const currentItems = filteredHistory.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(filteredHistory.length / itemsPerPage);
-  // const pageCount = Math.ceil(filteredHistory.length / itemsPerPage);
+  const filteredByDate = dateRange
+    ? filteredHistory.filter((d: any) => {
+        if (!d?.createdAt) return false;
+
+        const orderDate = new Date(d.createdAt);
+        const start = new Date(dateRange[0]);
+        const end = new Date(dateRange[1]);
+        end.setHours(23, 59, 59, 999);
+
+        return orderDate >= start && orderDate <= end;
+      })
+    : filteredHistory;
+
+  const filterHistorybyStatus = filteredByDate.filter((d: any) => {
+    if (activeFilter === "All") {
+      return true;
+    } else {
+      return d?.status?.toLowerCase() === activeFilter.toLocaleLowerCase();
+    }
+  });
+
+  const currentItems = filterHistorybyStatus.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(filterHistorybyStatus.length / itemsPerPage);
 
   const handlePageClick = (event: any) => {
-    const newOffset = (event.selected * itemsPerPage) % filteredHistory.length;
+    const newOffset =
+      (event.selected * itemsPerPage) % filterHistorybyStatus.length;
 
     setItemOffset(newOffset);
   };
@@ -108,9 +127,14 @@ const History = () => {
         <h2 className="text-xl font-semibold mb-4 text-gray-600">Orders</h2>
 
         {/* Date input */}
-        <div className="relative w-60 mb-6">
-          <DateInput />
-        </div>
+        <DateRangePicker
+          showOneCalendar
+          placeholder="Select Date Range"
+          style={{ width: 260 }}
+          value={dateRange}
+          onChange={(val) => setDateRange(val)}
+          className="custom-date-picker"
+        />
 
         {/* Order Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
@@ -133,8 +157,8 @@ const History = () => {
             {showSearch && (
               <input
                 type="search"
-                placeholder="All"
-                className="border-1 border-primary-color focus:outline outline-none px-2 rounded-lg max-w-[100px]"
+                placeholder="Order id"
+                className="border-1 border-primary-color focus:outline outline-none px-2 rounded-lg max-w-[150px]"
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
               />
@@ -144,12 +168,6 @@ const History = () => {
               className="bg-primary-color p-1 rounded-lg flex items-center justify-center"
             >
               <CgSearch size={20} className="text-white" />
-            </button>
-            <button className="bg-primary-color p-1 rounded-lg flex items-center justify-center">
-              <CgSortAz size={20} className="text-white" />
-            </button>
-            <button className="bg-primary-color p-1 rounded-lg flex items-center justify-center">
-              <PiDotsThreeOutlineFill size={20} className="text-white" />
             </button>
           </div>
         </div>
@@ -188,7 +206,7 @@ const History = () => {
           {/* Orders List Rows */}
           {loading ? (
             <div className="flex justify-center mt-10">
-              <Spinner modal />
+              <Spinner />
             </div>
           ) : orders.length === 0 ? (
             <p className="mt-4 text-gray-500">No orders found.</p>

@@ -11,7 +11,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { loggedIn, checkingStatus } = useAuthStore();
 
   if (checkingStatus) {
-    return <Spinner />;
+    return <Spinner modal />;
   }
 
   return loggedIn ? children : <Navigate to="/login" />;
