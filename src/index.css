@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @theme {
   --breakpoint-*: initial;
   --breakpoint-sm: 640px;
@@ -19,12 +20,31 @@
   --color-success-500: #0f973d;
 }
 
-.custom-date-picker .rs-picker-toggle-value {
-  color: #543776; /* your primary color */
+/* Border on the visible input area */
+.custom-date-picker.rs-picker .rs-picker-toggle {
+  border: 2px solid var(--color-primary-color) !important; /* Primary border */
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
 }
 
-.custom-date-picker .rs-picker-toggle-placeholder {
-  color: #543776;
+/* Hover + focus border */
+.custom-date-picker.rs-picker:hover .rs-picker-toggle,
+.custom-date-picker.rs-picker.rs-picker-focused .rs-picker-toggle {
+  border-color: var(--color-secondary-color) !important;
+}
+
+/* Text color (value & placeholder) */
+.custom-date-picker.rs-picker .rs-picker-toggle-value,
+.custom-date-picker.rs-picker .rs-picker-toggle-placeholder {
+  color: var(--color-primary-color) !important;
+  font-weight: 500;
+}
+
+/* Caret & clear icon colors */
+.custom-date-picker.rs-picker .rs-picker-toggle-caret,
+.custom-date-picker.rs-picker .rs-picker-toggle-clean,
+.custom-date-picker.rs-picker .rs-icon {
+  color: var(--color-primary-color) !important;
 }
 
 button {

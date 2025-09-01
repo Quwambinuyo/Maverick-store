@@ -130,7 +130,6 @@ const History = () => {
         <DateRangePicker
           showOneCalendar
           placeholder="Select Date Range"
-          style={{ width: 260 }}
           value={dateRange}
           onChange={(val) => setDateRange(val)}
           className="custom-date-picker"
