@@ -4,8 +4,15 @@ import Form from "../utils/Form";
 import CustomBtn from "../utils/CustomBtn";
 import { type LoginValues } from "../types/formTypes";
 import { NavLink } from "react-router-dom";
+import {} from "firebase/auth";
+import { useAuthStore } from "../features/useAuthStore";
+import Spinner from "../utils/spinner";
+// import { useState } from "react";
 
 const ForgotPassword = () => {
+  const { passwordResetLink, loading } = useAuthStore();
+  // const [errorMsg, setErrorMsg] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -13,10 +20,10 @@ const ForgotPassword = () => {
     watch,
   } = useForm<LoginValues>();
 
-  const emailValue = watch("email", ""); // watches the email input value
+  const emailValue = watch("email", "");
 
-  const onSubmit = (data: LoginValues) => {
-    console.log(data);
+  const handleReset = async () => {
+    await passwordResetLink(emailValue);
   };
 
   return (
@@ -40,7 +47,7 @@ const ForgotPassword = () => {
       {/* Right Side - Login Form */}
       <div className="flex w-full md:w-1/2 items-center justify-center px-6 py-8 pb-16 overflow-auto">
         <Form
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(handleReset)}
           className="w-full max-w-lg bg-[#E9E5EE] py-9 pr-10"
         >
           {/* Heading */}
@@ -73,11 +80,12 @@ const ForgotPassword = () => {
           {/* Submit Button */}
           <CustomBtn
             type="submit"
-            disabled={!emailValue.trim()}
-            className={`w-full bg-primary-color text-white py-2 rounded-lg transition-opacity duration-300 
-              ${!emailValue.trim() ? "opacity-50" : "opacity-100"}`}
+            disabled={loading}
+            className={`w-full flex justify-center items-center bg-primary-color h-[45px] text-white py-2 rounded-lg ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
-            Continue
+            {loading ? <Spinner /> : "Continue"}
           </CustomBtn>
 
           <div className="flex justify-center">

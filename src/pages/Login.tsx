@@ -7,7 +7,6 @@ import { type LoginValues } from "../types/formTypes";
 import { useAuthStore } from "../features/useAuthStore";
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-// import LoadingSpinner from "../components/LoadingSpinner";
 import Spinner from "../utils/spinner";
 
 const Login = () => {

@@ -84,7 +84,6 @@ const History = () => {
   const itemsPerPage = 5;
 
   const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
 
   const filteredHistory = orders?.filter(
     (d: any) =>
@@ -99,9 +98,7 @@ const History = () => {
 
   const handlePageClick = (event: any) => {
     const newOffset = (event.selected * itemsPerPage) % filteredHistory.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+
     setItemOffset(newOffset);
   };
 

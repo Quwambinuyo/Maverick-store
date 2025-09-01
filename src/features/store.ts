@@ -10,12 +10,6 @@ export const useSidebarStore = create<SidebarButtonState>((set) => ({
   setLoading: (value) => set({ loading: value }),
 }));
 
-// export const useProfileLoaderStore = create<ProfileLoaderState>((set) => ({
-//   toggleUpdate: () => set((state) => ({ isUpdated: !state.isUpdated })),
-//   loading: false,
-//   setLoading: (value) => set({ loading: value }),
-// }));
-
 export const useLandingNavbar = create<LandingNavState>((set) => ({
   isOpen: false,
   toggleLandingNav: () => set((state) => ({ isOpen: !state.isOpen })),

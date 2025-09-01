@@ -3,6 +3,7 @@ import { getUserInfoFromStore, signUp } from "../Auth/userAuth";
 import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   type User,
 } from "firebase/auth";
 import { auth } from "../Auth/firebaseconfig";
@@ -32,9 +33,7 @@ export const useAuthStore = create<AuthStore>((set) => {
     loading: false,
     rememberMe: localStorage.getItem("rememberMe") === "true",
     setUser: (user) => set({ user }),
-    // setRememberMe: (value) => set({ rememberMe: value }),
 
-    // NEW: Firebase auth status
     loggedIn: !!storedUser,
     checkingStatus: true,
 
@@ -136,11 +135,21 @@ export const useAuthStore = create<AuthStore>((set) => {
 
         window.location.href = "/login";
       }, 500);
+    },
 
-      // location.href = "/login";
-      // localStorage.removeItem("user");
-      // localStorage.removeItem("rememberMe");
-      // set({ user: null, rememberMe: false, loggedIn: false });
+    passwordResetLink: async (email) => {
+      try {
+        set({ loading: true, error: null });
+        await sendPasswordResetEmail(auth, email);
+        toast.success("Reset link sent if email existst (check spam too).");
+        return "email reset link sent";
+      } catch (error: any) {
+        toast.error("some error occured");
+        console.log(error);
+        return { error: error.message || "something went wrong" };
+      } finally {
+        set({ loading: false, error: null });
+      }
     },
 
     updateUserProfile: (uid: string, context: string, updUser: any) => {
@@ -165,7 +174,6 @@ export const useAuthStore = create<AuthStore>((set) => {
       // set({ user, loading: false, error: null, loggedIn: true });
     },
 
-    // NEW: Initialize Firebase auth listener
     initAuth: () => {
       onAuthStateChanged(auth, (user: User | null) => {
         if (user) {

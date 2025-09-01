@@ -79,7 +79,7 @@ export interface AuthStore {
   setRememberMe: (value: boolean) => void;
   initAuth: () => void;
   fetchUser: () => void;
-
+  passwordResetLink: (email: string) => Promise<{ error?: string }>;
   registerUser: (data: SignUpData) => Promise<void>;
   login: (
     email: string,
