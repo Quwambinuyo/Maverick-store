@@ -6,7 +6,7 @@ import landing from "../assets/images/landing.png";
 
 const LandingSwiper = () => {
   return (
-    <section className="w-full flex flex-col md:flex-row items-center justify-between bg-[#E9E5EE] md:px-14 px-4 py-10 gap-10 pt-36">
+    <section className="w-full flex flex-col md:flex-row items-center justify-between bg-secondary-color md:px-14 px-4 py-10 gap-10 pt-36">
       <div className="w-full md:w-1/2">
         <Swiper
           spaceBetween={30}
