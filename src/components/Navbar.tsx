@@ -32,8 +32,8 @@ const Navbar = () => {
     currentHour < 12
       ? "Good morning"
       : currentHour < 18
-      ? "Good afternoon"
-      : "Good evening";
+        ? "Good afternoon"
+        : "Good evening";
 
   useEffect(() => {
     if (!location.pathname.startsWith("/search")) {
@@ -54,7 +54,7 @@ const Navbar = () => {
             {!isOpen && <RxHamburgerMenu />}
           </button>
           <span className="text-sm ml-2 sm:inline capitalize md:text-lg text-primary-color font-semibold truncate">
-            Hello, {user?.displayName?.split(" ")[0]}. {greeting}{" "}
+            Hello, {user?.displayName?.split(" ")[0]}. {greeting}
           </span>
           <span>👋</span>
         </div>

@@ -9,14 +9,28 @@ import { useCartStore } from "../features/cartstore";
 import MobileSidebar from "./MobileSidebar";
 import { IoMdLogOut } from "react-icons/io";
 import { useAuthStore } from "../features/useAuthStore";
+import { useEffect, useState } from "react";
 
 const Sidebar = () => {
   const { isOpen, toggleSidebar } = useSidebarStore();
   const { cart } = useCartStore();
-  const cartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
   const { logout } = useAuthStore();
 
-  const isMobile = window.innerWidth < 640;
+  const cartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   if (isMobile) {
     return <MobileSidebar />;
@@ -24,11 +38,11 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`h-screen bg-primary-color border-r border-gray-300 fixed top-0 left-0 z-20 transition-all duration-300
-        ${isOpen ? "w-60" : "w-25"}`}
+      className={`h-screen bg-primary-color border-r border-gray-300 fixed top-0 left-0 z-20 ${
+        isOpen ? "w-60" : "w-24"
+      }`}
     >
       <div className="h-full flex flex-col relative">
-        {/* Header */}
         <div className="flex items-center justify-between px-4 py-5 flex-shrink-0 relative">
           {isOpen ? (
             <Link
@@ -58,7 +72,6 @@ const Sidebar = () => {
           </button>
         </div>
 
-        {/* Links */}
         <div className="flex-1 overflow-y-auto px-1 mt-4 custom-scrollbar">
           <div className="flex flex-col gap-y-4">
             {SidebarLinks.map(({ icon, name, id, path }) => {
@@ -84,7 +97,7 @@ const Sidebar = () => {
                     <span className="text-[20px] relative">
                       {icon}
                       {name.toLowerCase() === "cart" && (
-                        <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2  rounded-full text-red-700 font-bold bg-red-100">
+                        <span className="absolute -top-2 -right-2 flex items-center justify-center text-[10px] h-3 w-3 p-2 rounded-full text-red-700 font-bold bg-red-100">
                           {cartQuantity}
                         </span>
                       )}
@@ -100,7 +113,6 @@ const Sidebar = () => {
               );
             })}
 
-            {/* Logout */}
             {isOpen ? (
               <div
                 onClick={logout}
@@ -112,7 +124,7 @@ const Sidebar = () => {
             ) : (
               <button
                 onClick={logout}
-                className="bg-white flex  w-[60px] self-center justify-center rounded-full py-2 mb-2 cursor-pointer"
+                className="bg-white flex w-[60px] self-center justify-center rounded-full py-2 mb-2 cursor-pointer"
               >
                 <IoMdLogOut className="text-red-500 text-2xl" />
               </button>

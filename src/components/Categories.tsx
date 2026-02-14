@@ -4,6 +4,7 @@ const Categories = () => {
   return (
     <div>
       <FeaturedCategories />
+      
     </div>
   );
 };

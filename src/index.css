@@ -8,8 +8,8 @@
   --breakpoint-xl: 1240px;
   /* --color-primary-color: #543776; */
   /* --color-secondary-color: #c3acd0; */
-  --color-primary-color: #543776;
-  --color-secondary-color: #c3acd0;
+  --color-primary-color: #1b211a;
+  --color-secondary-color: #eae4d5;
   --color-accent-color: #dfccfb;
   --color-neutral-700: #2e2e2e;
   --color-neutral-600: #454545;
@@ -163,7 +163,9 @@ button {
   z-index: 50;
   overflow: hidden;
   position: absolute;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .swiper-button-next:hover,
